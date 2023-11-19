@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "icons=ic_arrow_left_g6.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
