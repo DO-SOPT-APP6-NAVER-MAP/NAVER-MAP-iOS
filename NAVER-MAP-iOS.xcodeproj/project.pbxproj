@@ -18,6 +18,18 @@
 		6BAD1A972B0A639700837590 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A962B0A639700837590 /* Moya */; };
 		6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A982B0A639700837590 /* ReactiveMoya */; };
 		6BAD1A9B2B0A639700837590 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A9A2B0A639700837590 /* RxMoya */; };
+		6BAD1AAD2B0A664300837590 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AAC2B0A664300837590 /* MainSearchViewController.swift */; };
+		6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */; };
+		6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB02B0A665900837590 /* DetailViewController.swift */; };
+		6BAD1AB32B0A666200837590 /* FindingRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */; };
+		6BAD1AB82B0A66B300837590 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */; };
+		6BAD1AB92B0A66B300837590 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */; };
+		6BAD1ABA2B0A66B300837590 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */; };
+		6BAD1ABB2B0A66B300837590 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */; };
+		6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ABC2B0A66C200837590 /* UIView+.swift */; };
+		6BAD1ABF2B0A66D800837590 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ABE2B0A66D800837590 /* ColorLiterals.swift */; };
+		6BAD1AC12B0A66E300837590 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AC02B0A66E300837590 /* ImageLiterals.swift */; };
+		6BAD1AC32B0A66ED00837590 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AC22B0A66ED00837590 /* FontLiterals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +40,18 @@
 		6B4D96E32B08657700977A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B4D96E62B08657700977A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B4D96E82B08657700977A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BAD1AAC2B0A664300837590 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
+		6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		6BAD1AB02B0A665900837590 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteViewController.swift; sourceTree = "<group>"; };
+		6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		6BAD1ABC2B0A66C200837590 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		6BAD1ABE2B0A66D800837590 /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
+		6BAD1AC02B0A66E300837590 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
+		6BAD1AC22B0A66ED00837590 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,14 +90,146 @@
 		6B4D96D92B08657600977A82 /* NAVER-MAP-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				6B4D96DA2B08657600977A82 /* AppDelegate.swift */,
-				6B4D96DC2B08657600977A82 /* SceneDelegate.swift */,
-				6B4D96DE2B08657600977A82 /* ViewController.swift */,
-				6B4D96E32B08657700977A82 /* Assets.xcassets */,
-				6B4D96E52B08657700977A82 /* LaunchScreen.storyboard */,
-				6B4D96E82B08657700977A82 /* Info.plist */,
+				6BAD1A9C2B0A650C00837590 /* Application */,
+				6BAD1A9D2B0A651E00837590 /* Global */,
+				6BAD1AA72B0A65CE00837590 /* Screen */,
 			);
 			path = "NAVER-MAP-iOS";
+			sourceTree = "<group>";
+		};
+		6BAD1A9C2B0A650C00837590 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6B4D96DA2B08657600977A82 /* AppDelegate.swift */,
+				6B4D96DC2B08657600977A82 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6BAD1A9D2B0A651E00837590 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1A9E2B0A652E00837590 /* Protocols */,
+				6BAD1A9F2B0A653300837590 /* Components */,
+				6BAD1AA02B0A653D00837590 /* Utilities */,
+				6BAD1AA12B0A654D00837590 /* Consts */,
+				6BAD1AA22B0A655600837590 /* Extensions */,
+				6BAD1AA32B0A656200837590 /* Resources */,
+				6BAD1AA42B0A656C00837590 /* Supporting Files */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		6BAD1A9E2B0A652E00837590 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		6BAD1A9F2B0A653300837590 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6BAD1AA02B0A653D00837590 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		6BAD1AA12B0A654D00837590 /* Consts */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1ABE2B0A66D800837590 /* ColorLiterals.swift */,
+				6BAD1AC02B0A66E300837590 /* ImageLiterals.swift */,
+				6BAD1AC22B0A66ED00837590 /* FontLiterals.swift */,
+			);
+			path = Consts;
+			sourceTree = "<group>";
+		};
+		6BAD1AA22B0A655600837590 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1ABC2B0A66C200837590 /* UIView+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6BAD1AA32B0A656200837590 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AA52B0A65AF00837590 /* Font */,
+				6B4D96E32B08657700977A82 /* Assets.xcassets */,
+				6B4D96E52B08657700977A82 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6BAD1AA42B0A656C00837590 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6B4D96E82B08657700977A82 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6BAD1AA52B0A65AF00837590 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */,
+				6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */,
+				6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */,
+				6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		6BAD1AA72B0A65CE00837590 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				6B4D96DE2B08657600977A82 /* ViewController.swift */,
+				6BAD1AA82B0A65DA00837590 /* MainSearch */,
+				6BAD1AA92B0A65ED00837590 /* SearchResult */,
+				6BAD1AAA2B0A660600837590 /* Detail */,
+				6BAD1AAB2B0A661000837590 /* FindingRoute */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		6BAD1AA82B0A65DA00837590 /* MainSearch */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AAC2B0A664300837590 /* MainSearchViewController.swift */,
+			);
+			path = MainSearch;
+			sourceTree = "<group>";
+		};
+		6BAD1AA92B0A65ED00837590 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		6BAD1AAA2B0A660600837590 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AB02B0A665900837590 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		6BAD1AAB2B0A661000837590 /* FindingRoute */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */,
+			);
+			path = FindingRoute;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +303,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BAD1AB82B0A66B300837590 /* Pretendard-SemiBold.otf in Resources */,
+				6BAD1ABB2B0A66B300837590 /* Pretendard-Regular.otf in Resources */,
+				6BAD1ABA2B0A66B300837590 /* Pretendard-Medium.otf in Resources */,
+				6BAD1AB92B0A66B300837590 /* Pretendard-Bold.otf in Resources */,
 				6B4D96E72B08657700977A82 /* LaunchScreen.storyboard in Resources */,
 				6B4D96E42B08657700977A82 /* Assets.xcassets in Resources */,
 			);
@@ -161,7 +321,15 @@
 			files = (
 				6B4D96DF2B08657600977A82 /* ViewController.swift in Sources */,
 				6B4D96DB2B08657600977A82 /* AppDelegate.swift in Sources */,
+				6BAD1ABF2B0A66D800837590 /* ColorLiterals.swift in Sources */,
+				6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */,
+				6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */,
+				6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */,
 				6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */,
+				6BAD1AC12B0A66E300837590 /* ImageLiterals.swift in Sources */,
+				6BAD1AAD2B0A664300837590 /* MainSearchViewController.swift in Sources */,
+				6BAD1AC32B0A66ED00837590 /* FontLiterals.swift in Sources */,
+				6BAD1AB32B0A666200837590 /* FindingRouteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +475,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6ML57N96S3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NAVER-MAP-iOS/Info.plist";
+				INFOPLIST_FILE = "NAVER-MAP-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -334,7 +502,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6ML57N96S3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NAVER-MAP-iOS/Info.plist";
+				INFOPLIST_FILE = "NAVER-MAP-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
