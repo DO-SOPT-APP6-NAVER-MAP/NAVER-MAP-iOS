@@ -13,6 +13,12 @@
 		6B4D96E22B08657600977A82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4D96E02B08657600977A82 /* Main.storyboard */; };
 		6B4D96E42B08657700977A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B4D96E32B08657700977A82 /* Assets.xcassets */; };
 		6B4D96E72B08657700977A82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4D96E52B08657700977A82 /* LaunchScreen.storyboard */; };
+		6BAD1A8F2B0A636F00837590 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A8E2B0A636F00837590 /* SnapKit */; };
+		6BAD1A922B0A637B00837590 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A912B0A637B00837590 /* Then */; };
+		6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A942B0A639700837590 /* CombineMoya */; };
+		6BAD1A972B0A639700837590 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A962B0A639700837590 /* Moya */; };
+		6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A982B0A639700837590 /* ReactiveMoya */; };
+		6BAD1A9B2B0A639700837590 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6BAD1A9A2B0A639700837590 /* RxMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BAD1A9B2B0A639700837590 /* RxMoya in Frameworks */,
+				6BAD1A8F2B0A636F00837590 /* SnapKit in Frameworks */,
+				6BAD1A922B0A637B00837590 /* Then in Frameworks */,
+				6BAD1A972B0A639700837590 /* Moya in Frameworks */,
+				6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */,
+				6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +95,14 @@
 			dependencies = (
 			);
 			name = "NAVER-MAP-iOS";
+			packageProductDependencies = (
+				6BAD1A8E2B0A636F00837590 /* SnapKit */,
+				6BAD1A912B0A637B00837590 /* Then */,
+				6BAD1A942B0A639700837590 /* CombineMoya */,
+				6BAD1A962B0A639700837590 /* Moya */,
+				6BAD1A982B0A639700837590 /* ReactiveMoya */,
+				6BAD1A9A2B0A639700837590 /* RxMoya */,
+			);
 			productName = "NAVER-MAP-iOS";
 			productReference = 6B4D96D72B08657600977A82 /* NAVER-MAP-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +131,11 @@
 				Base,
 			);
 			mainGroup = 6B4D96CE2B08657600977A82;
+			packageReferences = (
+				6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */,
+				6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 6B4D96D82B08657600977A82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,6 +388,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6BAD1A8E2B0A636F00837590 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		6BAD1A912B0A637B00837590 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		6BAD1A942B0A639700837590 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		6BAD1A962B0A639700837590 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		6BAD1A982B0A639700837590 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		6BAD1A9A2B0A639700837590 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6B4D96CF2B08657600977A82 /* Project object */;
 }
