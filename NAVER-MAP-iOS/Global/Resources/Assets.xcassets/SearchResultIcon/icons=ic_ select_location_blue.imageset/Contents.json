@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "icons=ic_ select_location_blue.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
