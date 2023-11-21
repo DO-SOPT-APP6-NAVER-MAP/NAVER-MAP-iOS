@@ -22,10 +22,6 @@
 		6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */; };
 		6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB02B0A665900837590 /* DetailViewController.swift */; };
 		6BAD1AB32B0A666200837590 /* FindingRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */; };
-		6BAD1AB82B0A66B300837590 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */; };
-		6BAD1AB92B0A66B300837590 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */; };
-		6BAD1ABA2B0A66B300837590 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */; };
-		6BAD1ABB2B0A66B300837590 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */; };
 		6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ABC2B0A66C200837590 /* UIView+.swift */; };
 		6BAD1ABF2B0A66D800837590 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ABE2B0A66D800837590 /* ColorLiterals.swift */; };
 		6BAD1AC12B0A66E300837590 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AC02B0A66E300837590 /* ImageLiterals.swift */; };
@@ -34,6 +30,10 @@
 		6BAD1AC92B0A682200837590 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1AC82B0A682200837590 /* UIStackView+.swift */; };
 		6BAD1ACB2B0A683600837590 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ACA2B0A683600837590 /* UITextField+.swift */; };
 		6BAD1ACD2B0A684900837590 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAD1ACC2B0A684900837590 /* UILabel+.swift */; };
+		6BAD1ADD2B0C7EA300837590 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1AD92B0C7EA300837590 /* Pretendard-Bold.otf */; };
+		6BAD1ADE2B0C7EA300837590 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADA2B0C7EA300837590 /* Pretendard-Regular.otf */; };
+		6BAD1ADF2B0C7EA300837590 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADB2B0C7EA300837590 /* Pretendard-Medium.otf */; };
+		6BAD1AE02B0C7EA300837590 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +48,6 @@
 		6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		6BAD1AB02B0A665900837590 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteViewController.swift; sourceTree = "<group>"; };
-		6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
-		6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../32기/앱잼/pophory-iOS/pophory-iOS/Global/Resources/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		6BAD1ABC2B0A66C200837590 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		6BAD1ABE2B0A66D800837590 /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
 		6BAD1AC02B0A66E300837590 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
@@ -60,6 +56,10 @@
 		6BAD1AC82B0A682200837590 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		6BAD1ACA2B0A683600837590 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		6BAD1ACC2B0A684900837590 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		6BAD1AD92B0C7EA300837590 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		6BAD1ADA2B0C7EA300837590 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		6BAD1ADB2B0C7EA300837590 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 		6BAD1AA32B0A656200837590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6BAD1AA52B0A65AF00837590 /* Font */,
+				6BAD1AD82B0C7E4800837590 /* Font */,
 				6B4D96E32B08657700977A82 /* Assets.xcassets */,
 				6B4D96E52B08657700977A82 /* LaunchScreen.storyboard */,
 			);
@@ -187,17 +187,6 @@
 				6B4D96E82B08657700977A82 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6BAD1AA52B0A65AF00837590 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				6BAD1AB52B0A66B300837590 /* Pretendard-Bold.otf */,
-				6BAD1AB62B0A66B300837590 /* Pretendard-Medium.otf */,
-				6BAD1AB72B0A66B300837590 /* Pretendard-Regular.otf */,
-				6BAD1AB42B0A66B300837590 /* Pretendard-SemiBold.otf */,
-			);
-			path = Font;
 			sourceTree = "<group>";
 		};
 		6BAD1AA72B0A65CE00837590 /* Screen */ = {
@@ -242,6 +231,17 @@
 				6BAD1AB22B0A666200837590 /* FindingRouteViewController.swift */,
 			);
 			path = FindingRoute;
+			sourceTree = "<group>";
+		};
+		6BAD1AD82B0C7E4800837590 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6BAD1AD92B0C7EA300837590 /* Pretendard-Bold.otf */,
+				6BAD1ADB2B0C7EA300837590 /* Pretendard-Medium.otf */,
+				6BAD1ADA2B0C7EA300837590 /* Pretendard-Regular.otf */,
+				6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,11 +315,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BAD1AB82B0A66B300837590 /* Pretendard-SemiBold.otf in Resources */,
-				6BAD1ABB2B0A66B300837590 /* Pretendard-Regular.otf in Resources */,
-				6BAD1ABA2B0A66B300837590 /* Pretendard-Medium.otf in Resources */,
-				6BAD1AB92B0A66B300837590 /* Pretendard-Bold.otf in Resources */,
 				6B4D96E72B08657700977A82 /* LaunchScreen.storyboard in Resources */,
+				6BAD1ADF2B0C7EA300837590 /* Pretendard-Medium.otf in Resources */,
+				6BAD1ADE2B0C7EA300837590 /* Pretendard-Regular.otf in Resources */,
+				6BAD1AE02B0C7EA300837590 /* Pretendard-SemiBold.otf in Resources */,
+				6BAD1ADD2B0C7EA300837590 /* Pretendard-Bold.otf in Resources */,
 				6B4D96E42B08657700977A82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
