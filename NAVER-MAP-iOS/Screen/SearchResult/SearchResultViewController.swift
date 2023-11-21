@@ -12,6 +12,10 @@ class SearchResultViewController: UIViewController {
     private var micBtn = UIButton()
     private var exitBtn = UIButton()
     private var mapView = MKMapView()
+    private var mapBtnStackView = UIStackView()
+    private var menuBtn = UIButton()
+    private var favoritesBtn = UIButton()
+    private var roadViewBtn = UIButton()
     
     // MARK: Properties
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
@@ -28,6 +32,8 @@ class SearchResultViewController: UIViewController {
         self.view.addSubviews([topBarView, mapView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
+        mapView.addSubview(mapBtnStackView)
+        mapBtnStackView.addArrangedSubviews(menuBtn, favoritesBtn, roadViewBtn)
         searchTextfield.addSubviews([micBtn])
 
         topBarView.snp.makeConstraints{
@@ -62,12 +68,18 @@ class SearchResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(400)
         }
-        
+        mapBtnStackView.snp.makeConstraints{
+            $0.top.equalToSuperview().inset(12)
+            $0.trailing.equalToSuperview().inset(17)
+            $0.width.equalTo(41)
+            $0.height.equalTo(135)
+        }
     }
     
     // MARK: - Style
     func setupStyle(){
         self.view.backgroundColor = .white
+        ///상단 서치뷰
         topBarView.do{
             $0.backgroundColor = .white
             $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
@@ -82,7 +94,6 @@ class SearchResultViewController: UIViewController {
             $0.backgroundColor = .white
             $0.distribution = .equalSpacing
         }
-        
         backBtn.setImage(UIImage(named: "icons=ic_arrow_left_g6"), for: .normal)
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
@@ -97,8 +108,28 @@ class SearchResultViewController: UIViewController {
         micBtn.setImage(UIImage(named: "icons=ic_mic"), for: .normal)
         exitBtn.setImage(UIImage(named: "icons=ic_remove"), for: .normal)
         
+        ///맵뷰
         mapView.do{
             $0.setRegion(MKCoordinateRegion(center: defaultLocation, span: defaultSpanValue), animated: true)
+        }
+        mapBtnStackView.do{
+            $0.axis = .vertical
+            $0.backgroundColor = .clear
+            $0.distribution = .fillEqually
+            $0.spacing = 7
+        }
+        menuBtn.setImage(UIImage(named: "icons=ic_copy"), for: .normal)
+        favoritesBtn.setImage(UIImage(named: "icons=ic_star_fill"), for: .normal)
+        roadViewBtn.setImage(UIImage(named: "icons=ic_location_remove"), for: .normal)
+        for i in [menuBtn, favoritesBtn, roadViewBtn] {
+            i.layer.cornerRadius = 20
+            i.backgroundColor = .white
+            i.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+            i.layer.shadowOpacity = 1
+            i.layer.shadowRadius = 2
+            i.layer.shadowOffset = CGSize(width: 0, height: 4)
+            i.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            i.layer.borderWidth = 0.5
         }
     }
 }
