@@ -24,7 +24,7 @@ extension UIFont {
     }
     
     class var title4: UIFont {
-        return UIFont.font(.pretendardRegular, ofSize: 30)
+        return UIFont.font(.pretendardRegular, ofSize: 18)
     }
     
     // MARK: - Body
