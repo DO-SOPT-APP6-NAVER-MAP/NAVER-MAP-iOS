@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 import Then
+import MapKit
 
 class SearchResultViewController: UIViewController {
     // MARK: UI Properties
@@ -10,6 +11,7 @@ class SearchResultViewController: UIViewController {
     private var searchTextfield = UITextField()
     private var micBtn = UIButton()
     private var exitBtn = UIButton()
+    private var mapView = MKMapView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +58,15 @@ class SearchResultViewController: UIViewController {
     // MARK: - Style
     func setupStyle(){
         self.view.backgroundColor = .white
-        topBarView.backgroundColor = .white
-        
+        topBarView.do{
+            $0.backgroundColor = .white
+            $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowRadius = 4
+            $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+            $0.layer.borderColor = UIColor(red: 0.643, green: 0.643, blue: 0.643, alpha: 1).cgColor
+            $0.layer.borderWidth = 1
+        }
         topStackView.do{
             $0.axis = .horizontal
             $0.backgroundColor = .white
