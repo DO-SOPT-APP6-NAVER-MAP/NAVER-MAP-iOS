@@ -12,6 +12,10 @@ class SearchResultViewController: UIViewController {
     private var micBtn = UIButton()
     private var exitBtn = UIButton()
     private var mapView = MKMapView()
+    
+    // MARK: Properties
+    private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
+    private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,7 @@ class SearchResultViewController: UIViewController {
 
     // MARK: - Layout
     func setupLayout(){
-        self.view.addSubviews([topBarView])
+        self.view.addSubviews([topBarView, mapView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
         searchTextfield.addSubviews([micBtn])
@@ -51,6 +55,12 @@ class SearchResultViewController: UIViewController {
             $0.top.bottom.equalToSuperview()
             $0.trailing.equalToSuperview().inset(12)
             $0.width.height.equalTo(24)
+        }
+        
+        mapView.snp.makeConstraints{
+            $0.top.equalTo(topBarView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(400)
         }
         
     }
@@ -86,6 +96,10 @@ class SearchResultViewController: UIViewController {
         }
         micBtn.setImage(UIImage(named: "icons=ic_mic"), for: .normal)
         exitBtn.setImage(UIImage(named: "icons=ic_remove"), for: .normal)
+        
+        mapView.do{
+            $0.setRegion(MKCoordinateRegion(center: defaultLocation, span: defaultSpanValue), animated: true)
+        }
     }
 }
 
