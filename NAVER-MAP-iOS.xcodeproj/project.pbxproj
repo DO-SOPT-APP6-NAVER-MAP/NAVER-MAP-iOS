@@ -220,6 +220,8 @@
 		6BAD1AAA2B0A660600837590 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				94F380A92B0CA9E800657538 /* View */,
+				94F380A82B0CA9DB00657538 /* Layout */,
 				6BAD1AB02B0A665900837590 /* DetailViewController.swift */,
 			);
 			path = Detail;
@@ -242,6 +244,36 @@
 				6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		94F380A82B0CA9DB00657538 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		94F380A92B0CA9E800657538 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				94F380AB2B0CA9F700657538 /* SupplementaryView */,
+				94F380AA2B0CA9F000657538 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		94F380AA2B0CA9F000657538 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		94F380AB2B0CA9F700657538 /* SupplementaryView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SupplementaryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
