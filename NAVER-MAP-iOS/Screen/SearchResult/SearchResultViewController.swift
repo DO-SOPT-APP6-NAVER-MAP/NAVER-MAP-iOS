@@ -20,13 +20,15 @@ class SearchResultViewController: UIViewController {
     // MARK: - Layout
     func setupLayout(){
         self.view.addSubviews([topBarView])
+        topBarView.addSubview(topStackView)
+        topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
+        searchTextfield.addSubviews([micBtn])
+
         topBarView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
             $0.width.equalTo(375)
             $0.height.equalTo(103)
         }
-        
-        topBarView.addSubview(topStackView)
         topStackView.snp.makeConstraints{
             $0.top.equalTo(topBarView).inset(45)
             $0.leading.trailing.equalTo(topBarView).inset(16)
@@ -35,7 +37,6 @@ class SearchResultViewController: UIViewController {
         backBtn.snp.makeConstraints{
             $0.width.equalTo(24)
         }
-        topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
         searchTextfield.snp.makeConstraints{
             $0.leading.equalTo(backBtn.snp.trailing).offset(9)
             $0.trailing.equalTo(exitBtn.snp.leading).offset(-9)
@@ -44,7 +45,6 @@ class SearchResultViewController: UIViewController {
         exitBtn.snp.makeConstraints{
             $0.width.equalTo(24)
         }
-        searchTextfield.addSubviews([micBtn])
         micBtn.snp.makeConstraints{
             $0.top.bottom.equalToSuperview()
             $0.trailing.equalToSuperview().inset(12)
