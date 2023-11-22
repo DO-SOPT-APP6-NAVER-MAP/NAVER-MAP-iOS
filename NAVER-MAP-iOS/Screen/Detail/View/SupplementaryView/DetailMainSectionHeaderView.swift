@@ -224,4 +224,30 @@ private extension DetailMainSectionHeaderView {
            }
        }
        
+    func setupProperties() {
+           paginatorBtn.do {
+               $0.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
+           }
+           
+           departureBtn.do {
+               $0.setTitle("출발", for: .normal)
+               $0.titleLabel?.font = UIFont.body7
+               $0.setTitleColor(UIColor.naverMapBlue, for: .normal)
+               $0.setImage(ImageLiterals.ic_btn_depart_circle, for: .normal)
+               $0.layer.borderWidth = 1
+               $0.layer.borderColor = UIColor.naverMapBlue.cgColor
+               $0.layer.backgroundColor = UIColor.naverMapWhite.cgColor
+               $0.layer.cornerRadius = 20
+           }
+           
+           arrivalBtn.do {
+               $0.setTitle("도착", for: .normal)
+               $0.titleLabel?.font = UIFont.body7
+               $0.setTitleColor(UIColor.naverMapWhite, for: .normal)
+               $0.setImage(ImageLiterals.ic_btn_location_white, for: .normal)
+               $0.layer.backgroundColor = UIColor.naverMapBlue.cgColor
+               $0.layer.cornerRadius = 20
+           }
+       }
+    
 }
