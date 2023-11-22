@@ -1,10 +1,13 @@
 import UIKit
+
+import MapKit
 import SnapKit
 import Then
-import MapKit
 
 class SearchResultViewController: UIViewController {
+    
     // MARK: UI Properties
+    
     private var topBarView = UIView()
     private var topStackView = UIStackView()
     private var backBtn = UIButton()
@@ -19,16 +22,19 @@ class SearchResultViewController: UIViewController {
     private var locationBtn = UIButton()
     
     // MARK: Properties
+   
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupLayout()
         setupStyle()
     }
 
     // MARK: - Layout
+    
     func setupLayout(){
         self.view.addSubviews([topBarView, mapView])
         topBarView.addSubview(topStackView)
@@ -39,7 +45,6 @@ class SearchResultViewController: UIViewController {
 
         topBarView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
-            $0.width.equalTo(375)
             $0.height.equalTo(103)
         }
         topStackView.snp.makeConstraints{
@@ -82,16 +87,17 @@ class SearchResultViewController: UIViewController {
     }
     
     // MARK: - Style
+    
     func setupStyle(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .naverMapWhite
         ///상단 서치뷰
         topBarView.do{
-            $0.backgroundColor = .white
-            $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+            $0.backgroundColor = .naverMapWhite
+            $0.layer.shadowColor = UIColor.naverMapBlack10.cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowRadius = 4
             $0.layer.shadowOffset = CGSize(width: 0, height: 3)
-            $0.layer.borderColor = UIColor(red: 0.643, green: 0.643, blue: 0.643, alpha: 1).cgColor
+            $0.layer.borderColor = UIColor.naverMapGray4.cgColor
             $0.layer.borderWidth = 1
         }
         topStackView.do{
@@ -99,19 +105,19 @@ class SearchResultViewController: UIViewController {
             $0.backgroundColor = .white
             $0.distribution = .equalSpacing
         }
-        backBtn.setImage(UIImage(named: "icons=ic_arrow_left_g6"), for: .normal)
+        backBtn.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
             $0.font = .title4
-            $0.textColor = .black
+            $0.textColor = UIColor.naverMapBlack
             $0.makeRounded(radius: 10)
             $0.layer.borderWidth = 1
-            $0.layer.borderColor = UIColor(hex: "#DADADA").cgColor
-            $0.backgroundColor = .white
+            $0.layer.borderColor = UIColor.naverMapGray2.cgColor
+            $0.backgroundColor = UIColor.naverMapWhite
             $0.addPadding(left: 12, right: 12)
         }
-        micBtn.setImage(UIImage(named: "icons=ic_mic"), for: .normal)
-        exitBtn.setImage(UIImage(named: "icons=ic_remove"), for: .normal)
+        micBtn.setImage(ImageLiterals.ic_mic, for: .normal)
+        exitBtn.setImage(ImageLiterals.ic_remove, for: .normal)
         
         ///맵뷰
         mapView.do{
@@ -123,19 +129,19 @@ class SearchResultViewController: UIViewController {
             $0.distribution = .fillEqually
             $0.spacing = 7
         }
-        menuBtn.setImage(UIImage(named: "icons=ic_copy"), for: .normal)
-        favoritesBtn.setImage(UIImage(named: "icons=ic_star_fill"), for: .normal)
-        roadViewBtn.setImage(UIImage(named: "icons=ic_location_remove"), for: .normal)
+        menuBtn.setImage(ImageLiterals.ic_copy, for: .normal)
+        favoritesBtn.setImage(ImageLiterals.ic_star_fill, for: .normal)
+        roadViewBtn.setImage(ImageLiterals.ic_location_remove, for: .normal)
         locationBtn.setImage(ImageLiterals.ic_current_location, for: .normal)
         locationBtn.backgroundColor = .blue
         for i in [menuBtn, favoritesBtn, roadViewBtn, locationBtn] {
             i.layer.cornerRadius = 20
-            i.backgroundColor = .white
-            i.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+            i.backgroundColor = .naverMapWhite
+            i.layer.shadowColor = UIColor.naverMapGray2.cgColor
             i.layer.shadowOpacity = 1
             i.layer.shadowRadius = 2
             i.layer.shadowOffset = CGSize(width: 0, height: 4)
-            i.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            i.layer.borderColor = UIColor.naverMapGray3.cgColor
             i.layer.borderWidth = 0.5
         }
     }
