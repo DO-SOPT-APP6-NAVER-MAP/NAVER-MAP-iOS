@@ -15,7 +15,6 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     // MARK: - Properties
     
     static let identifier = "DetailMainSectionHeaderView"
-    private var buttonConfig = UIButton.Configuration.filled() // 이걸 여기에? 아니면 메서드 안에?
     
     // MARK: - UI Properties
     
@@ -25,11 +24,11 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var imagesVerticalStackView1: UIStackView = { createVerticalStackView(forSpacing: 2) }()
     private lazy var imagesVerticalStackView2: UIStackView = { createVerticalStackView(forSpacing: 2) }()
     
-    private lazy var bigMenuImage: UIImageView = { fetchBigImageLayout(image: ImageLiterals.ic_food) }()
-    private lazy var smallMenuImage1: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_btn_location_white)}()
-    private lazy var smallMenuImage2: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_btn_location_white) }()
-    private lazy var smallMenuImage3: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_btn_location_white) }()
-    private lazy var smallMenuImage4: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_btn_location_white)}()
+    private lazy var bigMenuImage: UIImageView = { fetchBigImageLayout(image: ImageLiterals.ic_naverbooking) }()
+    private lazy var smallMenuImage1: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
+    private lazy var smallMenuImage2: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking) }()
+    private lazy var smallMenuImage3: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking) }()
+    private lazy var smallMenuImage4: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
     private lazy var imageIc: UIImageView = { createIcon(image: ImageLiterals.ic_picture) }()
     private lazy var imagesCountLabel = createLabel(forFont: UIFont.bodyButton, forColor: UIColor.naverMapWhite, text: "+4")
     
@@ -42,7 +41,6 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var rateIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_red) }()
     private lazy var rateLabel: UILabel = { createLabel(forFont: UIFont.body7, forColor: UIColor.naverMapGray7, text: "4.82")}()
     
-    private let mainStackView = UIStackView()
     private lazy var visitorReviewBtn = createReviewBtn(title: "방문자리뷰 288")
     private lazy var blogReviewBtn = createReviewBtn(title: "블로그리뷰 316")
     
@@ -50,8 +48,11 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private let departureBtn = UIButton()
     private let arrivalBtn = UIButton()
     
-    private lazy var horizontalDividingLine: UIView = { createDividingLine(forHeight: 1, forWidth: 343) }()
-    
+    private let horizontalDividingLine = UIView()
+    private let verticalDividingLine1 = UIView()
+    private let verticalDividingLine2 = UIView()
+    private let verticalDividingLine3 = UIView()
+
     private lazy var allMenusStackView: UIStackView = { createHorizontalStackView(forSpacing: 29) }()
     
     private lazy var callStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
@@ -59,22 +60,18 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var callMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
                                                             forColor: UIColor.naverMapGray6,
                                                             text: "전화")}()
-    private lazy var verticalDividingLine1: UIView = { createDividingLine(forHeight: 46, forWidth: 1) }()
     
     private lazy var bookMarkStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
     private lazy var bookMarkIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_thick) }()
     private lazy var bookMarkMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
                                                                 forColor: UIColor.naverMapGray6,
                                                                 text: "저장")}()
-    private lazy var verticalDividingLine2: UIView = { createDividingLine(forHeight: 46, forWidth: 1) }()
     
     private lazy var navigationStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
     private lazy var navigationIc: UIImageView = { createIcon(image: ImageLiterals.ic_navigation) }()
     private lazy var navigationMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
                                                                   forColor: UIColor.naverMapGray6,
                                                                   text: "내비게이션")}()
-    private lazy var verticalDividingLine3: UIView = { createDividingLine(forHeight: 46, forWidth: 1) }()
-    
     
     private lazy var shareStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
     private lazy var shareIc: UIImageView = { createIcon(image: ImageLiterals.ic_share) }()
@@ -93,7 +90,7 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
         
         setupStyle()
         setupViews()
-        setupLayout()
+        setupConstraints()
         setupProperties()
     }
     
@@ -122,30 +119,35 @@ private extension DetailMainSectionHeaderView {
                           horizontalDividingLine,
                           allMenusStackView,
                           naverBtnStackView])
-        imagesHorizontalStackView.addSubviews([paginatorBtn, imageIc, imagesCountLabel])
         
-        imagesHorizontalStackView.addArrangedSubviews(bigMenuImage ,imagesVerticalStackView1, imagesVerticalStackView2)
+        imagesHorizontalStackView.addArrangedSubviews(bigMenuImage,
+                                                      imagesVerticalStackView1,
+                                                      imagesVerticalStackView2)
         imagesVerticalStackView1.addArrangedSubviews(smallMenuImage1, smallMenuImage2)
         imagesVerticalStackView2.addArrangedSubviews(smallMenuImage3, smallMenuImage4)
-        mapBtnStackView.addArrangedSubviews(visitorReviewBtn, blogReviewBtn)
-        
+        imagesHorizontalStackView.addSubviews([paginatorBtn, 
+                                               imageIc, 
+                                               imagesCountLabel])
+
+        mapBtnStackView.addArrangedSubviews(departureBtn, arrivalBtn)
+
         allMenusStackView.addArrangedSubviews(callStackView,
                                               verticalDividingLine1,
                                               bookMarkStackView,
-                                              verticalDividingLine1,
+                                              verticalDividingLine2,
                                               navigationStackView,
-                                              verticalDividingLine1,
+                                              verticalDividingLine3,
                                               shareStackView)
-        
+                
         callStackView.addArrangedSubviews(callIc, callMenuLabel)
         bookMarkStackView.addArrangedSubviews(bookMarkIc, bookMarkMenuLabel)
         navigationStackView.addArrangedSubviews(navigationIc, navigationMenuLabel)
-        shareStackView.addArrangedSubviews(navigationIc, navigationMenuLabel)
+        shareStackView.addArrangedSubviews(shareIc, shareMenuLabel)
         
         naverBtnStackView.addArrangedSubviews(bookingBtn, payBtn)
     }
     
-    func setupLayout() {
+    func setupConstraints() {
         imagesHorizontalStackView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -159,68 +161,106 @@ private extension DetailMainSectionHeaderView {
         }
         
         imageIc.snp.makeConstraints {
-            $0.top.equalTo(imagesHorizontalStackView).inset(123)
+            $0.top.equalTo(imagesHorizontalStackView).offset(123)
             $0.trailing.equalTo(imagesHorizontalStackView).inset(36)
         }
         
         imagesCountLabel.snp.makeConstraints {
-            $0.top.equalTo(imageIc).inset(4)
+            $0.top.equalTo(imageIc.snp.bottom).offset(4)
             $0.trailing.equalTo(imagesHorizontalStackView).inset(36)
         }
         
         locationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(imagesHorizontalStackView.snp.bottom).inset(21)
+            $0.top.equalTo(imagesHorizontalStackView.snp.bottom).offset(21)
             $0.leading.equalToSuperview().inset(17)
         }
         
         categoryLabel.snp.makeConstraints {
-            $0.top.equalTo(imagesHorizontalStackView.snp.bottom).inset(22)
-            $0.leading.equalTo(locationNameLabel.snp.trailing).inset(4)
+            $0.top.equalTo(imagesHorizontalStackView.snp.bottom).offset(22)
+            $0.leading.equalTo(locationNameLabel.snp.trailing).offset(4)
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(locationNameLabel.snp.bottom).inset(8)
+            $0.top.equalTo(locationNameLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().inset(17)
         }
         
         rateIc.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).inset(18)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(18)
             $0.leading.equalToSuperview().inset(17)
+            $0.height.equalTo(12)
+            $0.width.equalTo(12)
         }
         
         rateLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).inset(15)
-            $0.leading.equalTo(rateIc.snp.trailing).inset(2)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(18)
+            $0.leading.equalToSuperview().inset(31)
         }
         
         visitorReviewBtn.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).inset(13)
-            $0.leading.equalTo(rateLabel.snp.trailing).inset(16)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(14)
+            $0.leading.equalTo(rateLabel.snp.trailing).offset(16)
+            $0.width.equalTo(104)
+            $0.height.equalTo(23)
         }
         
         blogReviewBtn.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).inset(13)
-            $0.leading.equalTo(visitorReviewBtn.snp.trailing).inset(8)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(14)
+            $0.leading.equalTo(visitorReviewBtn.snp.trailing).offset(8)
+            $0.width.equalTo(104)
+            $0.height.equalTo(23)
         }
         
         mapBtnStackView.snp.makeConstraints {
-            $0.top.equalTo(visitorReviewBtn.snp.bottom).inset(16)
+            $0.top.equalTo(visitorReviewBtn.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
         
+        arrivalBtn.snp.makeConstraints {
+            $0.width.equalTo(94)
+            $0.height.equalTo(36)
+        }
+        
+        departureBtn.snp.makeConstraints {
+            $0.width.equalTo(94)
+            $0.height.equalTo(36)
+        }
+        
         horizontalDividingLine.snp.makeConstraints {
-            $0.top.equalTo(mapBtnStackView.snp.bottom).inset(18)
+            $0.top.equalTo(mapBtnStackView.snp.bottom).offset(18)
             $0.centerX.equalToSuperview()
         }
         
         allMenusStackView.snp.makeConstraints {
-            $0.top.equalTo(horizontalDividingLine.snp.bottom).inset(9)
+            $0.top.equalTo(horizontalDividingLine.snp.bottom).offset(9)
             $0.centerX.equalToSuperview()
         }
         
         naverBtnStackView.snp.makeConstraints {
-            $0.top.equalTo(horizontalDividingLine.snp.bottom).inset(75)
+            $0.top.equalTo(horizontalDividingLine.snp.bottom).offset(75)
             $0.centerX.equalToSuperview()
+        }
+        
+        bookingBtn.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.height.equalTo(40)
+        }
+        
+        payBtn.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.height.equalTo(40)
+        }
+        
+        horizontalDividingLine.snp.makeConstraints {
+            $0.width.equalTo(343)
+            $0.height.equalTo(1)
+        }
+        
+        for i in [verticalDividingLine1, verticalDividingLine2, verticalDividingLine3] {
+            i.snp.makeConstraints {
+                $0.width.equalTo(1)
+                $0.height.equalTo(46)
+            }
         }
     }
     
@@ -236,7 +276,7 @@ private extension DetailMainSectionHeaderView {
             $0.setImage(ImageLiterals.ic_btn_depart_circle, for: .normal)
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.naverMapBlue.cgColor
-            $0.layer.backgroundColor = UIColor.naverMapWhite.cgColor
+            $0.backgroundColor = UIColor.naverMapWhite
             $0.layer.cornerRadius = 20
         }
         
@@ -245,8 +285,15 @@ private extension DetailMainSectionHeaderView {
             $0.titleLabel?.font = UIFont.body7
             $0.setTitleColor(UIColor.naverMapWhite, for: .normal)
             $0.setImage(ImageLiterals.ic_btn_location_white, for: .normal)
-            $0.layer.backgroundColor = UIColor.naverMapBlue.cgColor
+            $0.backgroundColor = UIColor.naverMapBlue
             $0.layer.cornerRadius = 20
+        }
+        
+        for i in [horizontalDividingLine,
+                  verticalDividingLine1,
+                  verticalDividingLine2,
+                  verticalDividingLine3] {
+            i.backgroundColor = UIColor.naverMapGray2
         }
     }
     
@@ -271,11 +318,11 @@ private extension DetailMainSectionHeaderView {
     }
     
     func createReviewBtn(title: String) -> UIButton { //inset 주기
-        let btn = UIButton(configuration: buttonConfig)
+        let btn = UIButton()
         btn.setTitle(title, for: .normal)
         btn.setTitleColor(UIColor.naverMapGray7, for: .normal)
         btn.titleLabel?.font = UIFont.body7
-        btn.layer.backgroundColor = UIColor.naverMapReview5.cgColor
+        btn.backgroundColor = UIColor.naverMapReview5
         btn.layer.borderColor = UIColor.naverMapReview4.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 3
@@ -283,15 +330,15 @@ private extension DetailMainSectionHeaderView {
     }
     
     func createNaverBtn(title: String, image: UIImage) -> UIButton {
-        let btn = UIButton(configuration: buttonConfig)
+        let btn = UIButton()
         btn.setTitle(title, for: .normal)
         btn.setTitleColor(UIColor.naverMapGray6, for: .normal)
+        btn.setImage(image, for: .normal)
         btn.titleLabel?.font = UIFont.body7
-        btn.layer.backgroundColor = UIColor.naverMapWhite.cgColor
+        btn.backgroundColor = UIColor.naverMapWhite
         btn.layer.borderColor = UIColor.naverMapGray2.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 8
-        btn.configuration?.contentInsets = NSDirectionalEdgeInsets.init(top: 8, leading: 55, bottom: 8, trailing: 55)
         return btn
     }
     
@@ -310,19 +357,13 @@ private extension DetailMainSectionHeaderView {
         return ic
     }
     
-    func createDividingLine(forHeight: CGFloat, forWidth: CGFloat) -> UIView {
-        let line = UIView()
-        line.backgroundColor = UIColor.naverMapBlueGray2
-        line.frame = CGRect(x: 0, y: 0, width: forWidth, height: forHeight)
-        return line
-    }
-    
     func fetchImageLayout(image: UIImage) -> UIImageView {
         let img = UIImageView()
         img.snp.makeConstraints {
             $0.width.equalTo( getDeviceWidth() / 4 )
             $0.height.equalTo( getDeviceWidth() / 4 )
         }
+        img.image = image
         return img
     }
     
@@ -332,6 +373,7 @@ private extension DetailMainSectionHeaderView {
             $0.width.equalTo( getDeviceWidth() / 2 )
             $0.height.equalTo( getDeviceWidth() / 2 )
         }
+        img.image = image
         return img
     }
 }
