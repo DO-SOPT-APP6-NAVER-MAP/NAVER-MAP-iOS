@@ -101,3 +101,47 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - Private method
+
+private extension DetailMainSectionHeaderView {
+    func setupStyle() {
+        self.backgroundColor = UIColor.naverMapWhite
+    }
+    
+    func setupViews() {
+        self.addSubviews([imagesHorizontalStackView,
+                          locationNameLabel,
+                          categoryLabel,
+                          descriptionLabel,
+                          rateIc,
+                          rateLabel,
+                          visitorReviewBtn,
+                          blogReviewBtn,
+                          mapBtnStackView,
+                          horizontalDividingLine,
+                          allMenusStackView,
+                          naverBtnStackView])
+        imagesHorizontalStackView.addSubviews([paginatorBtn, imageIc, imagesCountLabel])
+        
+        imagesHorizontalStackView.addArrangedSubviews(bigMenuImage ,imagesVerticalStackView1, imagesVerticalStackView2)
+        imagesVerticalStackView1.addArrangedSubviews(smallMenuImage1, smallMenuImage2)
+        imagesVerticalStackView2.addArrangedSubviews(smallMenuImage3, smallMenuImage4)
+        mapBtnStackView.addArrangedSubviews(visitorReviewBtn, blogReviewBtn)
+        
+        allMenusStackView.addArrangedSubviews(callStackView,
+                                              verticalDividingLine1,
+                                              bookMarkStackView,
+                                              verticalDividingLine1,
+                                              navigationStackView,
+                                              verticalDividingLine1,
+                                              shareStackView)
+        
+        callStackView.addArrangedSubviews(callIc, callMenuLabel)
+        bookMarkStackView.addArrangedSubviews(bookMarkIc, bookMarkMenuLabel)
+        navigationStackView.addArrangedSubviews(navigationIc, navigationMenuLabel)
+        shareStackView.addArrangedSubviews(navigationIc, navigationMenuLabel)
+        
+        naverBtnStackView.addArrangedSubviews(bookingBtn, payBtn)
+    }
+}
