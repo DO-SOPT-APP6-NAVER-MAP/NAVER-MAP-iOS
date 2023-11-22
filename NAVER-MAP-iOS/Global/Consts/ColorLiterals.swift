@@ -12,7 +12,7 @@ extension UIColor {
     // MARK: - Black Gray White
     
     static var naverMapBlack: UIColor {
-        return UIColor(hex: "#00000")
+        return UIColor(hex: "#000000")
     }
     
     static var naverMapGray8: UIColor {
