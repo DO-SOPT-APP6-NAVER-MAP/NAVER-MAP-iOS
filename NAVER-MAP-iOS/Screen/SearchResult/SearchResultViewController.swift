@@ -16,6 +16,7 @@ class SearchResultViewController: UIViewController {
     private var menuBtn = UIButton()
     private var favoritesBtn = UIButton()
     private var roadViewBtn = UIButton()
+    private var locationBtn = UIButton()
     
     // MARK: Properties
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
@@ -32,7 +33,7 @@ class SearchResultViewController: UIViewController {
         self.view.addSubviews([topBarView, mapView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
-        mapView.addSubview(mapBtnStackView)
+        mapView.addSubviews([mapBtnStackView, locationBtn])
         mapBtnStackView.addArrangedSubviews(menuBtn, favoritesBtn, roadViewBtn)
         searchTextfield.addSubviews([micBtn])
 
@@ -73,6 +74,10 @@ class SearchResultViewController: UIViewController {
             $0.trailing.equalToSuperview().inset(17)
             $0.width.equalTo(41)
             $0.height.equalTo(135)
+        }
+        locationBtn.snp.makeConstraints{
+            $0.leading.bottom.equalToSuperview().inset(16)
+            $0.width.height.equalTo(41)
         }
     }
     
@@ -121,7 +126,9 @@ class SearchResultViewController: UIViewController {
         menuBtn.setImage(UIImage(named: "icons=ic_copy"), for: .normal)
         favoritesBtn.setImage(UIImage(named: "icons=ic_star_fill"), for: .normal)
         roadViewBtn.setImage(UIImage(named: "icons=ic_location_remove"), for: .normal)
-        for i in [menuBtn, favoritesBtn, roadViewBtn] {
+        locationBtn.setImage(ImageLiterals.ic_current_location, for: .normal)
+        locationBtn.backgroundColor = .blue
+        for i in [menuBtn, favoritesBtn, roadViewBtn, locationBtn] {
             i.layer.cornerRadius = 20
             i.backgroundColor = .white
             i.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
