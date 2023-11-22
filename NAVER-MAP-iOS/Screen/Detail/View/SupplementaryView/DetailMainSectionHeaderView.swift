@@ -144,4 +144,84 @@ private extension DetailMainSectionHeaderView {
         
         naverBtnStackView.addArrangedSubviews(bookingBtn, payBtn)
     }
+    
+    func setupLayout() {
+           imagesHorizontalStackView.snp.makeConstraints {
+               $0.top.equalToSuperview()
+               $0.leading.equalToSuperview()
+               $0.width.equalToSuperview()
+               $0.height.equalTo(188)
+           }
+           
+           paginatorBtn.snp.makeConstraints {
+               $0.top.equalTo(imagesHorizontalStackView).inset(8)
+               $0.leading.equalTo(imagesHorizontalStackView).inset(16)
+           }
+           
+           imageIc.snp.makeConstraints {
+               $0.top.equalTo(imagesHorizontalStackView).inset(123)
+               $0.trailing.equalTo(imagesHorizontalStackView).inset(36)
+           }
+           
+           imagesCountLabel.snp.makeConstraints {
+               $0.top.equalTo(imageIc).inset(4)
+               $0.trailing.equalTo(imagesHorizontalStackView).inset(36)
+           }
+           
+           locationNameLabel.snp.makeConstraints {
+               $0.top.equalTo(imagesHorizontalStackView.snp.bottom).inset(21)
+               $0.leading.equalToSuperview().inset(17)
+           }
+           
+           categoryLabel.snp.makeConstraints {
+               $0.top.equalTo(imagesHorizontalStackView.snp.bottom).inset(22)
+               $0.leading.equalTo(locationNameLabel.snp.trailing).inset(4)
+           }
+           
+           descriptionLabel.snp.makeConstraints {
+               $0.top.equalTo(locationNameLabel.snp.bottom).inset(8)
+               $0.leading.equalToSuperview().inset(17)
+           }
+           
+           rateIc.snp.makeConstraints {
+               $0.top.equalTo(descriptionLabel.snp.bottom).inset(18)
+               $0.leading.equalToSuperview().inset(17)
+           }
+           
+           rateLabel.snp.makeConstraints {
+               $0.top.equalTo(descriptionLabel.snp.bottom).inset(15)
+               $0.leading.equalTo(rateIc.snp.trailing).inset(2)
+           }
+           
+           visitorReviewBtn.snp.makeConstraints {
+               $0.top.equalTo(descriptionLabel.snp.bottom).inset(13)
+               $0.leading.equalTo(rateLabel.snp.trailing).inset(16)
+           }
+           
+           blogReviewBtn.snp.makeConstraints {
+               $0.top.equalTo(descriptionLabel.snp.bottom).inset(13)
+               $0.leading.equalTo(visitorReviewBtn.snp.trailing).inset(8)
+           }
+           
+           mapBtnStackView.snp.makeConstraints {
+               $0.top.equalTo(visitorReviewBtn.snp.bottom).inset(16)
+               $0.centerX.equalToSuperview()
+           }
+           
+           horizontalDividingLine.snp.makeConstraints {
+               $0.top.equalTo(mapBtnStackView.snp.bottom).inset(18)
+               $0.centerX.equalToSuperview()
+           }
+           
+           allMenusStackView.snp.makeConstraints {
+               $0.top.equalTo(horizontalDividingLine.snp.bottom).inset(9)
+               $0.centerX.equalToSuperview()
+           }
+           
+           naverBtnStackView.snp.makeConstraints {
+               $0.top.equalTo(horizontalDividingLine.snp.bottom).inset(75)
+               $0.centerX.equalToSuperview()
+           }
+       }
+       
 }
