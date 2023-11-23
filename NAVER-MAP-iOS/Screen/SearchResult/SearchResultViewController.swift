@@ -33,6 +33,7 @@ class SearchResultViewController: UIViewController {
     private var detail = UILabel()
     private var locationInfoGroup = UIView()
     private var distance = UILabel()
+    private var dot = UIView()
     private var location = UILabel()
     private var dropBtn = UIButton()
     private var resultInfoGroup = UIView()
@@ -76,10 +77,10 @@ class SearchResultViewController: UIViewController {
         mapBtnStackView.addArrangedSubviews(menuBtn, favoritesBtn, roadViewBtn)
         searchTextfield.addSubviews([micBtn])
         bottomSheetView.addSubviews([dragIcon, stackView, divider, bottomView])
-        stackView.addArrangedSubviews(topIconGroup, resultTitleGroup, detail,locationInfoGroup, resultInfoGroup, reviewGroup, imgGroup)
+        stackView.addArrangedSubviews(topIconGroup, resultTitleGroup, detail, locationInfoGroup, resultInfoGroup, reviewGroup, imgGroup)
         topIconGroup.addSubviews([pay, booking, order])
         resultTitleGroup.addSubviews([name, category])
-//        resultInfoGroup.addSubviews([])
+        locationInfoGroup.addSubviews([distance, dot, location, dropBtn])
 
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
@@ -142,7 +143,6 @@ class SearchResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(stackView.getDeviceHeight() / 3)
         }
-        ///하단 바텀시트뷰
         ///상단 네이버 아이콘 그룹
         topIconGroup.snp.makeConstraints{
             $0.height.equalTo(13)
@@ -159,27 +159,46 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(booking.snp.trailing).offset(8)
             $0.height.equalTo(13)
         }
-        ///하단 바텀시트뷰
         ///검색 결과 이름 & 카테고리
         resultTitleGroup.snp.makeConstraints{
             $0.height.equalTo(20)
         }
         name.snp.makeConstraints{
             $0.leading.equalToSuperview()
-            $0.height.equalTo(20)
+//            $0.height.equalTo(20)
             $0.bottom.equalToSuperview()
         }
         category.snp.makeConstraints{
             $0.leading.equalTo(name.snp.trailing).offset(4)
-            $0.height.equalTo(18)
+//            $0.height.equalTo(18)
             $0.bottom.equalToSuperview()
         }
-        ///하단 바텀시트뷰
         ///검색 결과 이름 & 카테고리
         detail.snp.makeConstraints{
-            $0.height.equalTo(19)
+//            $0.height.equalTo(19)
             $0.leading.equalToSuperview()
         }
+        ///검색 결과 위치정보
+        locationInfoGroup.snp.makeConstraints{
+            $0.height.equalTo(18)
+        }
+        distance.snp.makeConstraints{
+            $0.leading.equalToSuperview()
+        }
+        dot.snp.makeConstraints{
+            $0.leading.equalTo(distance.snp.trailing).offset(6)
+            $0.width.height.equalTo(2)
+            $0.centerY.equalToSuperview()
+        }
+        location.snp.makeConstraints{
+            $0.leading.equalTo(dot.snp.trailing).offset(6)
+        }
+        dropBtn.snp.makeConstraints{
+            $0.leading.equalTo(location.snp.trailing).offset(3)
+            $0.width.height.equalTo(18)
+        }
+        
+        
         divider.snp.makeConstraints{
             $0.top.equalTo(stackView.snp.bottom)
             $0.height.equalTo(1)
@@ -297,11 +316,31 @@ class SearchResultViewController: UIViewController {
             $0.textColor = .naverMapGray6
             $0.backgroundColor = .systemPink
         }
-        resultInfoGroup.do{
-            $0.backgroundColor = .green
-        }
+        ///검색 결과 위치정보
         locationInfoGroup.do{
             $0.backgroundColor = .purple
+        }
+        distance.do{
+            $0.text = "936m"
+            $0.font = .body3
+            $0.textColor = .naverMapGray6
+        }
+        dot.do{
+            $0.layer.cornerRadius = 1
+            $0.backgroundColor = .naverMapGray3
+        }
+        location.do{
+            $0.text = "서울 광진구"
+            $0.font = .bodyButton
+            $0.textColor = .naverMapGray6
+        }
+        dropBtn.do{
+            $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
+        }
+        
+        ///검색 결과 위치정보
+        resultInfoGroup.do{
+            $0.backgroundColor = .green
         }
         imgGroup.do{
             $0.backgroundColor = .orange
