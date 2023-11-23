@@ -40,6 +40,10 @@ class SearchResultViewController: UIViewController {
     private var status = UILabel()
     private var lastOrder = UILabel()
     private var reviewGroup = UIView()
+    private var reviewIcon = UIButton()
+    private var score = UILabel()
+    private var visitorReview = UILabel()
+    private var blogReview = UILabel()
     private var imgGroup = UIStackView()
     private var img1 = UIImageView()
     private var img2 = UIImageView()
@@ -82,6 +86,7 @@ class SearchResultViewController: UIViewController {
         resultTitleGroup.addSubviews([name, category])
         locationInfoGroup.addSubviews([distance, dot, location, dropBtn])
         resultInfoGroup.addSubviews([status, lastOrder])
+        reviewGroup.addSubviews([reviewIcon, score, visitorReview, blogReview])
         
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
@@ -150,15 +155,15 @@ class SearchResultViewController: UIViewController {
         }
         pay.snp.makeConstraints{
             $0.leading.equalToSuperview()
-            $0.height.equalTo(13)
+            $0.top.bottom.equalToSuperview()
         }
         booking.snp.makeConstraints{
             $0.leading.equalTo(pay.snp.trailing).offset(8)
-            $0.height.equalTo(13)
+            $0.top.bottom.equalToSuperview()
         }
         order.snp.makeConstraints{
             $0.leading.equalTo(booking.snp.trailing).offset(8)
-            $0.height.equalTo(13)
+            $0.top.bottom.equalToSuperview()
         }
         ///검색 결과 이름 & 카테고리
         resultTitleGroup.snp.makeConstraints{
@@ -166,13 +171,11 @@ class SearchResultViewController: UIViewController {
         }
         name.snp.makeConstraints{
             $0.leading.equalToSuperview()
-            $0.height.equalTo(20)
-            $0.bottom.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
         }
         category.snp.makeConstraints{
             $0.leading.equalTo(name.snp.trailing).offset(4)
-            $0.height.equalTo(18)
-            $0.bottom.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
         }
         ///검색 결과 이름 & 카테고리
         detail.snp.makeConstraints{
@@ -208,7 +211,27 @@ class SearchResultViewController: UIViewController {
         lastOrder.snp.makeConstraints{
             $0.leading.equalTo(status.snp.trailing).offset(16)
         }
-        
+        /// 리뷰 정보
+        reviewGroup.snp.makeConstraints{
+            $0.height.equalTo(23)
+        }
+        reviewIcon.snp.makeConstraints{
+            $0.leading.centerY.equalToSuperview()
+        }
+        score.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(reviewIcon.snp.trailing).offset(2)
+        }
+        visitorReview.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(score.snp.trailing).offset(16)
+            $0.width.equalTo(104)
+        }
+        blogReview.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(visitorReview.snp.trailing).offset(8)
+            $0.width.equalTo(104)
+        }
         
         divider.snp.makeConstraints{
             $0.top.equalTo(stackView.snp.bottom)
@@ -308,10 +331,12 @@ class SearchResultViewController: UIViewController {
         status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
         lastOrder.setupLabel(font: .body7, text: "22:00에 라스트오더", textColor: .naverMapGray7)
 
+        ///리뷰 정보
+        reviewIcon.setImage(ImageLiterals.ic_star_red, for: .normal)
+        score.setupLabel(font: .body7, text: "4.82", textColor: .naverMapGray7)
+        visitorReview.setupRoundedLabel(text: "방문자리뷰 288", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
+        blogReview.setupRoundedLabel(text: "블로그리뷰 316", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
         
-        imgGroup.do{
-            $0.backgroundColor = .orange
-        }
         divider.do{
             $0.backgroundColor = .naverMapBlack5
         }
@@ -336,3 +361,17 @@ class SearchResultViewController: UIViewController {
     }
 }
 
+extension UILabel {
+    
+    ///둥근 테두리의 리뷰 라벨 세팅 함수
+    func setupRoundedLabel(text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment, bgColor: UIColor, borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
+        self.text = text
+        self.font = font
+        self.textColor = textColor
+        self.textAlignment = alignment
+        self.backgroundColor = bgColor
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = radius
+    }
+}
