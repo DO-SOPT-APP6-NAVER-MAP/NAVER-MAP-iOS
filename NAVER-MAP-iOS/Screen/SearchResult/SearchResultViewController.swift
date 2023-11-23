@@ -56,8 +56,8 @@ class SearchResultViewController: UIViewController {
     private var favorites = UIButton()
     private var share = UIButton()
     private var btnGroup = UIStackView()
-    private var departure = UIButton()
-    private var arrival = UIButton()
+    private var departure = UILabel()
+    private var arrival = UILabel()
     
     // MARK: Properties
    
@@ -88,6 +88,9 @@ class SearchResultViewController: UIViewController {
         resultInfoGroup.addSubviews([status, lastOrder])
         reviewGroup.addSubviews([reviewIcon, score, visitorReview, blogReview])
         imgGroup.addArrangedSubviews(img1, img2, img3)
+        bottomView.addSubviews([bottomIconGroup, btnGroup])
+        bottomIconGroup.addArrangedSubviews(reservation, contact, favorites, share)
+        btnGroup.addArrangedSubviews(departure, arrival)
         
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
@@ -150,6 +153,7 @@ class SearchResultViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(stackView.getDeviceHeight() / 3)
         }
+        
         ///상단 네이버 아이콘 그룹
         topIconGroup.snp.makeConstraints{
             $0.height.equalTo(13)
@@ -166,6 +170,7 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(booking.snp.trailing).offset(8)
             $0.top.bottom.equalToSuperview()
         }
+        
         ///검색 결과 이름 & 카테고리
         resultTitleGroup.snp.makeConstraints{
             $0.height.equalTo(20)
@@ -178,11 +183,13 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(name.snp.trailing).offset(4)
             $0.top.bottom.equalToSuperview()
         }
-        ///검색 결과 이름 & 카테고리
+        
+        ///검색 결과 상세 설명
         detail.snp.makeConstraints{
             $0.height.equalTo(19)
             $0.leading.equalToSuperview()
         }
+        
         ///검색 결과 위치정보
         locationInfoGroup.snp.makeConstraints{
             $0.height.equalTo(18)
@@ -202,6 +209,7 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(location.snp.trailing).offset(3)
             $0.width.height.equalTo(18)
         }
+        
         ///검색 결과 영업 정보
         resultInfoGroup.snp.makeConstraints{
             $0.height.equalTo(19)
@@ -212,6 +220,7 @@ class SearchResultViewController: UIViewController {
         lastOrder.snp.makeConstraints{
             $0.leading.equalTo(status.snp.trailing).offset(16)
         }
+        
         /// 리뷰 정보
         reviewGroup.snp.makeConstraints{
             $0.height.equalTo(23)
@@ -233,21 +242,34 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(visitorReview.snp.trailing).offset(8)
             $0.width.equalTo(104)
         }
+        
         ///리뷰 사진
         imgGroup.snp.makeConstraints{
             $0.height.equalTo(imgGroup.convertByHeightRatio(90))
         }
         
+        ///구분선
         divider.snp.makeConstraints{
             $0.top.equalTo(stackView.snp.bottom).offset(14)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }
+        
+        ///하단 바텀뷰
         bottomView.snp.makeConstraints{
             $0.top.equalTo(divider.snp.bottom)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
+        bottomIconGroup.snp.makeConstraints{
+            $0.top.bottom.leading.equalToSuperview()
+        }
+        btnGroup.snp.makeConstraints{
+            $0.centerY.trailing.equalToSuperview()
+            $0.width.equalTo(btnGroup.convertByWidthRatio(138))
+            $0.height.equalTo(btnGroup.convertByHeightRatio(31))
+        }
+        
     }
     
     // MARK: - Style
@@ -283,7 +305,7 @@ class SearchResultViewController: UIViewController {
         mapView.do{
             $0.setRegion(MKCoordinateRegion(center: defaultLocation, span: defaultSpanValue), animated: true)
         }
-        mapBtnStackView.setupStackView(bgColor: .clear, axis: .vertical, distribution: .fillEqually)
+        mapBtnStackView.setupStackView(bgColor: .clear, axis: .vertical, distribution: .fillEqually, spacing: 7)
         menuBtn.setImage(ImageLiterals.ic_copy, for: .normal)
         favoritesBtn.setImage(ImageLiterals.ic_star_fill, for: .normal)
         roadViewBtn.setImage(ImageLiterals.ic_location_remove, for: .normal)
@@ -309,7 +331,7 @@ class SearchResultViewController: UIViewController {
             $0.layer.cornerRadius = 2
             $0.backgroundColor = .naverMapBlueGray4
         }
-        stackView.setupStackView(bgColor: .naverMapGray1, axis: .vertical, distribution: .fillProportionally, spacing: stackView.convertByHeightRatio(9))
+        stackView.setupStackView(bgColor: .naverMapWhite, axis: .vertical, distribution: .fillProportionally, spacing: stackView.convertByHeightRatio(9))
         
         ///상단 네이버 아이콘 그룹
         pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
@@ -348,12 +370,22 @@ class SearchResultViewController: UIViewController {
         img2.setupImageView(image: ImageLiterals.img_beating_heart, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
         img3.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
         
+        ///구분선
         divider.do{
             $0.backgroundColor = .naverMapBlack5
         }
-        bottomView.do{
-            $0.backgroundColor = .gray
-        }
+        
+        ///하단 바텀뷰
+        bottomIconGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 20)
+        reservation.setImage(ImageLiterals.ic_navercal, for: .normal)
+        contact.setImage(ImageLiterals.ic_call_thick, for: .normal)
+        favorites.setImage(ImageLiterals.ic_star_thick, for: .normal)
+        share.setImage(ImageLiterals.ic_share, for: .normal)
+        btnGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 6)
+        departure.setupRoundedLabel(text: "출발", font: .body7, textColor: .naverMapBlue, alignment: .center, bgColor: .naverMapWhite, borderColor: .naverMapBlue, borderWidth: 1, radius: 16)
+        departure.attributedText = NSAttributedString(string: departure.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        arrival.setupRoundedLabel(text: "도착", font: .body7, textColor: .naverMapWhite, alignment: .center, bgColor: .naverMapBlue, borderColor: .naverMapWhite, borderWidth: 1, radius: 16)
+        arrival.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     
     // TODO: 바텀시트컨트롤러 추후 수정
@@ -384,6 +416,7 @@ extension UILabel {
         self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = borderWidth
         self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
     }
 }
 
