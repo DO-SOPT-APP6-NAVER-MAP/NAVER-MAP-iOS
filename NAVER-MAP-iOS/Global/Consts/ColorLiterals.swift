@@ -110,7 +110,7 @@ extension UIColor {
     }
     
     static var naverMapNaverGreen: UIColor {
-        return UIColor(hex: "#03C75Ai")
+        return UIColor(hex: "#03C75A")
     }
     
     static var naverMapKhaki: UIColor {
