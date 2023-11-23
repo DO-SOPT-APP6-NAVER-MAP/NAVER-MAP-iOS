@@ -149,6 +149,14 @@ extension UIColor {
         return UIColor(hex: "#000000").withAlphaComponent(0.2)
     }
     
+    static var naverMapBlack10: UIColor {
+        return UIColor(hex: "#000000").withAlphaComponent(0.1)
+    }
+    
+    static var naverMapBlack5: UIColor {
+        return UIColor(hex: "#000000").withAlphaComponent(0.05)
+    }
+    
     static var naverMapGray60: UIColor {
         return UIColor(hex: "#B9C0C9").withAlphaComponent(0.6)
     }

@@ -83,6 +83,12 @@ enum ImageLiterals {
     static var img_drooling_face: UIImage { .load(name: "img_drooling_face") }
     static var img_search_big: UIImage { .load(name: "img_search_big") }
     static var img_thumbs_up: UIImage { .load(name: "img_thumbs_up") }
+    
+    // MARK: - Captions
+    
+    static var caption_naverbooking: UIImage { .load(name: "caption_naverbooking") }
+    static var caption_naverorder: UIImage { .load(name: "caption_naverorder") }
+    static var caption_naverpay: UIImage { .load(name: "caption_naverpay") }
 
 }
 
