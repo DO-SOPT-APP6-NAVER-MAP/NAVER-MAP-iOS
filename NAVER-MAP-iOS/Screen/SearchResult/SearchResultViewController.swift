@@ -236,11 +236,7 @@ class SearchResultViewController: UIViewController {
             $0.layer.borderColor = UIColor.naverMapGray4.cgColor
             $0.layer.borderWidth = 1
         }
-        topStackView.do{
-            $0.axis = .horizontal
-            $0.backgroundColor = .white
-            $0.distribution = .equalSpacing
-        }
+        topStackView.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .equalSpacing)
         backBtn.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
@@ -259,12 +255,7 @@ class SearchResultViewController: UIViewController {
         mapView.do{
             $0.setRegion(MKCoordinateRegion(center: defaultLocation, span: defaultSpanValue), animated: true)
         }
-        mapBtnStackView.do{
-            $0.axis = .vertical
-            $0.backgroundColor = .clear
-            $0.distribution = .fillEqually
-            $0.spacing = 7
-        }
+        mapBtnStackView.setupStackView(bgColor: .clear, axis: .vertical, distribution: .fillEqually)
         menuBtn.setImage(ImageLiterals.ic_copy, for: .normal)
         favoritesBtn.setImage(ImageLiterals.ic_star_fill, for: .normal)
         roadViewBtn.setImage(ImageLiterals.ic_location_remove, for: .normal)
@@ -290,13 +281,7 @@ class SearchResultViewController: UIViewController {
             $0.layer.cornerRadius = 2
             $0.backgroundColor = .naverMapBlueGray4
         }
-        stackView.do{
-            $0.backgroundColor = .naverMapGray1
-            $0.axis = .vertical
-            $0.distribution = .fillProportionally
-            $0.spacing = 13
-        }
-        ///하단 바텀시트뷰
+        stackView.setupStackView(bgColor: .naverMapGray1, axis: .vertical, distribution: .fillProportionally, spacing: 13)
         ///상단 네이버 아이콘 그룹
         topIconGroup.do{
             $0.backgroundColor = .blue
@@ -304,22 +289,12 @@ class SearchResultViewController: UIViewController {
         pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
         booking.setImage(ImageLiterals.caption_naverbooking, for: .normal)
         order.setImage(ImageLiterals.caption_naverorder, for: .normal)
-        ///하단 바텀시트뷰
         ///검색결과 이름 & 카테고리
         resultTitleGroup.do{
             $0.backgroundColor = .yellow
         }
-        name.do{
-            $0.text = "알고"
-            $0.font = .title2
-            $0.textColor = .naverMapSubBlue
-        }
-        category.do{
-            $0.text = "스파게티, 파스타전문"
-            $0.font = .body10
-            $0.textColor = .naverMapGray4
-        }
-        ///하단 바텀시트뷰
+        name.setupLabel(font: .title2, text: "알고", textColor: .naverMapSubBlue)
+        category.setupLabel(font: .body10, text: "스파게티, 파스타전문", textColor: .naverMapGray4)
         ///검색 결과 이름 & 카테고리
         detail.do{
             $0.text = "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집"
@@ -373,6 +348,14 @@ class SearchResultViewController: UIViewController {
             $0.backgroundColor = .gray
         }
     }
+    
+//    func setupLabel(label: UILabel, font: UIFont, text: String, textColor: UIColor, alignment: NSTextAlignment? = nil) {
+////        let label = UILabel()
+//        label.font = font
+//        label.text = text
+//        label.textColor = textColor
+//        label.textAlignment = alignment ?? .center
+//    }
     
     func showMyViewControllerInACustomizedSheet() {
         let detailVC = DetailViewController()
