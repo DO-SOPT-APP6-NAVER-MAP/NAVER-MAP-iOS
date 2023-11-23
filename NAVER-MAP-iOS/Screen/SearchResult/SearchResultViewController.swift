@@ -87,6 +87,7 @@ class SearchResultViewController: UIViewController {
         locationInfoGroup.addSubviews([distance, dot, location, dropBtn])
         resultInfoGroup.addSubviews([status, lastOrder])
         reviewGroup.addSubviews([reviewIcon, score, visitorReview, blogReview])
+        imgGroup.addArrangedSubviews(img1, img2, img3)
         
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
@@ -136,7 +137,7 @@ class SearchResultViewController: UIViewController {
         ///하단 바텀시트뷰
         bottomSheetView.snp.makeConstraints{
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.height.equalTo(bottomSheetView.getDeviceHeight()/7 * 3)
+            $0.height.equalTo(bottomSheetView.convertByHeightRatio(399))
         }
         dragIcon.snp.makeConstraints{
             $0.top.equalTo(bottomSheetView).inset(14)
@@ -232,9 +233,13 @@ class SearchResultViewController: UIViewController {
             $0.leading.equalTo(visitorReview.snp.trailing).offset(8)
             $0.width.equalTo(104)
         }
+        ///리뷰 사진
+        imgGroup.snp.makeConstraints{
+            $0.height.equalTo(imgGroup.convertByHeightRatio(90))
+        }
         
         divider.snp.makeConstraints{
-            $0.top.equalTo(stackView.snp.bottom)
+            $0.top.equalTo(stackView.snp.bottom).offset(14)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }
@@ -304,7 +309,7 @@ class SearchResultViewController: UIViewController {
             $0.layer.cornerRadius = 2
             $0.backgroundColor = .naverMapBlueGray4
         }
-        stackView.setupStackView(bgColor: .naverMapGray1, axis: .vertical, distribution: .fillProportionally, spacing: 13)
+        stackView.setupStackView(bgColor: .naverMapGray1, axis: .vertical, distribution: .fillProportionally, spacing: stackView.convertByHeightRatio(9))
         
         ///상단 네이버 아이콘 그룹
         pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
@@ -336,6 +341,12 @@ class SearchResultViewController: UIViewController {
         score.setupLabel(font: .body7, text: "4.82", textColor: .naverMapGray7)
         visitorReview.setupRoundedLabel(text: "방문자리뷰 288", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
         blogReview.setupRoundedLabel(text: "블로그리뷰 316", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
+        
+        /// 리뷰 이미지
+        imgGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 4)
+        img1.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
+        img2.setupImageView(image: ImageLiterals.img_beating_heart, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
+        img3.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
         
         divider.do{
             $0.backgroundColor = .naverMapBlack5
@@ -373,5 +384,20 @@ extension UILabel {
         self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = borderWidth
         self.layer.cornerRadius = radius
+    }
+}
+
+extension UIImageView {
+    
+    ///이미지뷰 세팅 함수
+    func setupImageView(image: UIImage, maskedCorners: CACornerMask? = nil, radius: CGFloat? = nil, borderColor: UIColor, width: CGFloat) {
+        self.image = image
+        if let corners = maskedCorners {
+            self.layer.maskedCorners = corners
+        }
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = radius ?? 0
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = width
     }
 }
