@@ -81,7 +81,8 @@ class SearchResultViewController: UIViewController {
         topIconGroup.addSubviews([pay, booking, order])
         resultTitleGroup.addSubviews([name, category])
         locationInfoGroup.addSubviews([distance, dot, location, dropBtn])
-
+        resultInfoGroup.addSubviews([status, lastOrder])
+        
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
@@ -165,17 +166,17 @@ class SearchResultViewController: UIViewController {
         }
         name.snp.makeConstraints{
             $0.leading.equalToSuperview()
-//            $0.height.equalTo(20)
+            $0.height.equalTo(20)
             $0.bottom.equalToSuperview()
         }
         category.snp.makeConstraints{
             $0.leading.equalTo(name.snp.trailing).offset(4)
-//            $0.height.equalTo(18)
+            $0.height.equalTo(18)
             $0.bottom.equalToSuperview()
         }
         ///검색 결과 이름 & 카테고리
         detail.snp.makeConstraints{
-//            $0.height.equalTo(19)
+            $0.height.equalTo(19)
             $0.leading.equalToSuperview()
         }
         ///검색 결과 위치정보
@@ -196,6 +197,16 @@ class SearchResultViewController: UIViewController {
         dropBtn.snp.makeConstraints{
             $0.leading.equalTo(location.snp.trailing).offset(3)
             $0.width.height.equalTo(18)
+        }
+        ///검색 결과 영업 정보
+        resultInfoGroup.snp.makeConstraints{
+            $0.height.equalTo(19)
+        }
+        status.snp.makeConstraints{
+            $0.leading.equalToSuperview()
+        }
+        lastOrder.snp.makeConstraints{
+            $0.leading.equalTo(status.snp.trailing).offset(16)
         }
         
         
@@ -337,11 +348,21 @@ class SearchResultViewController: UIViewController {
         dropBtn.do{
             $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
         }
-        
-        ///검색 결과 위치정보
+        ///검색 결과 영업 정보
         resultInfoGroup.do{
             $0.backgroundColor = .green
         }
+        status.do{
+            $0.text = "영업 중"
+            $0.font = .body6
+            $0.textColor = .naverMapNaverGreen
+        }
+        lastOrder.do{
+            $0.text = "22:00에 라스트오더"
+            $0.font = .body7
+            $0.textColor = .naverMapGray7
+        }
+        
         imgGroup.do{
             $0.backgroundColor = .orange
         }
