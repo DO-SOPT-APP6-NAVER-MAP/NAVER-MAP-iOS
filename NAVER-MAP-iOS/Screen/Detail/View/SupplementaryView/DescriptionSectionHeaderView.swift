@@ -16,7 +16,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     // MARK: - UI Properties
     
     /// 상단 헤더 뷰
-    private lazy var headerHorizStackView: UIStackView = { createHorizStackView(forSpacing: 15) }() //alignment 바텀으로?
+    private lazy var headerHorizStackView: UIStackView = { createHorizStackView(forSpacing: 15) }()
     private let horizDividingLine1 = UIView()
     
     /// 홈 스택뷰
@@ -268,7 +268,7 @@ private extension DescriptionSectionHeaderView {
         infoLabel.do {
             $0.font = UIFont.bodyButton
             $0.textColor = UIColor.naverMapGray6
-            $0.text = "안녕하세요. 부담없는 가격과 맛있는 맛으로 여러분께 다가가는 파스타 및 맥주 전문점 알고입니다. 편안한 한 끼 식사, 편안한 한 잔의 맥주로 여러분의 하...."
+            $0.text = "안녕하세요. 부담없는 가격과 맛있는 맛으로 여러분께 다가가는 파스타 및 맥주 전문점 알고입니다. 편안한 한 끼 식사, 편안한 한 잔의 맥주로 여러분의 하루를 마무리하세요."
             $0.numberOfLines = 0
         }
         

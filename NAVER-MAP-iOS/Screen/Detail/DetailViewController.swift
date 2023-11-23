@@ -97,6 +97,7 @@ private extension DetailViewController {
 // MARK: - CollectionView DataSource
 
 extension DetailViewController: UICollectionViewDataSource {    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 || section == 1 {
             return 0
@@ -141,6 +142,3 @@ extension DetailViewController: UICollectionViewDataSource {
 extension DetailViewController: UICollectionViewDelegate {
     
 }
-
-
-
