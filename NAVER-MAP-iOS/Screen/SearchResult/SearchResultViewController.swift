@@ -20,6 +20,39 @@ class SearchResultViewController: UIViewController {
     private var favoritesBtn = UIButton()
     private var roadViewBtn = UIButton()
     private var locationBtn = UIButton()
+    private var bottomSheetView = UIView()
+    private var stackView = UIStackView()
+    private var dragIcon = UIView()
+    private var topIconGroup = UIView()
+    private var pay = UIButton()
+    private var booking = UIButton()
+    private var order = UIButton()
+    private var resultTitleGroup = UIView()
+    private var name = UILabel()
+    private var category = UILabel()
+    private var detail = UILabel()
+    private var locationInfoGroup = UIView()
+    private var distance = UILabel()
+    private var location = UILabel()
+    private var dropBtn = UIButton()
+    private var resultInfoGroup = UIView()
+    private var status = UILabel()
+    private var lastOrder = UILabel()
+    private var reviewGroup = UIView()
+    private var imgGroup = UIStackView()
+    private var img1 = UIImageView()
+    private var img2 = UIImageView()
+    private var img3 = UIImageView()
+    private var divider = UIView()
+    private var bottomView = UIView()
+    private var bottomIconGroup = UIStackView()
+    private var reservation = UIButton()
+    private var contact = UIButton()
+    private var favorites = UIButton()
+    private var share = UIButton()
+    private var btnGroup = UIStackView()
+    private var departure = UIButton()
+    private var arrival = UIButton()
     
     // MARK: Properties
    
@@ -36,13 +69,19 @@ class SearchResultViewController: UIViewController {
     // MARK: - Layout
     
     func setupLayout(){
-        self.view.addSubviews([topBarView, mapView])
+        self.view.addSubviews([topBarView, mapView, bottomSheetView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
         mapView.addSubviews([mapBtnStackView, locationBtn])
         mapBtnStackView.addArrangedSubviews(menuBtn, favoritesBtn, roadViewBtn)
         searchTextfield.addSubviews([micBtn])
+        bottomSheetView.addSubviews([dragIcon, stackView, divider, bottomView])
+        stackView.addArrangedSubviews(topIconGroup, resultTitleGroup, detail,locationInfoGroup, resultInfoGroup, reviewGroup, imgGroup)
+        topIconGroup.addSubviews([pay, booking, order])
+        resultTitleGroup.addSubviews([name, category])
+//        resultInfoGroup.addSubviews([])
 
+        ///상단 서치뷰
         topBarView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(103)
@@ -69,6 +108,7 @@ class SearchResultViewController: UIViewController {
             $0.width.height.equalTo(24)
         }
         
+        ///중앙 지도뷰
         mapView.snp.makeConstraints{
             $0.top.equalTo(topBarView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
@@ -81,8 +121,74 @@ class SearchResultViewController: UIViewController {
             $0.height.equalTo(135)
         }
         locationBtn.snp.makeConstraints{
-            $0.leading.bottom.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(16)
+            $0.bottom.equalTo(bottomSheetView.snp.top).offset(-16)
             $0.width.height.equalTo(41)
+        }
+        
+        ///하단 바텀시트뷰
+        bottomSheetView.snp.makeConstraints{
+            $0.leading.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(bottomSheetView.getDeviceHeight()/7 * 3)
+        }
+        dragIcon.snp.makeConstraints{
+            $0.top.equalTo(bottomSheetView).inset(14)
+            $0.width.equalTo(34)
+            $0.height.equalTo(4.3)
+            $0.centerX.equalToSuperview()
+        }
+        stackView.snp.makeConstraints{
+            $0.top.equalTo(dragIcon.snp.bottom).offset(14)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(stackView.getDeviceHeight() / 3)
+        }
+        ///하단 바텀시트뷰
+        ///상단 네이버 아이콘 그룹
+        topIconGroup.snp.makeConstraints{
+            $0.height.equalTo(13)
+        }
+        pay.snp.makeConstraints{
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(13)
+        }
+        booking.snp.makeConstraints{
+            $0.leading.equalTo(pay.snp.trailing).offset(8)
+            $0.height.equalTo(13)
+        }
+        order.snp.makeConstraints{
+            $0.leading.equalTo(booking.snp.trailing).offset(8)
+            $0.height.equalTo(13)
+        }
+        ///하단 바텀시트뷰
+        ///검색 결과 이름 & 카테고리
+        resultTitleGroup.snp.makeConstraints{
+            $0.height.equalTo(20)
+        }
+        name.snp.makeConstraints{
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(20)
+            $0.bottom.equalToSuperview()
+        }
+        category.snp.makeConstraints{
+            $0.leading.equalTo(name.snp.trailing).offset(4)
+            $0.height.equalTo(18)
+            $0.bottom.equalToSuperview()
+        }
+        ///하단 바텀시트뷰
+        ///검색 결과 이름 & 카테고리
+        detail.snp.makeConstraints{
+            $0.height.equalTo(19)
+            $0.leading.equalToSuperview()
+        }
+        divider.snp.makeConstraints{
+            $0.top.equalTo(stackView.snp.bottom)
+            $0.height.equalTo(1)
+            $0.leading.trailing.equalToSuperview()
+        }
+        bottomView.snp.makeConstraints{
+            $0.top.equalTo(divider.snp.bottom)
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
     
@@ -144,6 +250,80 @@ class SearchResultViewController: UIViewController {
             i.layer.borderColor = UIColor.naverMapGray3.cgColor
             i.layer.borderWidth = 0.5
         }
+        
+        ///하단 바텀시트뷰
+        bottomSheetView.do{
+            $0.makeRounded(radius: 20, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+            $0.backgroundColor = .naverMapWhite
+        }
+        dragIcon.do{
+            $0.layer.cornerRadius = 2
+            $0.backgroundColor = .naverMapBlueGray4
+        }
+        stackView.do{
+            $0.backgroundColor = .naverMapGray1
+            $0.axis = .vertical
+            $0.distribution = .fillProportionally
+            $0.spacing = 13
+        }
+        ///하단 바텀시트뷰
+        ///상단 네이버 아이콘 그룹
+        topIconGroup.do{
+            $0.backgroundColor = .blue
+        }
+        pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
+        booking.setImage(ImageLiterals.caption_naverbooking, for: .normal)
+        order.setImage(ImageLiterals.caption_naverorder, for: .normal)
+        ///하단 바텀시트뷰
+        ///검색결과 이름 & 카테고리
+        resultTitleGroup.do{
+            $0.backgroundColor = .yellow
+        }
+        name.do{
+            $0.text = "알고"
+            $0.font = .title2
+            $0.textColor = .naverMapSubBlue
+        }
+        category.do{
+            $0.text = "스파게티, 파스타전문"
+            $0.font = .body10
+            $0.textColor = .naverMapGray4
+        }
+        ///하단 바텀시트뷰
+        ///검색 결과 이름 & 카테고리
+        detail.do{
+            $0.text = "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집"
+            $0.font = .body7
+            $0.textColor = .naverMapGray6
+            $0.backgroundColor = .systemPink
+        }
+        resultInfoGroup.do{
+            $0.backgroundColor = .green
+        }
+        locationInfoGroup.do{
+            $0.backgroundColor = .purple
+        }
+        imgGroup.do{
+            $0.backgroundColor = .orange
+        }
+        divider.do{
+            $0.backgroundColor = .naverMapBlack5
+        }
+        bottomView.do{
+            $0.backgroundColor = .gray
+        }
+    }
+    
+    func showMyViewControllerInACustomizedSheet() {
+        let detailVC = DetailViewController()
+        if let sheet = detailVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+        present(detailVC, animated: true, completion: nil)
     }
 }
 
