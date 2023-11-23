@@ -67,13 +67,14 @@ class SearchResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
         setupLayout()
         setupStyle()
     }
 
-    // MARK: - Layout
+    // MARK: - View
     
-    func setupLayout(){
+    func setupView(){
         self.view.addSubviews([topBarView, mapView, bottomSheetView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
@@ -91,6 +92,11 @@ class SearchResultViewController: UIViewController {
         bottomView.addSubviews([bottomIconGroup, btnGroup])
         bottomIconGroup.addArrangedSubviews(reservation, contact, favorites, share)
         btnGroup.addArrangedSubviews(departure, arrival)
+    }
+    
+    // MARK: - Layout
+    
+    func setupLayout(){
         
         ///상단 서치뷰
         topBarView.snp.makeConstraints{
