@@ -282,61 +282,32 @@ class SearchResultViewController: UIViewController {
             $0.backgroundColor = .naverMapBlueGray4
         }
         stackView.setupStackView(bgColor: .naverMapGray1, axis: .vertical, distribution: .fillProportionally, spacing: 13)
+        
         ///상단 네이버 아이콘 그룹
-        topIconGroup.do{
-            $0.backgroundColor = .blue
-        }
         pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
         booking.setImage(ImageLiterals.caption_naverbooking, for: .normal)
         order.setImage(ImageLiterals.caption_naverorder, for: .normal)
+        
         ///검색결과 이름 & 카테고리
-        resultTitleGroup.do{
-            $0.backgroundColor = .yellow
-        }
         name.setupLabel(font: .title2, text: "알고", textColor: .naverMapSubBlue)
         category.setupLabel(font: .body10, text: "스파게티, 파스타전문", textColor: .naverMapGray4)
+        
         ///검색 결과 이름 & 카테고리
-        detail.do{
-            $0.text = "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집"
-            $0.font = .body7
-            $0.textColor = .naverMapGray6
-            $0.backgroundColor = .systemPink
-        }
+        detail.setupLabel(font: .body7, text: "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집", textColor: .naverMapGray6, alignment: .left)
+        
         ///검색 결과 위치정보
-        locationInfoGroup.do{
-            $0.backgroundColor = .purple
-        }
-        distance.do{
-            $0.text = "936m"
-            $0.font = .body3
-            $0.textColor = .naverMapGray6
-        }
+        distance.setupLabel(font: .body3, text: "936m", textColor: .naverMapGray6)
         dot.do{
             $0.layer.cornerRadius = 1
             $0.backgroundColor = .naverMapGray3
         }
-        location.do{
-            $0.text = "서울 광진구"
-            $0.font = .bodyButton
-            $0.textColor = .naverMapGray6
-        }
-        dropBtn.do{
-            $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
-        }
+        location.setupLabel(font: .bodyButton, text: "서울 광진구", textColor: .naverMapGray6)
+        dropBtn.setImage(ImageLiterals.ic_arrow_down, for: .normal)
+
         ///검색 결과 영업 정보
-        resultInfoGroup.do{
-            $0.backgroundColor = .green
-        }
-        status.do{
-            $0.text = "영업 중"
-            $0.font = .body6
-            $0.textColor = .naverMapNaverGreen
-        }
-        lastOrder.do{
-            $0.text = "22:00에 라스트오더"
-            $0.font = .body7
-            $0.textColor = .naverMapGray7
-        }
+        status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
+        lastOrder.setupLabel(font: .body7, text: "22:00에 라스트오더", textColor: .naverMapGray7)
+
         
         imgGroup.do{
             $0.backgroundColor = .orange
@@ -349,14 +320,9 @@ class SearchResultViewController: UIViewController {
         }
     }
     
-//    func setupLabel(label: UILabel, font: UIFont, text: String, textColor: UIColor, alignment: NSTextAlignment? = nil) {
-////        let label = UILabel()
-//        label.font = font
-//        label.text = text
-//        label.textColor = textColor
-//        label.textAlignment = alignment ?? .center
-//    }
+    // TODO: 바텀시트컨트롤러 추후 수정
     
+    ///바텀시트 컨트롤러 -> 추후 수정 예정
     func showMyViewControllerInACustomizedSheet() {
         let detailVC = DetailViewController()
         if let sheet = detailVC.sheetPresentationController {
