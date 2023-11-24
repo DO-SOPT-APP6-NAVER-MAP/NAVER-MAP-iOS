@@ -31,7 +31,7 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var smallMenuImage4: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
     
     private lazy var imageIcVerticalStackView: UIStackView = { createVerticalStackView(forSpacing: 4)}()
-    private lazy var imageIc: UIImageView = { createIcon(image: ImageLiterals.ic_picture) }()
+    private let imageIc: UIImageView = UIImageView(image: ImageLiterals.ic_picture)
     private lazy var imagesCountLabel = createLabel(forFont: .bodyButton, forColor: .naverMapWhite, text: "+4")
     
     private lazy var locationNameLabel: UILabel = { createLabel(forFont: .title2, forColor: .naverMapBlack, text: "알고")}()
@@ -41,7 +41,7 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
                                                                text: "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집")}()
     
     private lazy var rateStackView: UIStackView = { createHorizontalStackView(forSpacing: 2)}()
-    private lazy var rateIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_red) }()
+    private let rateIc: UIImageView = UIImageView(image: ImageLiterals.ic_star_red)
     private lazy var rateLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray7, text: "4.82")}()
     
     private lazy var visitorReviewBtn = createReviewBtn(title: "방문자리뷰 288")
@@ -59,25 +59,25 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var allMenusStackView: UIStackView = { createHorizontalStackView(forSpacing: 29) }()
     
     private lazy var callStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var callIc: UIImageView = { createIcon(image: ImageLiterals.ic_call_thick) }()
+    private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call_thick)
     private lazy var callMenuLabel: UILabel = { createLabel(forFont: .body10,
                                                             forColor: .naverMapGray6,
                                                             text: "전화")}()
     
     private lazy var bookMarkStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var bookMarkIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_thick) }()
+    private let bookMarkIc: UIImageView = UIImageView(image: ImageLiterals.ic_star_thick)
     private lazy var bookMarkMenuLabel: UILabel = { createLabel(forFont: .body10,
                                                                 forColor: .naverMapGray6,
                                                                 text: "저장")}()
     
     private lazy var navigationStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var navigationIc: UIImageView = { createIcon(image: ImageLiterals.ic_navigation) }()
+    private let navigationIc: UIImageView = UIImageView(image: ImageLiterals.ic_navigation)
     private lazy var navigationMenuLabel: UILabel = { createLabel(forFont: .body10,
                                                                   forColor: .naverMapGray6,
                                                                   text: "내비게이션")}()
     
     private lazy var shareStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var shareIc: UIImageView = { createIcon(image: ImageLiterals.ic_share) }()
+    private let shareIc: UIImageView = UIImageView(image: ImageLiterals.ic_share)
     private lazy var shareMenuLabel: UILabel = { createLabel(forFont: .body10,
                                                              forColor: .naverMapGray6,
                                                              text: "공유")}()
@@ -354,12 +354,6 @@ private extension DetailMainSectionHeaderView {
         label.text = text
         label.textColor = forColor
         return label
-    }
-    
-    func createIcon(image: UIImage) -> UIImageView {
-        let ic = UIImageView()
-        ic.image = image
-        return ic
     }
     
     func fetchImageLayout(image: UIImage) -> UIImageView {

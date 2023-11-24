@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
 private extension DetailViewController {
     
     func setupViews() {
+        self.view.backgroundColor = .naverMapGray1
         self.navigationController?.isNavigationBarHidden = true
         view.addSubviews([detailCollectionView])
     }
@@ -99,25 +100,29 @@ private extension DetailViewController {
     }
     
     func configMainSectionLayout(forSection section: Int) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), 
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(0)) // 아이템 없음
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(0)) // 아이템 없음
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let sectionLayout = NSCollectionLayoutSection(group: group)
         let header = createMainSectionHeader(forSection: section)
         sectionLayout.boundarySupplementaryItems = [header]
-        
+    
         return sectionLayout
     }
     
     // TODO: - 추후 레이아웃 구현
     func configMenuSectionLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), 
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(235))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), 
+                                               heightDimension: .absolute(235))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
 

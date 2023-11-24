@@ -96,6 +96,6 @@ extension MenuCollectionViewCell {
         self.menuImage.image = data.menuImage
         self.menuNameLabel.text = data.menuName
         self.menuPriceLabel.text = data.menuPrice + "원"
-        self.menuOrderCntLabel.text = "주문수" + data.menuOrderCnt
+        self.menuOrderCntLabel.text = "주문수 " + data.menuOrderCnt
     }
 }
