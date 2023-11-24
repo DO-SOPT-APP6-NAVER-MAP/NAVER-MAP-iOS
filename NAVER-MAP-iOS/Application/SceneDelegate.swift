@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let rootViewController = DetailViewController()
+        let rootViewController = ViewController()
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let navigationController = UINavigationController(rootViewController: rootViewController)
