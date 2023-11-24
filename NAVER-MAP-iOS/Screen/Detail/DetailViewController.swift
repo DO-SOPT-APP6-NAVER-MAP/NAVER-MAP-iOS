@@ -47,6 +47,10 @@ private extension DetailViewController {
         
         self.detailCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
         
+        self.detailCollectionView.register(MenuSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MenuSectionHeaderView.identifier)
+        
+        self.detailCollectionView.register(MenuSectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MenuSectionFooterView.identifier)
+        
         self.detailCollectionView.delegate = self
         self.detailCollectionView.dataSource = self
     }
@@ -61,11 +65,22 @@ private extension DetailViewController {
         return collectionView
     }
     
-    func createSectionHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(507))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
+    func createMainSectionHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(500))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return header
+    }
+    
+    func createHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(46))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return layout
+    }
+    
+    func createFooter(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(60))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+        return layout
     }
     
     // MARK: - Configure Layout Method
@@ -74,7 +89,7 @@ private extension DetailViewController {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             switch sectionIndex {
             case 0, 1:
-                return self.configHeaderSectionLayout(forSection: sectionIndex)
+                return self.configMainSectionLayout(forSection: sectionIndex)
             case 2:
                 return self.configMenuSectionLayout()
             default:
@@ -83,7 +98,7 @@ private extension DetailViewController {
         }
     }
     
-    func configHeaderSectionLayout(forSection section: Int) -> NSCollectionLayoutSection {
+    func configMainSectionLayout(forSection section: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -91,7 +106,7 @@ private extension DetailViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let sectionLayout = NSCollectionLayoutSection(group: group)
-        let header = createSectionHeader(forSection: section)
+        let header = createMainSectionHeader(forSection: section)
         sectionLayout.boundarySupplementaryItems = [header]
         
         return sectionLayout
@@ -108,6 +123,11 @@ private extension DetailViewController {
 
         let sectionLayout = NSCollectionLayoutSection(group: group)
         sectionLayout.interGroupSpacing = 16
+        
+        let header = createHeader(forSection: 2)
+        let footer = createFooter(forSection: 2)
+        sectionLayout.boundarySupplementaryItems = [header, footer]
+
         return sectionLayout
     }
 }
@@ -145,8 +165,10 @@ extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
+            
         case UICollectionView.elementKindSectionHeader:
             switch indexPath.section {
+                
             case 0:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailMainSectionHeaderView.identifier, for: indexPath) as? DetailMainSectionHeaderView else { return UICollectionReusableView() }
                 return headerView
@@ -155,9 +177,25 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DescriptionSectionHeaderView.identifier, for: indexPath) as? DescriptionSectionHeaderView else { return UICollectionReusableView() }
                 return headerView
                 
+            case 2:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MenuSectionHeaderView.identifier, for: indexPath) as? MenuSectionHeaderView else { return UICollectionReusableView() }
+                return headerView
+                
             default:
                 return UICollectionReusableView()
             }
+            
+        case UICollectionView.elementKindSectionFooter:
+            switch indexPath.section {
+                
+            case 2:
+                guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MenuSectionFooterView.identifier, for: indexPath) as? MenuSectionFooterView else { return UICollectionReusableView() }
+                return footerView
+                
+            default:
+                return UICollectionReusableView()
+            }
+            
         default:
             return UICollectionReusableView()
         }

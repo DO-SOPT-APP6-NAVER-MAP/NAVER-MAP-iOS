@@ -107,7 +107,8 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
                                                        text: "https://www.instagram.com/algo_taphouse") }()
     
     /// 상세 정보 스택뷰
-    private lazy var infoHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
+//    private lazy var infoHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
+    private let infoHorizStackView = UIStackView()
     private lazy var infoIc: UIImageView = { createIcon(image: ImageLiterals.ic_information) }()
     private let infoLabel = UILabel()
     
@@ -282,6 +283,11 @@ private extension DescriptionSectionHeaderView {
         
         bottomDividingBar.do {
             $0.backgroundColor = UIColor.naverMapGray1
+        }
+        infoHorizStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 10
+            $0.alignment = .top
         }
     }
     

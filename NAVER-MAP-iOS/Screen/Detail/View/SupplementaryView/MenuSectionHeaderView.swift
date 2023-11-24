@@ -53,7 +53,7 @@ private extension MenuSectionHeaderView {
     
     func setupConstraints() {
         menuHeaderStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().offset(10)
             $0.centerX.equalToSuperview()
         }
     }
