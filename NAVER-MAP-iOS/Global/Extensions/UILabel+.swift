@@ -53,4 +53,17 @@ extension UILabel {
         self.textColor = textColor
         self.textAlignment = alignment ?? .center
     }
+    
+    ///둥근 테두리의 라벨 세팅 함수
+    func setupRoundedLabel(text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment, bgColor: UIColor, borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
+        self.text = text
+        self.font = font
+        self.textColor = textColor
+        self.textAlignment = alignment
+        self.backgroundColor = bgColor
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 }

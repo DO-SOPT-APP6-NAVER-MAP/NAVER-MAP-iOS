@@ -58,12 +58,14 @@ class SearchResultViewController: UIViewController {
     private var btnGroup = UIStackView()
     private var departure = UILabel()
     private var arrival = UILabel()
+    private var detailLocationView = DetailLocationView()
     
     // MARK: Properties
    
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-
+    private var hidden = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +77,7 @@ class SearchResultViewController: UIViewController {
     // MARK: - View
     
     func setupView(){
-        self.view.addSubviews([topBarView, mapView, bottomSheetView])
+        self.view.addSubviews([topBarView, mapView, bottomSheetView, detailLocationView])
         topBarView.addSubview(topStackView)
         topStackView.addArrangedSubviews(backBtn, searchTextfield, exitBtn)
         mapView.addSubviews([mapBtnStackView, locationBtn])
@@ -214,6 +216,12 @@ class SearchResultViewController: UIViewController {
         dropBtn.snp.makeConstraints{
             $0.leading.equalTo(location.snp.trailing).offset(3)
             $0.width.height.equalTo(18)
+        }
+        
+        ///상세 위치 정보
+        detailLocationView.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(locationInfoGroup.snp.bottom).offset(4)
         }
         
         ///검색 결과 영업 정보
@@ -358,7 +366,11 @@ class SearchResultViewController: UIViewController {
             $0.backgroundColor = .naverMapGray3
         }
         location.setupLabel(font: .bodyButton, text: "서울 광진구", textColor: .naverMapGray6)
-        dropBtn.setImage(ImageLiterals.ic_arrow_down, for: .normal)
+        dropBtn.do{
+            $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
+            $0.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
+        }
+        detailLocationView.isHidden = hidden
 
         ///검색 결과 영업 정보
         status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
@@ -394,6 +406,14 @@ class SearchResultViewController: UIViewController {
         arrival.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     
+    ///상세 위치 정보 버튼 이벤트
+    ///버튼 클릭 시 상세 위치 정보 뷰가 나타남
+    @objc
+    func showDetailLocation(_gesture: UIGestureRecognizer) {
+        hidden = !hidden
+        detailLocationView.isHidden = hidden
+    }
+    
     // TODO: 바텀시트컨트롤러 추후 수정
     
     ///바텀시트 컨트롤러 -> 추후 수정 예정
@@ -407,22 +427,6 @@ class SearchResultViewController: UIViewController {
             sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         }
         present(detailVC, animated: true, completion: nil)
-    }
-}
-
-extension UILabel {
-    
-    ///둥근 테두리의 리뷰 라벨 세팅 함수
-    func setupRoundedLabel(text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment, bgColor: UIColor, borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
-        self.text = text
-        self.font = font
-        self.textColor = textColor
-        self.textAlignment = alignment
-        self.backgroundColor = bgColor
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.borderWidth = borderWidth
-        self.layer.cornerRadius = radius
-        self.layer.masksToBounds = true
     }
 }
 
