@@ -43,7 +43,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
 private extension MenuCollectionViewCell {
     
     func setupStyle() {
-        self.backgroundColor = UIColor.naverMapWhite
+        self.backgroundColor = .naverMapWhite
     }
     
     func setupViews() {

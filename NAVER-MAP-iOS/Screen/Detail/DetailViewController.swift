@@ -59,7 +59,7 @@ private extension DetailViewController {
     
     func createCollectionView() -> UICollectionView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configLayout())
-        collectionView.backgroundColor = UIColor.naverMapWhite
+        collectionView.backgroundColor = .naverMapWhite
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView

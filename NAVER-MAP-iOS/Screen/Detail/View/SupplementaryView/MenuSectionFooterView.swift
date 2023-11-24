@@ -110,7 +110,7 @@ private extension MenuSectionFooterView {
         }
         
         bottomDividingBar.do {
-            $0.backgroundColor = UIColor.naverMapGray1
+            $0.backgroundColor = .naverMapGray1
         }
     }
 }
