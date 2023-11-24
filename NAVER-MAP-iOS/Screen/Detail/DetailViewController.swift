@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
+    private var menuDummy = DetailMenuData.detailMenuDummy
     
     // MARK: - LifeCycle
     
@@ -44,6 +45,8 @@ private extension DetailViewController {
         
         self.detailCollectionView.register(DescriptionSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DescriptionSectionHeaderView.identifier)
         
+        self.detailCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
+        
         self.detailCollectionView.delegate = self
         self.detailCollectionView.dataSource = self
     }
@@ -69,9 +72,12 @@ private extension DetailViewController {
     
     func configLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            if sectionIndex == 0 || sectionIndex == 1 {
+            switch sectionIndex {
+            case 0, 1:
                 return self.configHeaderSectionLayout(forSection: sectionIndex)
-            } else {
+            case 2:
+                return self.configMenuSectionLayout()
+            default:
                 return nil // 나중에 config other section layout
             }
         }
@@ -92,26 +98,49 @@ private extension DetailViewController {
     }
     
     // TODO: - 추후 레이아웃 구현
-    
+    func configMenuSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(235))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+
+        let sectionLayout = NSCollectionLayoutSection(group: group)
+        sectionLayout.interGroupSpacing = 16
+        return sectionLayout
+    }
 }
 
 // MARK: - CollectionView DataSource
 
 extension DetailViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 6
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            0
-        case 1:
-            0
+        case 0, 1:
+            return 0
+        case 2:
+            return 4
         default:
-            0
+            return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        switch indexPath.section {
+            
+        case 2:
+            guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
+            item.bindData(data: menuDummy[indexPath.row])
+            return item
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -132,13 +161,9 @@ extension DetailViewController: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
-        
-        func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 6
-        }
     }
 }
 
-    // MARK: - CollectionVeiw Delegate
-    
-    extension DetailViewController: UICollectionViewDelegate { }
+// MARK: - CollectionVeiw Delegate
+
+extension DetailViewController: UICollectionViewDelegate { }
