@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        setupLayout()
+        setupConstraints()
         setupCollectionViewConfig()
     }
 }
@@ -33,7 +33,7 @@ private extension DetailViewController {
         view.addSubviews([detailCollectionView])
     }
     
-    func setupLayout() {
+    func setupConstraints() {
         detailCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -87,22 +87,26 @@ private extension DetailViewController {
         let sectionLayout = NSCollectionLayoutSection(group: group)
         let header = createSectionHeader(forSection: section)
         sectionLayout.boundarySupplementaryItems = [header]
+        
         return sectionLayout
     }
     
     // TODO: - 추후 레이아웃 구현
-
+    
 }
 
 // MARK: - CollectionView DataSource
 
-extension DetailViewController: UICollectionViewDataSource {    
+extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 || section == 1 {
-            return 0
-        } else {
-            return 0
+        switch section {
+        case 0:
+            0
+        case 1:
+            0
+        default:
+            0
         }
     }
     
@@ -111,34 +115,30 @@ extension DetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader else {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            switch indexPath.section {
+            case 0:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailMainSectionHeaderView.identifier, for: indexPath) as? DetailMainSectionHeaderView else { return UICollectionReusableView() }
+                return headerView
+                
+            case 1:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DescriptionSectionHeaderView.identifier, for: indexPath) as? DescriptionSectionHeaderView else { return UICollectionReusableView() }
+                return headerView
+                
+            default:
+                return UICollectionReusableView()
+            }
+        default:
             return UICollectionReusableView()
         }
         
-        if indexPath.section == 0 {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailMainSectionHeaderView.identifier, for: indexPath) as? DetailMainSectionHeaderView else {
-                return UICollectionReusableView()
-            }
-            return headerView
-            
-        } else if indexPath.section == 1 {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DescriptionSectionHeaderView.identifier, for: indexPath) as? DescriptionSectionHeaderView else {
-                return UICollectionReusableView()
-            }
-            return headerView
-            
-        } else {
-            return UICollectionReusableView()
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 6
         }
     }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 6
-    }
 }
 
-// MARK: - CollectionVeiw Delegate
-
-extension DetailViewController: UICollectionViewDelegate {
+    // MARK: - CollectionVeiw Delegate
     
-}
+    extension DetailViewController: UICollectionViewDelegate { }
