@@ -38,6 +38,7 @@
 		949D34F62B1046EB00ECA9CF /* DetailAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F52B1046EB00ECA9CF /* DetailAppData.swift */; };
 		949D34F82B10737B00ECA9CF /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F72B10737B00ECA9CF /* MenuSectionHeaderView.swift */; };
 		949D34FA2B10819500ECA9CF /* MenuSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F92B10819500ECA9CF /* MenuSectionFooterView.swift */; };
+
 		94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */; };
 		94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */; };
 /* End PBXBuildFile section */

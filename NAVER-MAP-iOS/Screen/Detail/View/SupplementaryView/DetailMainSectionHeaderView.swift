@@ -300,6 +300,10 @@ private extension DetailMainSectionHeaderView {
         bottomDividingBar.do {
             $0.backgroundColor = .naverMapGray1
         }
+        
+        bottomDividingBar.do {
+            $0.backgroundColor = UIColor.naverMapGray1
+        }
     }
     
     // MARK: - create UI components method
