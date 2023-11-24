@@ -64,15 +64,15 @@ private extension MenuSectionFooterView {
         }
         
         moreMenuView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
             $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(horizLine)
             $0.width.equalTo(124)
             $0.height.equalTo(39)
         }
         
         moreMenuStackView.snp.makeConstraints {
-            $0.top.equalTo(moreMenuView.snp.top).inset(10)
             $0.leading.equalTo(moreMenuView.snp.leading).inset(18)
+            $0.centerY.equalTo(horizLine)
         }
         
         bottomDividingBar.snp.makeConstraints {

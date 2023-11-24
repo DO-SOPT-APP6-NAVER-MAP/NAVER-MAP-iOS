@@ -210,10 +210,10 @@ private extension DescriptionSectionHeaderView {
         }
         
         alarmBtn.snp.makeConstraints {
-            $0.top.equalTo(horizDividingLine1.snp.bottom).offset(18)
             $0.trailing.equalToSuperview().inset(16)
             $0.width.equalTo(105)
             $0.height.equalTo(40)
+            $0.centerY.equalTo(alarmHorizStackView)
         }
         
         horizDividingLine2.snp.makeConstraints {
