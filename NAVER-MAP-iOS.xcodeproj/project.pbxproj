@@ -37,6 +37,8 @@
 		94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */; };
 		94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */; };
 		CA9DAA672B10B89C00135337 /* DetailLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA662B10B89C00135337 /* DetailLocationView.swift */; };
+		CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CA9DAA6B2B11092000135337 /* FloatingPanel */; };
+		CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,7 @@
 		94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSectionHeaderView.swift; sourceTree = "<group>"; };
 		94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMainSectionHeaderView.swift; sourceTree = "<group>"; };
 		CA9DAA662B10B89C00135337 /* DetailLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationView.swift; sourceTree = "<group>"; };
+		CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 				6BAD1A922B0A637B00837590 /* Then in Frameworks */,
 				6BAD1A972B0A639700837590 /* Moya in Frameworks */,
 				6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */,
+				CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */,
 				6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +224,7 @@
 			children = (
 				6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */,
 				CA9DAA662B10B89C00135337 /* DetailLocationView.swift */,
+				CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				6BAD1A962B0A639700837590 /* Moya */,
 				6BAD1A982B0A639700837590 /* ReactiveMoya */,
 				6BAD1A9A2B0A639700837590 /* RxMoya */,
+				CA9DAA6B2B11092000135337 /* FloatingPanel */,
 			);
 			productName = "NAVER-MAP-iOS";
 			productReference = 6B4D96D72B08657600977A82 /* NAVER-MAP-iOS.app */;
@@ -341,6 +347,7 @@
 				6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */,
 				6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */,
+				CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 6B4D96D82B08657600977A82 /* Products */;
 			projectDirPath = "";
@@ -381,6 +388,7 @@
 				6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */,
 				6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */,
 				6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */,
+				CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */,
 				94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */,
 				6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */,
 				6BAD1AC12B0A66E300837590 /* ImageLiterals.swift in Sources */,
@@ -628,6 +636,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -660,6 +676,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		CA9DAA6B2B11092000135337 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
