@@ -10,7 +10,7 @@ class DetailLocationViewController: UIViewController {
     private var bottomSheetView = UIView()
     private var stackView = UIStackView()
     private var dragIcon = UIView()
-    private var topIconGroup = UIView()
+    private var topIconGroup = UIStackView()
     private var pay = UIButton()
     private var booking = UIButton()
     private var order = UIButton()
@@ -63,8 +63,9 @@ class DetailLocationViewController: UIViewController {
     func setupView() {
         self.view.addSubviews([bottomSheetView, detailLocationView])
         bottomSheetView.addSubviews([dragIcon, stackView, divider, bottomView])
-        stackView.addArrangedSubviews(topIconGroup, resultTitleGroup, detail, locationInfoGroup, resultInfoGroup, reviewGroup, imgGroup)
-        topIconGroup.addSubviews([pay, booking, order])
+        stackView.addArrangedSubviews(resultTitleGroup, detail, locationInfoGroup, resultInfoGroup, reviewGroup, imgGroup)
+        stackView.addSubview(topIconGroup)
+        topIconGroup.addArrangedSubviews(pay, booking, order)
         resultTitleGroup.addSubviews([name, category])
         locationInfoGroup.addSubviews([distance, dot, location, dropBtn])
         resultInfoGroup.addSubviews([status, lastOrder])
@@ -91,26 +92,17 @@ class DetailLocationViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
         stackView.snp.makeConstraints{
-            $0.top.equalTo(dragIcon.snp.bottom).offset(14)
+            $0.top.equalTo(dragIcon.snp.bottom).offset(35)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(stackView.getDeviceHeight() / 3)
         }
         
         ///상단 네이버 아이콘 그룹
         topIconGroup.snp.makeConstraints{
-            $0.height.equalTo(13)
-        }
-        pay.snp.makeConstraints{
             $0.leading.equalToSuperview()
-            $0.top.bottom.equalToSuperview()
-        }
-        booking.snp.makeConstraints{
-            $0.leading.equalTo(pay.snp.trailing).offset(8)
-            $0.top.bottom.equalToSuperview()
-        }
-        order.snp.makeConstraints{
-            $0.leading.equalTo(booking.snp.trailing).offset(8)
-            $0.top.bottom.equalToSuperview()
+            $0.width.equalTo(126)
+            $0.height.equalTo(13)
+            $0.top.equalTo(dragIcon.snp.bottom).offset(10)
         }
         
         ///검색 결과 이름 & 카테고리
@@ -236,6 +228,7 @@ class DetailLocationViewController: UIViewController {
         }
         stackView.setupStackView(bgColor: .naverMapWhite, axis: .vertical, distribution: .fillProportionally, spacing: stackView.convertByHeightRatio(9))
         
+        topIconGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fill, spacing: 8)
         ///상단 네이버 아이콘 그룹
         pay.setImage(ImageLiterals.caption_naverpay, for: .normal)
         booking.setImage(ImageLiterals.caption_naverbooking, for: .normal)

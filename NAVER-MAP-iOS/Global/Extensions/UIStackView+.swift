@@ -25,10 +25,10 @@ extension UIStackView {
     }
     
     /// 기본 스택뷰 세팅 함수
-    func setupStackView(bgColor: UIColor, axis: NSLayoutConstraint.Axis, distribution: Distribution, spacing: CGFloat? = nil) {
+    func setupStackView(bgColor: UIColor, axis: NSLayoutConstraint.Axis, distribution: Distribution, spacing: CGFloat = 0) {
         self.backgroundColor = bgColor
         self.axis = axis
         self.distribution = distribution
-        self.spacing = spacing ?? 0
+        self.spacing = spacing
     }
 }

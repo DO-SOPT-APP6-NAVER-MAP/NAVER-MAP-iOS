@@ -31,7 +31,6 @@ class SearchResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        showMyViewControllerInACustomizedSheet()
         setBottomSheetPanel()
         setupView()
         setupLayout()
@@ -84,7 +83,7 @@ class SearchResultViewController: UIViewController {
         mapView.snp.makeConstraints{
             $0.top.equalTo(topBarView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(400)
+            $0.height.equalTo(self.view.convertByHeightRatio(400))
         }
         mapBtnStackView.snp.makeConstraints{
             $0.top.equalToSuperview().inset(12)
@@ -166,70 +165,17 @@ class SearchResultViewController: UIViewController {
             $0.invalidateLayout()
             // panel 스타일 변경 (대신 bar UI가 사라지므로 따로 넣어주어야함)
             $0.changePanelStyle()
+            $0.isModalInPresentation = true
         }
     }
 }
 
 extension SearchResultViewController: FloatingPanelControllerDelegate {
     func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
+        fpc.calculate()
         if fpc.state == .full {
             let detailVC = DetailViewController()
             self.navigationController?.pushViewController(detailVC, animated: false)
-        }else {
-            
         }
-    }
-}
-
-extension FloatingPanelController {
-    func changePanelStyle() {
-        let appearance = SurfaceAppearance()
-        let shadow = SurfaceAppearance.Shadow()
-        shadow.color = UIColor.naverMapBlack5
-        shadow.offset = CGSize(width: 0, height: -4)
-        shadow.opacity = 1
-        shadow.radius = 10
-        appearance.shadows = [shadow]
-        appearance.cornerRadius = 10
-        appearance.backgroundColor = .naverMapWhite
-        appearance.borderColor = .naverMapGray1
-        appearance.borderWidth = 1
-
-        surfaceView.grabberHandle.isHidden = true
-        surfaceView.appearance = appearance
-
-    }
-}
-
-extension UIImageView {
-    
-    ///이미지뷰 세팅 함수
-    func setupImageView(image: UIImage, maskedCorners: CACornerMask? = nil, radius: CGFloat? = nil, borderColor: UIColor, width: CGFloat) {
-        self.image = image
-        if let corners = maskedCorners {
-            self.layer.maskedCorners = corners
-        }
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = radius ?? 0
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.borderWidth = width
-    }
-}
-
-class MyFloatingPanelLayout: FloatingPanelLayout {
-
-    var position: FloatingPanelPosition {
-        return .bottom
-    }
-
-    var initialState: FloatingPanelState {
-        return .half
-    }
-
-    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] { // 가능한 floating panel: 현재 full, half만 가능하게 설정
-        return [
-            .full: FloatingPanelLayoutAnchor(absoluteInset: UIScreen.main.bounds.height / 812 * 58, edge: .top, referenceGuide: .superview),
-            .half: FloatingPanelLayoutAnchor(absoluteInset: UIScreen.main.bounds.height / 812 * 399, edge: .bottom, referenceGuide: .superview),
-        ]
     }
 }

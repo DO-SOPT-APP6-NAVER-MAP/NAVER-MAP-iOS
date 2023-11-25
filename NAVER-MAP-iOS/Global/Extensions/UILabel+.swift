@@ -47,11 +47,11 @@ extension UILabel {
     }
     
     /// UILabel 기본 세팅  => 폰트, 텍스트, 텍스트색상, 정렬방법(옵션)
-    func setupLabel(font: UIFont, text: String, textColor: UIColor, alignment: NSTextAlignment? = nil) {
+    func setupLabel(font: UIFont, text: String, textColor: UIColor, alignment: NSTextAlignment = .center) {
         self.font = font
         self.text = text
         self.textColor = textColor
-        self.textAlignment = alignment ?? .center
+        self.textAlignment = alignment
     }
     
     ///둥근 테두리의 라벨 세팅 함수

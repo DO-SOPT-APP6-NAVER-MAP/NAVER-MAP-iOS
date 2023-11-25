@@ -39,6 +39,9 @@
 		CA9DAA672B10B89C00135337 /* DetailLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA662B10B89C00135337 /* DetailLocationView.swift */; };
 		CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CA9DAA6B2B11092000135337 /* FloatingPanel */; };
 		CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */; };
+		CA9DAAA12B11BC2600135337 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA02B11BC2600135337 /* UIImageView+.swift */; };
+		CA9DAAA32B11BD8900135337 /* FloatingPanelController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */; };
+		CA9DAAA52B11BE0100135337 /* MyFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,9 @@
 		94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMainSectionHeaderView.swift; sourceTree = "<group>"; };
 		CA9DAA662B10B89C00135337 /* DetailLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationView.swift; sourceTree = "<group>"; };
 		CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationViewController.swift; sourceTree = "<group>"; };
+		CA9DAAA02B11BC2600135337 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPanelController+.swift"; sourceTree = "<group>"; };
+		CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFloatingPanelLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,8 @@
 				6BAD1AC82B0A682200837590 /* UIStackView+.swift */,
 				6BAD1ACA2B0A683600837590 /* UITextField+.swift */,
 				6BAD1ACC2B0A684900837590 /* UILabel+.swift */,
+				CA9DAAA02B11BC2600135337 /* UIImageView+.swift */,
+				CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 				6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */,
 				CA9DAA662B10B89C00135337 /* DetailLocationView.swift */,
 				CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */,
+				CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 				6B4D96DF2B08657600977A82 /* ViewController.swift in Sources */,
 				6B4D96DB2B08657600977A82 /* AppDelegate.swift in Sources */,
 				94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */,
+				CA9DAAA12B11BC2600135337 /* UIImageView+.swift in Sources */,
 				6BAD1AC72B0A680E00837590 /* UIViewController+.swift in Sources */,
 				6BAD1ABF2B0A66D800837590 /* ColorLiterals.swift in Sources */,
 				6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */,
@@ -396,8 +406,10 @@
 				6BAD1ACD2B0A684900837590 /* UILabel+.swift in Sources */,
 				6BAD1AAD2B0A664300837590 /* MainSearchViewController.swift in Sources */,
 				6BAD1AC92B0A682200837590 /* UIStackView+.swift in Sources */,
+				CA9DAAA52B11BE0100135337 /* MyFloatingPanelLayout.swift in Sources */,
 				6BAD1AC32B0A66ED00837590 /* FontLiterals.swift in Sources */,
 				6BAD1AB32B0A666200837590 /* FindingRouteViewController.swift in Sources */,
+				CA9DAAA32B11BD8900135337 /* FloatingPanelController+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
