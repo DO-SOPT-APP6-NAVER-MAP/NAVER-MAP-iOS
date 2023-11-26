@@ -28,6 +28,16 @@ final class EmptySearchView: UIView {
     }
 }
 
+extension EmptySearchView {
+    func setupLabel(forEmpty: Bool) {
+        if forEmpty {
+            emptyLabel.text = "검색어를 입력해주세요."
+        } else {
+            emptyLabel.text = "일치하는 검색어가 없습니다."
+        }
+    }
+}
+
 private extension EmptySearchView {
     
     func setupStyle() {

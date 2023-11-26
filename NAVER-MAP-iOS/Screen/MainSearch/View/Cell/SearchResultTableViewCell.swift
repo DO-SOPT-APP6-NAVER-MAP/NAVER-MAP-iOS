@@ -34,6 +34,23 @@ final class SearchResultTableViewCell: UITableViewCell {
     }
 }
 
+extension SearchResultTableViewCell {
+    
+    func configCell(forModel: MainSearchLocationModel, forSearch: String) {
+        mainLocationNameLabel.text = forModel.locationName
+        mainLocationLabel.text = forModel.location
+        subCategoryLabel.text = forModel.category
+        subDistanceLabel.text = forModel.distance
+        
+        if let reviewCount = forModel.reviewCount {
+            mainReviewCountLabel.text = "리뷰 \(reviewCount)"
+            mainReviewCountLabel.highlightText(forText: String(reviewCount), forColor: .naverMapGray7)
+        }
+        mainLocationNameLabel.textColor = .naverMapBlack
+        mainLocationNameLabel.highlightText(forText: forSearch, forColor: .naverMapBlue)
+    }
+}
+
 private extension SearchResultTableViewCell {
     
     func setupStyle() {
@@ -96,7 +113,6 @@ private extension SearchResultTableViewCell {
         mainInfoStackView.snp.makeConstraints {
             $0.top.equalTo(locationImageView.snp.top)
             $0.leading.equalTo(locationImageView.snp.trailing).offset(12)
-            $0.trailing.equalTo(subInfoStackView.snp.leading).offset(-3)
         }
         
         subInfoStackView.snp.makeConstraints {

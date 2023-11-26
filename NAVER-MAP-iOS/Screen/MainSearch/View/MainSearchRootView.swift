@@ -20,7 +20,7 @@ final class MainSearchRootView: UIView {
     private let searchTopTextField: UITextField = UITextField()
     private let searchTopCancleBtn: UIButton = UIButton()
     
-    private let emptyResultView: UIView = EmptySearchView()
+    private let emptyResultView: EmptySearchView = EmptySearchView()
     
     private let recommendCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let dividingView: UIView = UIView()
@@ -55,8 +55,18 @@ extension MainSearchRootView {
         resultTableView.dataSource = forDatasource
     }
     
-    func setupEmptyView(isHide: Bool) {
+    func setupTextField(forDelegate: UITextFieldDelegate) {
+        searchTopTextField.delegate = forDelegate
+    }
+    
+    func setupEmptyView(isHide: Bool, isEmpty: Bool = true) {
         emptyResultView.isHidden = isHide
+        emptyResultView.setupLabel(forEmpty: isEmpty)
+    }
+    
+    func reloadView() {
+        recommendCollectionView.reloadData()
+        resultTableView.reloadData()
     }
 }
 
@@ -101,6 +111,7 @@ private extension MainSearchRootView {
             $0.register(SearchRecommendCollectionViewCell.self, forCellWithReuseIdentifier: SearchRecommendCollectionViewCell.identifier)
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
+            $0.isScrollEnabled = false
             
             $0.contentInset = .init(top: 12, left: 16, bottom: 12, right: 16)
         }

@@ -29,6 +29,15 @@ final class SearchRecommendCollectionViewCell: UICollectionViewCell {
     }
 }
 
+extension SearchRecommendCollectionViewCell {
+    
+    func configCell(forName: String, forSearch: String) {
+        searchRecommendLabel.text = forName
+        searchRecommendLabel.textColor = .naverMapBlack
+        searchRecommendLabel.highlightText(forText: forSearch, forColor: .naverMapBlue)
+    }
+}
+
 private extension SearchRecommendCollectionViewCell {
     
     func setupStyle() {
