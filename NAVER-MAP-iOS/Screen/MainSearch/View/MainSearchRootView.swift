@@ -12,11 +12,8 @@ import Then
 
 final class MainSearchRootView: UIView {
     
-    private let collectionViewItemSpacing: CGFloat = 8
-    private let collectionViewHorizontalInset: CGFloat = 16
-
     // MARK: - UI Properties
-
+    
     private let searchTopView: UIView = UIView()
     private let searchTopStackView: UIStackView = UIStackView()
     private let searchTopBackBtn: UIButton = UIButton()
@@ -30,7 +27,7 @@ final class MainSearchRootView: UIView {
     private let resultTableView: UITableView = UITableView()
     
     // MARK: - View Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,14 +40,23 @@ final class MainSearchRootView: UIView {
     }
 }
 
-extension MainSearchRootView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = (getDeviceWidth() - 2 * collectionViewHorizontalInset - collectionViewItemSpacing) / 2
-        return .init(width: width, height: 40)
+// MARK: - setup View Method
+
+extension MainSearchRootView {
+    func setupCollectionView(forDelegate: UICollectionViewDelegate,
+                             forDatasource: UICollectionViewDataSource) {
+        recommendCollectionView.delegate = forDelegate
+        recommendCollectionView.dataSource = forDatasource
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return collectionViewItemSpacing
+    func setupTableView(forDelegate: UITableViewDelegate,
+                        forDatasource: UITableViewDataSource) {
+        resultTableView.delegate = forDelegate
+        resultTableView.dataSource = forDatasource
+    }
+    
+    func setupEmptyView(isHide: Bool) {
+        emptyResultView.isHidden = isHide
     }
 }
 
@@ -102,7 +108,6 @@ private extension MainSearchRootView {
         resultTableView.do {
             $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
             $0.showsVerticalScrollIndicator = false
-            
             $0.rowHeight = 91
         }
         
@@ -128,16 +133,16 @@ private extension MainSearchRootView {
             $0.horizontalEdges.equalToSuperview()
         }
         
+        dividingView.snp.makeConstraints {
+            $0.height.equalTo(6)
+            $0.top.equalTo(recommendCollectionView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
         resultTableView.snp.makeConstraints {
             $0.top.equalTo(dividingView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(safeAreaLayoutGuide)
-        }
-        
-        dividingView.snp.makeConstraints {
-            $0.height.equalTo(6)
-            $0.top.equalTo(resultTableView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
         }
         
         searchTopView.snp.makeConstraints {
@@ -149,7 +154,7 @@ private extension MainSearchRootView {
         emptyResultView.snp.makeConstraints {
             $0.edges.bottom.equalToSuperview()
         }
-                
+        
         searchTopStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
