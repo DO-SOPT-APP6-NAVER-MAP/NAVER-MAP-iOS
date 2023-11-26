@@ -297,11 +297,11 @@ class SearchResultViewController: UIViewController {
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
             $0.font = .title4
-            $0.textColor = UIColor.naverMapBlack
+            $0.textColor = .naverMapBlack
             $0.makeRounded(radius: 10)
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.naverMapGray2.cgColor
-            $0.backgroundColor = UIColor.naverMapWhite
+            $0.backgroundColor = .naverMapWhite
             $0.addPadding(left: 12, right: 12)
         }
         micBtn.setImage(ImageLiterals.ic_mic, for: .normal)

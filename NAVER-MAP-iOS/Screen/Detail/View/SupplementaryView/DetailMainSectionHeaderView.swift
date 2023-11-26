@@ -31,18 +31,18 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var smallMenuImage4: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
     
     private lazy var imageIcVerticalStackView: UIStackView = { createVerticalStackView(forSpacing: 4)}()
-    private lazy var imageIc: UIImageView = { createIcon(image: ImageLiterals.ic_picture) }()
-    private lazy var imagesCountLabel = createLabel(forFont: UIFont.bodyButton, forColor: UIColor.naverMapWhite, text: "+4")
+    private let imageIc: UIImageView = UIImageView(image: ImageLiterals.ic_picture)
+    private lazy var imagesCountLabel = createLabel(forFont: .bodyButton, forColor: .naverMapWhite, text: "+4")
     
-    private lazy var locationNameLabel: UILabel = { createLabel(forFont: UIFont.title2, forColor: UIColor.naverMapBlack, text: "알고")}()
-    private lazy var categoryLabel: UILabel = { createLabel(forFont: UIFont.body7, forColor: UIColor.naverMapGray4, text: "스파게티, 파스타 전문")}()
-    private lazy var descriptionLabel: UILabel = { createLabel(forFont: UIFont.body7,
-                                                               forColor: UIColor.naverMapGray6,
+    private lazy var locationNameLabel: UILabel = { createLabel(forFont: .title2, forColor: .naverMapBlack, text: "알고")}()
+    private lazy var categoryLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray4, text: "스파게티, 파스타 전문")}()
+    private lazy var descriptionLabel: UILabel = { createLabel(forFont: .body7,
+                                                               forColor: .naverMapGray6,
                                                                text: "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집")}()
     
     private lazy var rateStackView: UIStackView = { createHorizontalStackView(forSpacing: 2)}()
-    private lazy var rateIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_red) }()
-    private lazy var rateLabel: UILabel = { createLabel(forFont: UIFont.body7, forColor: UIColor.naverMapGray7, text: "4.82")}()
+    private let rateIc: UIImageView = UIImageView(image: ImageLiterals.ic_star_red)
+    private lazy var rateLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray7, text: "4.82")}()
     
     private lazy var visitorReviewBtn = createReviewBtn(title: "방문자리뷰 288")
     private lazy var blogReviewBtn = createReviewBtn(title: "블로그리뷰 316")
@@ -59,27 +59,27 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var allMenusStackView: UIStackView = { createHorizontalStackView(forSpacing: 29) }()
     
     private lazy var callStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var callIc: UIImageView = { createIcon(image: ImageLiterals.ic_call_thick) }()
-    private lazy var callMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
-                                                            forColor: UIColor.naverMapGray6,
+    private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call_thick)
+    private lazy var callMenuLabel: UILabel = { createLabel(forFont: .body10,
+                                                            forColor: .naverMapGray6,
                                                             text: "전화")}()
     
     private lazy var bookMarkStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var bookMarkIc: UIImageView = { createIcon(image: ImageLiterals.ic_star_thick) }()
-    private lazy var bookMarkMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
-                                                                forColor: UIColor.naverMapGray6,
+    private let bookMarkIc: UIImageView = UIImageView(image: ImageLiterals.ic_star_thick)
+    private lazy var bookMarkMenuLabel: UILabel = { createLabel(forFont: .body10,
+                                                                forColor: .naverMapGray6,
                                                                 text: "저장")}()
     
     private lazy var navigationStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var navigationIc: UIImageView = { createIcon(image: ImageLiterals.ic_navigation) }()
-    private lazy var navigationMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
-                                                                  forColor: UIColor.naverMapGray6,
+    private let navigationIc: UIImageView = UIImageView(image: ImageLiterals.ic_navigation)
+    private lazy var navigationMenuLabel: UILabel = { createLabel(forFont: .body10,
+                                                                  forColor: .naverMapGray6,
                                                                   text: "내비게이션")}()
     
     private lazy var shareStackView: UIStackView = { createVerticalStackView(forSpacing: 6) }()
-    private lazy var shareIc: UIImageView = { createIcon(image: ImageLiterals.ic_share) }()
-    private lazy var shareMenuLabel: UILabel = { createLabel(forFont: UIFont.body10,
-                                                             forColor: UIColor.naverMapGray6,
+    private let shareIc: UIImageView = UIImageView(image: ImageLiterals.ic_share)
+    private lazy var shareMenuLabel: UILabel = { createLabel(forFont: .body10,
+                                                             forColor: .naverMapGray6,
                                                              text: "공유")}()
     
     private lazy var naverBtnStackView: UIStackView = { createHorizontalStackView(forSpacing: 23) }()
@@ -108,7 +108,7 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
 
 private extension DetailMainSectionHeaderView {
     func setupStyle() {
-        self.backgroundColor = UIColor.naverMapWhite
+        self.backgroundColor = .naverMapWhite
     }
     
     func setupViews() {
@@ -272,21 +272,21 @@ private extension DetailMainSectionHeaderView {
         
         departureBtn.do {
             $0.setTitle("출발", for: .normal)
-            $0.titleLabel?.font = UIFont.body7
-            $0.setTitleColor(UIColor.naverMapBlue, for: .normal)
+            $0.titleLabel?.font = .body7
+            $0.setTitleColor(.naverMapBlue, for: .normal)
             $0.setImage(ImageLiterals.ic_btn_depart_circle, for: .normal)
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.naverMapBlue.cgColor
-            $0.backgroundColor = UIColor.naverMapWhite
+            $0.backgroundColor = .naverMapWhite
             $0.layer.cornerRadius = 20
         }
         
         arrivalBtn.do {
             $0.setTitle("도착", for: .normal)
-            $0.titleLabel?.font = UIFont.body7
-            $0.setTitleColor(UIColor.naverMapWhite, for: .normal)
+            $0.titleLabel?.font = .body7
+            $0.setTitleColor(.naverMapWhite, for: .normal)
             $0.setImage(ImageLiterals.ic_btn_location_white, for: .normal)
-            $0.backgroundColor = UIColor.naverMapBlue
+            $0.backgroundColor = .naverMapBlue
             $0.layer.cornerRadius = 20
         }
         
@@ -294,7 +294,11 @@ private extension DetailMainSectionHeaderView {
                   verticalDividingLine1,
                   verticalDividingLine2,
                   verticalDividingLine3] {
-            i.backgroundColor = UIColor.naverMapGray2
+            i.backgroundColor = .naverMapGray2
+        }
+        
+        bottomDividingBar.do {
+            $0.backgroundColor = .naverMapGray1
         }
         
         bottomDividingBar.do {
@@ -325,9 +329,9 @@ private extension DetailMainSectionHeaderView {
     func createReviewBtn(title: String) -> UIButton { //inset 주기
         let btn = UIButton()
         btn.setTitle(title, for: .normal)
-        btn.setTitleColor(UIColor.naverMapGray7, for: .normal)
-        btn.titleLabel?.font = UIFont.body7
-        btn.backgroundColor = UIColor.naverMapReview5
+        btn.setTitleColor(.naverMapGray7, for: .normal)
+        btn.titleLabel?.font = .body7
+        btn.backgroundColor = .naverMapReview5
         btn.layer.borderColor = UIColor.naverMapReview4.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 3
@@ -337,10 +341,10 @@ private extension DetailMainSectionHeaderView {
     func createNaverBtn(title: String, image: UIImage) -> UIButton {
         let btn = UIButton()
         btn.setTitle(title, for: .normal)
-        btn.setTitleColor(UIColor.naverMapGray6, for: .normal)
+        btn.setTitleColor(.naverMapGray6, for: .normal)
         btn.setImage(image, for: .normal)
-        btn.titleLabel?.font = UIFont.body7
-        btn.backgroundColor = UIColor.naverMapWhite
+        btn.titleLabel?.font = .body7
+        btn.backgroundColor = .naverMapWhite
         btn.layer.borderColor = UIColor.naverMapGray2.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 8
@@ -354,12 +358,6 @@ private extension DetailMainSectionHeaderView {
         label.text = text
         label.textColor = forColor
         return label
-    }
-    
-    func createIcon(image: UIImage) -> UIImageView {
-        let ic = UIImageView()
-        ic.image = image
-        return ic
     }
     
     func fetchImageLayout(image: UIImage) -> UIImageView {

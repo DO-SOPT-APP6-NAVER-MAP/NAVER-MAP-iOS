@@ -21,32 +21,32 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     
     /// 홈 스택뷰
     private lazy var homeStackView: UIStackView = { createVerticStackView(forSpacing: 14) }()
-    private lazy var homeLabel: UILabel = { createLabel(forFont: UIFont.body1,
-                                                        forColor: UIColor.naverMapBlack,
+    private lazy var homeLabel: UILabel = { createLabel(forFont: .body1,
+                                                        forColor: .naverMapBlack,
                                                         text: "홈")}()
-    private lazy var homeIndicator: UIView = { createIndicator(forColor: UIColor.naverMapBlack) }()
+    private lazy var homeIndicator: UIView = { createIndicator(forColor: .naverMapBlack) }()
     
     /// 메뉴 스택뷰
     private lazy var menuStackView: UIStackView = { createVerticStackView(forSpacing: 14) }()
-    private lazy var menuLabel: UILabel = { createLabel(forFont: UIFont.body1,
-                                                        forColor: UIColor.naverMapGray4,
+    private lazy var menuLabel: UILabel = { createLabel(forFont: .body1,
+                                                        forColor: .naverMapGray4,
                                                         text: "메뉴")}()
     private lazy var menuIndicator: UIView = { createIndicator(forColor: .clear) }()
     
     /// 리뷰 스택뷰
     private lazy var reviewStackView: UIStackView = { createVerticStackView(forSpacing: 14) }()
-    private lazy var reviewLabel: UILabel = { createLabel(forFont: UIFont.body1,
-                                                          forColor: UIColor.naverMapGray4,
+    private lazy var reviewLabel: UILabel = { createLabel(forFont: .body1,
+                                                          forColor: .naverMapGray4,
                                                           text: "리뷰")}()
     private lazy var reviewIndicator: UIView = { createIndicator(forColor: .clear) }()
     
     /// 알람받기
     private lazy var alarmHorizStackView: UIStackView = { createHorizStackView(forSpacing: 2)}()
-    private lazy var alarmBoldDescriptLabel: UILabel = { createLabel(forFont: UIFont.body6,
-                                                                     forColor: UIColor.naverMapBlack,
+    private lazy var alarmBoldDescriptLabel: UILabel = { createLabel(forFont: .body6,
+                                                                     forColor: .naverMapBlack,
                                                                      text: "이벤트, 혜택")}()
-    private lazy var alarmPlainDescriptLabel: UILabel = { createLabel(forFont: UIFont.body7,
-                                                                      forColor: UIColor.naverMapBlack,
+    private lazy var alarmPlainDescriptLabel: UILabel = { createLabel(forFont: .body7,
+                                                                      forColor: .naverMapBlack,
                                                                       text: "알림을 받아보세요!")}()
     private let alarmBtn = UIButton()
 
@@ -57,66 +57,66 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     
     /// 위치 스택뷰
     private lazy var locationHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var locationIc: UIImageView = { createIcon(image: ImageLiterals.ic_location_ios) }()
+    private let locationIc: UIImageView = UIImageView(image: ImageLiterals.ic_location_ios)
     private lazy var locationVerticStackView: UIStackView = { createVerticStackView(forSpacing: 3) }()
     
     private lazy var addressHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
-    private lazy var addressLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                           forColor: UIColor.naverMapGray4,
+    private lazy var addressLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                           forColor: .naverMapGray4,
                                                            text: "서울 광진구 광나루로17길 10 2층")}()
     private let moreAddressIc = UIButton()
     
     private lazy var routeHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
-    private lazy var metroIc: UIImageView = { createIcon(image: ImageLiterals.ic_number_circle) }()
-    private lazy var routeLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                         forColor: UIColor.naverMapGray6, 
+    private let metroIc: UIImageView = UIImageView(image: ImageLiterals.ic_number_circle)
+    private lazy var routeLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                         forColor: .naverMapGray6,
                                                          text: "어린이대공원역 5번 출구에서 187m")}()
     
     /// 영업시간 스택뷰
     private lazy var hourHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var hourIc: UIImageView = { createIcon(image: ImageLiterals.ic_clock) }()
-    private lazy var isOpenedLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                         forColor: UIColor.naverMapNaverGreen,
+    private let hourIc: UIImageView = UIImageView(image: ImageLiterals.ic_clock)
+    private lazy var isOpenedLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                         forColor: .naverMapNaverGreen,
                                                          text: "영업 중")}()
-    private lazy var lastOrderLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                         forColor: UIColor.naverMapGray7,
+    private lazy var lastOrderLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                         forColor: .naverMapGray7,
                                                          text: "22:00에 라스트오더")}()
     
     /// 전화번호 스택뷰
     private lazy var callHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var callIc: UIImageView = { createIcon(image: ImageLiterals.ic_call) }()
-    private lazy var callNumberLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                         forColor: UIColor.naverMapGray6,
+    private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call)
+    private lazy var callNumberLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                         forColor: .naverMapGray6,
                                                          text: "02-3409-2654")}()
-    private lazy var callCopyLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                         forColor: UIColor.naverMapSubBlue,
+    private lazy var callCopyLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                         forColor: .naverMapSubBlue,
                                                          text: "복사")}()
     
     /// 옵션 스택뷰
     private lazy var optionHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var optionIc: UIImageView = { createIcon(image: ImageLiterals.ic_home) }()
-    private lazy var optionLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                          forColor: UIColor.naverMapGray6,
+    private let optionIc: UIImageView = UIImageView(image: ImageLiterals.ic_home)
+    private lazy var optionLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                          forColor: .naverMapGray6,
                                                           text: "무선 인터넷, 주차, 포장, 배달, 반려동물 동반, 예약") }()
     
     /// URL 스택뷰
     private lazy var urlHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var urlIc: UIImageView = { createIcon(image: ImageLiterals.ic_webpage) }()
-    private lazy var urlLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                       forColor: UIColor.naverMapSubBlue,
+    private let urlIc: UIImageView = UIImageView(image: ImageLiterals.ic_webpage)
+    private lazy var urlLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                       forColor: .naverMapSubBlue,
                                                        text: "https://www.instagram.com/algo_taphouse") }()
     
     /// 상세 정보 스택뷰
-    private lazy var infoHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
-    private lazy var infoIc: UIImageView = { createIcon(image: ImageLiterals.ic_information) }()
+    private let infoHorizStackView = UIStackView()
+    private let infoIc: UIImageView = UIImageView(image: ImageLiterals.ic_information)
     private let infoLabel = UILabel()
     
     /// 정보 수정 스택뷰
     private lazy var editInfoHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
-    private lazy var editIc: UIImageView = { createIcon(image: ImageLiterals.ic_write) }()
-    private lazy var editArrowIc: UIImageView = { createIcon(image: ImageLiterals.ic_arrow_right_16) }()
-    private lazy var editLabel: UILabel = { createLabel(forFont: UIFont.bodyButton,
-                                                       forColor: UIColor.naverMapSubBlue,
+    private let editIc: UIImageView = UIImageView(image: ImageLiterals.ic_write)
+    private let editArrowIc: UIImageView = UIImageView(image: ImageLiterals.ic_arrow_right_16)
+    private lazy var editLabel: UILabel = { createLabel(forFont: .bodyButton,
+                                                       forColor: .naverMapSubBlue,
                                                        text: "정보 수정 제안하기") }()
     
     private let bottomDividingBar = UIView()
@@ -141,7 +141,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
 
 private extension DescriptionSectionHeaderView {
     func setupStyle() {
-        self.backgroundColor = UIColor.naverMapWhite
+        self.backgroundColor = .naverMapWhite
     }
     
     func setupViews() {
@@ -210,10 +210,10 @@ private extension DescriptionSectionHeaderView {
         }
         
         alarmBtn.snp.makeConstraints {
-            $0.top.equalTo(horizDividingLine1.snp.bottom).offset(18)
             $0.trailing.equalToSuperview().inset(16)
             $0.width.equalTo(105)
             $0.height.equalTo(40)
+            $0.centerY.equalTo(alarmHorizStackView)
         }
         
         horizDividingLine2.snp.makeConstraints {
@@ -251,29 +251,29 @@ private extension DescriptionSectionHeaderView {
         }
         
         horizDividingLine1.do {
-            $0.backgroundColor = UIColor.naverMapBlueGray2
+            $0.backgroundColor = .naverMapBlueGray2
         }
         
         alarmBtn.do {
             $0.setTitle("알림받기", for: .normal)
-            $0.setTitleColor(UIColor.naverMapGray6, for: .normal)
+            $0.setTitleColor(.naverMapGray6, for: .normal)
             $0.setImage(ImageLiterals.ic_alarm, for: .normal)
-            $0.titleLabel?.font = UIFont.body7
-            $0.backgroundColor = UIColor.naverMapWhite
+            $0.titleLabel?.font = .body7
+            $0.backgroundColor = .naverMapWhite
             $0.layer.borderColor = UIColor.naverMapGray2.cgColor
             $0.layer.cornerRadius = 8
             $0.layer.borderWidth = 1
         }
         
         infoLabel.do {
-            $0.font = UIFont.bodyButton
-            $0.textColor = UIColor.naverMapGray6
+            $0.font = .bodyButton
+            $0.textColor = .naverMapGray6
             $0.text = "안녕하세요. 부담없는 가격과 맛있는 맛으로 여러분께 다가가는 파스타 및 맥주 전문점 알고입니다. 편안한 한 끼 식사, 편안한 한 잔의 맥주로 여러분의 하루를 마무리하세요."
             $0.numberOfLines = 0
         }
         
         horizDividingLine2.do {
-            $0.backgroundColor = UIColor.naverMapBlueGray2
+            $0.backgroundColor = .naverMapBlueGray2
         }
         
         moreAddressIc.do {
@@ -281,7 +281,12 @@ private extension DescriptionSectionHeaderView {
         }
         
         bottomDividingBar.do {
-            $0.backgroundColor = UIColor.naverMapGray1
+            $0.backgroundColor = .naverMapGray1
+        }
+        infoHorizStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 10
+            $0.alignment = .top
         }
     }
     
@@ -311,12 +316,6 @@ private extension DescriptionSectionHeaderView {
         label.text = text
         label.textColor = forColor
         return label
-    }
-    
-    func createIcon(image: UIImage) -> UIImageView {
-        let ic = UIImageView()
-        ic.image = image
-        return ic
     }
     
     func createIndicator(forColor: UIColor) -> UIView {
