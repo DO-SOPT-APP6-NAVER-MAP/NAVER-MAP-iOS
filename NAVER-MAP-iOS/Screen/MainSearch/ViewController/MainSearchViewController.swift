@@ -35,6 +35,7 @@ final class MainSearchViewController: UIViewController {
         super.viewDidLoad()
         
         hideNavigationBar()
+        hideKeyboard()
         setupView()
     }
 }
