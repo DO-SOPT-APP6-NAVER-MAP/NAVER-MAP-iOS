@@ -12,6 +12,9 @@ import Then
 
 final class MainSearchRootView: UIView {
     
+    private let collectionViewItemSpacing: CGFloat = 8
+    private let collectionViewHorizontalInset: CGFloat = 16
+
     // MARK: - UI Properties
 
     private let searchTopView: UIView = UIView()
@@ -21,6 +24,10 @@ final class MainSearchRootView: UIView {
     private let searchTopCancleBtn: UIButton = UIButton()
     
     private let emptyResultView: UIView = EmptySearchView()
+    
+    private let recommendCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let dividingView: UIView = UIView()
+    private let resultTableView: UITableView = UITableView()
     
     // MARK: - View Life Cycle
 
@@ -33,6 +40,17 @@ final class MainSearchRootView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension MainSearchRootView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = (getDeviceWidth() - 2 * collectionViewHorizontalInset - collectionViewItemSpacing) / 2
+        return .init(width: width, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return collectionViewItemSpacing
     }
 }
 
@@ -72,16 +90,56 @@ private extension MainSearchRootView {
         searchTopCancleBtn.do {
             $0.setImage(ImageLiterals.ic_remove, for: .normal)
         }
+        
+        recommendCollectionView.do {
+            $0.register(SearchRecommendCollectionViewCell.self, forCellWithReuseIdentifier: SearchRecommendCollectionViewCell.identifier)
+            $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
+            
+            $0.contentInset = .init(top: 12, left: 16, bottom: 12, right: 16)
+        }
+        
+        resultTableView.do {
+            $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
+            $0.showsVerticalScrollIndicator = false
+            
+            $0.rowHeight = 91
+        }
+        
+        dividingView.do {
+            $0.backgroundColor = .naverMapBlueGray2
+        }
     }
     
     func setupLayout() {
-        addSubviews([emptyResultView,
+        addSubviews([recommendCollectionView,
+                     dividingView,
+                     resultTableView,
+                     emptyResultView,
                      searchTopView])
         searchTopView.addSubview(searchTopStackView)
         searchTopStackView.addArrangedSubviews(searchTopBackBtn,
                                                searchTopTextField,
                                                searchTopCancleBtn)
-
+        
+        recommendCollectionView.snp.makeConstraints {
+            $0.height.equalTo(112)
+            $0.top.equalTo(searchTopView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        resultTableView.snp.makeConstraints {
+            $0.top.equalTo(dividingView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        dividingView.snp.makeConstraints {
+            $0.height.equalTo(6)
+            $0.top.equalTo(resultTableView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
         searchTopView.snp.makeConstraints {
             $0.height.equalTo(58)
             $0.top.equalTo(safeAreaLayoutGuide)

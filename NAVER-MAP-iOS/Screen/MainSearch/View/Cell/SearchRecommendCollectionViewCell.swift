@@ -48,6 +48,7 @@ private extension SearchRecommendCollectionViewCell {
                      searchRecommendLabel])
         
         searchImageView.snp.makeConstraints {
+            $0.width.height.equalTo(24)
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(8)
         }

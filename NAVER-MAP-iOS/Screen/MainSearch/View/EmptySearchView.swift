@@ -31,6 +31,7 @@ final class EmptySearchView: UIView {
 private extension EmptySearchView {
     
     func setupStyle() {
+        backgroundColor = .naverMapWhite
         
         mainStackView.do {
             $0.axis = .vertical
