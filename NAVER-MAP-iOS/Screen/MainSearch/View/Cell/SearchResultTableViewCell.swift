@@ -11,6 +11,8 @@ final class SearchResultTableViewCell: UITableViewCell {
 
     static let identifier = "SearchResultTableViewCell"
     
+    // MARK: - UI Properties
+
     private let locationImageView: UIImageView = UIImageView(image: ImageLiterals.ic_location_ios)
 
     private let mainInfoStackView: UIStackView = UIStackView()
@@ -21,6 +23,8 @@ final class SearchResultTableViewCell: UITableViewCell {
     private let subInfoStackView: UIStackView = UIStackView()
     private let subCategoryLabel: UILabel = UILabel()
     private let subDistanceLabel: UILabel = UILabel()
+
+    // MARK: - Life Cycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,6 +37,8 @@ final class SearchResultTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - Func
 
 extension SearchResultTableViewCell {
     
@@ -50,6 +56,8 @@ extension SearchResultTableViewCell {
         mainLocationNameLabel.highlightText(forText: forSearch, forColor: .naverMapBlue)
     }
 }
+
+// MARK: - Private Extension
 
 private extension SearchResultTableViewCell {
     

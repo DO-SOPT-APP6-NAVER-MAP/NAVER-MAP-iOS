@@ -14,9 +14,13 @@ final class SearchRecommendCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "SearchRecommendCollectionViewCell"
     
+    // MARK: - UI Properties
+
     private let searchImageView: UIImageView = UIImageView(image: ImageLiterals.ic_search)
     private let searchRecommendLabel: UILabel = UILabel()
     
+    // MARK: - Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     
@@ -29,6 +33,8 @@ final class SearchRecommendCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Func
+
 extension SearchRecommendCollectionViewCell {
     
     func configCell(forName: String, forSearch: String) {
@@ -37,6 +43,8 @@ extension SearchRecommendCollectionViewCell {
         searchRecommendLabel.highlightText(forText: forSearch, forColor: .naverMapBlue)
     }
 }
+
+// MARK: - Private Extension
 
 private extension SearchRecommendCollectionViewCell {
     

@@ -26,7 +26,7 @@ final class MainSearchRootView: UIView {
     private let dividingView: UIView = UIView()
     private let resultTableView: UITableView = UITableView()
     
-    // MARK: - View Life Cycle
+    // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)

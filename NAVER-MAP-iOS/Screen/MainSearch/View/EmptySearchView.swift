@@ -12,10 +12,14 @@ import Then
 
 final class EmptySearchView: UIView {
     
+    // MARK: - UI Properties
+
     private let mainStackView: UIStackView = UIStackView()
     private let searchImageView: UIImageView = UIImageView(image: ImageLiterals.img_search_big)
     private let emptyLabel: UILabel = UILabel()
     
+    // MARK: - View Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,6 +32,8 @@ final class EmptySearchView: UIView {
     }
 }
 
+// MARK: - Func
+
 extension EmptySearchView {
     func setupLabel(forEmpty: Bool) {
         if forEmpty {
@@ -37,6 +43,8 @@ extension EmptySearchView {
         }
     }
 }
+
+// MARK: - Private Extension
 
 private extension EmptySearchView {
     
