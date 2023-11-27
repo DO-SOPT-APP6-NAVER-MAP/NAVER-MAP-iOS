@@ -38,13 +38,6 @@ class SectionFooterView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setLabelText(LabelText: String){
-        self.moreInfoLabel.text = LabelText
-        moreInfoView.snp.makeConstraints {
-            $0.width.equalTo(moreInfoStackView.snp.width).offset(34)
-        }
-    }
 }
 
 // MARK: - Private Method
@@ -114,6 +107,16 @@ private extension SectionFooterView {
         
         bottomDividingBar.do {
             $0.backgroundColor = .naverMapGray1
+        }
+    }
+}
+
+
+extension SectionFooterView {
+    func setLabelText(LabelText: String){
+        self.moreInfoLabel.text = LabelText
+        moreInfoView.snp.makeConstraints {
+            $0.width.equalTo(moreInfoStackView.snp.width).offset(34)
         }
     }
 }
