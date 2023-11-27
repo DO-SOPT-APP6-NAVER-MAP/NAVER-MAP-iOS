@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuSectionFooterView: UICollectionReusableView {
+class SectionFooterView: UICollectionReusableView {
     
     // MARK: - Properties
     
@@ -17,10 +17,10 @@ class MenuSectionFooterView: UICollectionReusableView {
     
     private let horizLine = UIView()
     
-    private let moreMenuView = UIView()
-    private let moreMenuStackView = UIStackView()
-    private let moreMenuLabel = UILabel()
-    private let moreMenuIc = UIImageView()
+    private let moreInfoView = UIView()
+    private let moreInfoStackView = UIStackView()
+    private let moreInfoLabel = UILabel()
+    private let moreInfoIc = UIImageView()
     
     private let bottomDividingBar = UIView()
     
@@ -38,45 +38,50 @@ class MenuSectionFooterView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setLabelText(LabelText: String){
+        self.moreInfoLabel.text = LabelText
+        moreInfoView.snp.makeConstraints {
+            $0.width.equalTo(moreInfoStackView.snp.width).offset(34)
+        }
+    }
 }
 
 // MARK: - Private Method
 
-private extension MenuSectionFooterView {
+private extension SectionFooterView {
     
     func setupStyle() {
         self.backgroundColor = .naverMapWhite
     }
     
     func setupViews() {
-        self.addSubviews([horizLine, moreMenuView, bottomDividingBar])
-        moreMenuView.addSubview(moreMenuStackView)
+        self.addSubviews([horizLine, moreInfoView, bottomDividingBar])
+        moreInfoView.addSubview(moreInfoStackView)
         
-        moreMenuStackView.addArrangedSubviews(moreMenuLabel, moreMenuIc)
+        moreInfoStackView.addArrangedSubviews(moreInfoLabel, moreInfoIc)
     }
         
     func setupConstraints() {
         horizLine.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(33)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(343)
+            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(17)
             $0.height.equalTo(1)
         }
         
-        moreMenuView.snp.makeConstraints {
+        moreInfoView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(horizLine)
-            $0.width.equalTo(124)
             $0.height.equalTo(39)
         }
         
-        moreMenuStackView.snp.makeConstraints {
-            $0.leading.equalTo(moreMenuView.snp.leading).inset(18)
+        moreInfoStackView.snp.makeConstraints {
+            $0.leading.equalTo(moreInfoView.snp.leading).inset(18)
             $0.centerY.equalTo(horizLine)
         }
         
         bottomDividingBar.snp.makeConstraints {
-            $0.top.equalTo(moreMenuView.snp.bottom).offset(16)
+            $0.top.equalTo(moreInfoView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview()
             $0.height.equalTo(10)
@@ -88,24 +93,23 @@ private extension MenuSectionFooterView {
             $0.backgroundColor = .naverMapBlueGray2
         }
         
-        moreMenuView.do {
+        moreInfoView.do {
             $0.backgroundColor = .naverMapBlueGray2
             $0.layer.cornerRadius = 20
         }
         
-        moreMenuStackView.do {
+        moreInfoStackView.do {
             $0.axis = .horizontal
             $0.spacing = 2
             $0.alignment = .center
         }
         
-        moreMenuLabel.do {
-            $0.text = "메뉴 더보기"
+        moreInfoLabel.do {
             $0.font = .body7
             $0.textColor = .naverMapGray6
         }
         
-        moreMenuIc.do {
+        moreInfoIc.do {
             $0.image = ImageLiterals.ic_arrow_right
         }
         

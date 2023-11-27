@@ -50,7 +50,11 @@ private extension DetailViewController {
         
         self.detailCollectionView.register(MenuSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MenuSectionHeaderView.identifier)
         
-        self.detailCollectionView.register(MenuSectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MenuSectionFooterView.identifier)
+        self.detailCollectionView.register(SectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterView.identifier)
+        
+        self.detailCollectionView.register(VisitorReviewCollectionViewCell.self, forCellWithReuseIdentifier: VisitorReviewCollectionViewCell.identifier)
+        
+        self.detailCollectionView.register(VisitorSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VisitorSectionHeaderView.identifier)
         
         self.detailCollectionView.delegate = self
         self.detailCollectionView.dataSource = self
@@ -78,8 +82,14 @@ private extension DetailViewController {
         return layout
     }
     
+    func createVisitorSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(211))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return layout
+    }
+    
     func createFooter(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(60))
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(80))
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
         return layout
     }
@@ -194,7 +204,12 @@ extension DetailViewController: UICollectionViewDataSource {
             switch indexPath.section {
                 
             case 2:
-                guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MenuSectionFooterView.identifier, for: indexPath) as? MenuSectionFooterView else { return UICollectionReusableView() }
+                guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionFooterView.identifier, for: indexPath) as? SectionFooterView else { return UICollectionReusableView() }
+                footerView.setLabelText(LabelText: "메뉴 더보기")
+                return footerView
+            case 3:
+                guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionFooterView.identifier, for: indexPath) as? SectionFooterView else { return UICollectionReusableView() }
+                footerView.setLabelText(LabelText: "방문자 리뷰 더보기")
                 return footerView
                 
             default:
