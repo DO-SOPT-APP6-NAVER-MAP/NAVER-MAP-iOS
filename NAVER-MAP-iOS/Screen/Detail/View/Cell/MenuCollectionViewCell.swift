@@ -67,8 +67,7 @@ private extension MenuCollectionViewCell {
     
     func setupProperties() {
         menuImage.do {
-            $0.layer.cornerRadius = 20
-            $0.clipsToBounds = true
+            $0.makeRounded(radius: 20)
         }
         
         menuLabelStackView.do {
