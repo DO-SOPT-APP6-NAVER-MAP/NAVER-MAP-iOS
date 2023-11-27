@@ -76,8 +76,7 @@ private extension SectionFooterView {
         }
         
         moreInfoStackView.snp.makeConstraints {
-            $0.leading.equalTo(moreInfoView.snp.leading).inset(18)
-            $0.centerY.equalTo(horizLine)
+            $0.center.equalToSuperview()
         }
         
         bottomDividingBar.snp.makeConstraints {

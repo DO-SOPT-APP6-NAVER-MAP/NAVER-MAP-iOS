@@ -78,7 +78,7 @@ private extension DetailViewController {
     }
     
     func createHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(46))
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(54))
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layout
     }

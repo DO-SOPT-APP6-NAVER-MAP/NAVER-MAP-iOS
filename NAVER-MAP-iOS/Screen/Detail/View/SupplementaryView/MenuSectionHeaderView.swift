@@ -14,9 +14,7 @@ class MenuSectionHeaderView: UICollectionReusableView {
     static let identifier = "MenuSectionHeaderView"
     
     // MARK: - UI Properties
-    
-    private let menuHeaderStackView = UIStackView()
-    
+        
     private let menuLabel = UILabel()
     
     private let toGoStackView = UIStackView()
@@ -45,24 +43,25 @@ private extension MenuSectionHeaderView {
     }
     
     func setupViews() {
-        self.addSubview(menuHeaderStackView)
+        self.addSubviews([menuLabel, toGoStackView])
         
-        menuHeaderStackView.addArrangedSubviews(menuLabel, toGoStackView)
         toGoStackView.addArrangedSubviews(toGoIc, toGoLabel)
     }
     
     func setupConstraints() {
-        menuHeaderStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.centerX.equalToSuperview()
+        menuLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(18)
+            $0.trailing.equalToSuperview().inset(325)
+        }
+        
+        toGoStackView.snp.makeConstraints {
+            $0.centerY.equalTo(menuLabel)
+            $0.trailing.equalToSuperview().inset(18)
         }
     }
     
     func setupProperties() {
-        menuHeaderStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 273
-        }
         
         menuLabel.do {
             $0.text = "메뉴"
