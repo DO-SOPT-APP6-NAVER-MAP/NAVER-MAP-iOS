@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
     private var menuDummy = DetailMenuData.detailMenuDummy
+    private var visitorReviewDummy = DetailVisitorReviewData.detailVisitorDummy
     
     // MARK: - LifeCycle
     
@@ -103,6 +104,8 @@ private extension DetailViewController {
                 return self.configMainSectionLayout(forSection: sectionIndex)
             case 2:
                 return self.configMenuSectionLayout()
+            case 3:
+                return self.configVisitorReviewSectionLayout()
             default:
                 return nil // 나중에 config other section layout
             }
@@ -125,13 +128,12 @@ private extension DetailViewController {
         return sectionLayout
     }
     
-    // TODO: - 추후 레이아웃 구현
     func configMenuSectionLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), 
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), 
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .absolute(235))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
@@ -143,6 +145,22 @@ private extension DetailViewController {
         let footer = createFooter(forSection: 2)
         sectionLayout.boundarySupplementaryItems = [header, footer]
 
+        return sectionLayout
+    }
+    
+    // TODO: - 추후 레이아웃 구현
+    func configVisitorReviewSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(146))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        
+        let sectionLayout = NSCollectionLayoutSection(group: group)
+        let header = createVisitorSectionHeader()
+        let footer = createFooter(forSection: 3)
+        sectionLayout.boundarySupplementaryItems = [header, footer]
         return sectionLayout
     }
 }
@@ -160,7 +178,9 @@ extension DetailViewController: UICollectionViewDataSource {
         case 0, 1:
             return 0
         case 2:
-            return 4
+            return menuDummy.count
+        case 3:
+            return visitorReviewDummy.count
         default:
             return 0
         }
@@ -173,6 +193,12 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
             item.bindData(data: menuDummy[indexPath.row])
             return item
+            
+        case 3:
+            guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: VisitorReviewCollectionViewCell.identifier, for: indexPath) as? VisitorReviewCollectionViewCell else { return UICollectionViewCell() }
+            item.bindData(data: visitorReviewDummy[indexPath.row])
+            return item
+            
         default:
             return UICollectionViewCell()
         }
@@ -194,6 +220,10 @@ extension DetailViewController: UICollectionViewDataSource {
                 
             case 2:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MenuSectionHeaderView.identifier, for: indexPath) as? MenuSectionHeaderView else { return UICollectionReusableView() }
+                return headerView
+                
+            case 3:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VisitorSectionHeaderView.identifier, for: indexPath) as? VisitorSectionHeaderView else { return UICollectionReusableView() }
                 return headerView
                 
             default:
