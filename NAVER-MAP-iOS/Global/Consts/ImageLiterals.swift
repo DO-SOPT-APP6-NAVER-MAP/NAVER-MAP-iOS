@@ -70,7 +70,10 @@ enum ImageLiterals {
     static var ic_arrow_right_16: UIImage { .load(name: "icons=ic_arrow_right_16") }
     static var ic_number_circle: UIImage { .load(name: "ic_number_circle") }
     static var ic_to_go: UIImage { .load(name: "icons=ic_to_go") }
-    
+    static var review_bar_1: UIImage { .load(name: "bar_review1")}
+    static var review_bar_2: UIImage { .load(name: "bar_review2")}
+    static var review_bar_3: UIImage { .load(name: "bar_review3")}
+
     // MARK: - Search Location Icon
 
     static var ic_select_location_blue: UIImage { .load(name: "icons=ic_ select_location_blue") }
