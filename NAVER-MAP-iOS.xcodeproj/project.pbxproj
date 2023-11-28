@@ -53,6 +53,12 @@
 		949D34FA2B10819500ECA9CF /* MenuSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F92B10819500ECA9CF /* MenuSectionFooterView.swift */; };
 		94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */; };
 		94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */; };
+		CA9DAA672B10B89C00135337 /* DetailLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA662B10B89C00135337 /* DetailLocationView.swift */; };
+		CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CA9DAA6B2B11092000135337 /* FloatingPanel */; };
+		CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */; };
+		CA9DAAA12B11BC2600135337 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA02B11BC2600135337 /* UIImageView+.swift */; };
+		CA9DAAA32B11BD8900135337 /* FloatingPanelController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */; };
+		CA9DAAA52B11BE0100135337 /* MyFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +103,11 @@
 		949D34FB2B10FCD000ECA9CF /* VisitorReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSectionHeaderView.swift; sourceTree = "<group>"; };
 		94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMainSectionHeaderView.swift; sourceTree = "<group>"; };
+		CA9DAA662B10B89C00135337 /* DetailLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationView.swift; sourceTree = "<group>"; };
+		CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationViewController.swift; sourceTree = "<group>"; };
+		CA9DAAA02B11BC2600135337 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPanelController+.swift"; sourceTree = "<group>"; };
+		CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFloatingPanelLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +120,7 @@
 				6BAD1A922B0A637B00837590 /* Then in Frameworks */,
 				6BAD1A972B0A639700837590 /* Moya in Frameworks */,
 				6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */,
+				CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */,
 				6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +216,8 @@
 				6BAD1AC82B0A682200837590 /* UIStackView+.swift */,
 				6BAD1ACA2B0A683600837590 /* UITextField+.swift */,
 				6BAD1ACC2B0A684900837590 /* UILabel+.swift */,
+				CA9DAAA02B11BC2600135337 /* UIImageView+.swift */,
+				CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +266,9 @@
 			isa = PBXGroup;
 			children = (
 				6BAD1AAE2B0A665000837590 /* SearchResultViewController.swift */,
+				CA9DAA662B10B89C00135337 /* DetailLocationView.swift */,
+				CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */,
+				CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -394,6 +411,7 @@
 				6BAD1A962B0A639700837590 /* Moya */,
 				6BAD1A982B0A639700837590 /* ReactiveMoya */,
 				6BAD1A9A2B0A639700837590 /* RxMoya */,
+				CA9DAA6B2B11092000135337 /* FloatingPanel */,
 			);
 			productName = "NAVER-MAP-iOS";
 			productReference = 6B4D96D72B08657600977A82 /* NAVER-MAP-iOS.app */;
@@ -427,6 +445,7 @@
 				6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */,
 				6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */,
+				CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 6B4D96D82B08657600977A82 /* Products */;
 			projectDirPath = "";
@@ -458,6 +477,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9DAA672B10B89C00135337 /* DetailLocationView.swift in Sources */,
+				CA9DAAA12B11BC2600135337 /* UIImageView+.swift in Sources */,
 				9424888A2B14742D00CEFF84 /* VisitorSectionHeaderView.swift in Sources */,
 				6BF2E57C2B136AFE003F1835 /* SearchRecommendCollectionViewCell.swift in Sources */,
 				6BF2E5532B11C8E7003F1835 /* EmptySearchView.swift in Sources */,
@@ -476,6 +497,8 @@
 				6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */,
 				6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */,
 				6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */,
+				CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */,
+				949D34F62B1046EB00ECA9CF /* DetailAppData.swift in Sources */,
 				949D34F62B1046EB00ECA9CF /* DetailMenuData.swift in Sources */,
 				94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */,
 				6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */,
@@ -487,10 +510,12 @@
 				6BAD1ACD2B0A684900837590 /* UILabel+.swift in Sources */,
 				6BAD1AAD2B0A664300837590 /* MainSearchViewController.swift in Sources */,
 				6BAD1AC92B0A682200837590 /* UIStackView+.swift in Sources */,
+				CA9DAAA52B11BE0100135337 /* MyFloatingPanelLayout.swift in Sources */,
 				6BAD1AC32B0A66ED00837590 /* FontLiterals.swift in Sources */,
 				9450BD3A2B11B9B9009FEFD8 /* DetailVisitorReviewData.swift in Sources */,
 				6BF2E57E2B136CD1003F1835 /* SearchResultTableViewCell.swift in Sources */,
 				6BAD1AB32B0A666200837590 /* FindingRouteViewController.swift in Sources */,
+				CA9DAAA32B11BD8900135337 /* FloatingPanelController+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +754,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -761,6 +794,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		CA9DAA6B2B11092000135337 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
