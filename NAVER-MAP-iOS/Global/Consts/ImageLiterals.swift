@@ -41,6 +41,7 @@ enum ImageLiterals {
     static var ic_bus_white: UIImage { .load(name: "ic_btn_bus_white") }
     static var bus_info_btn: UIImage { .load(name: "btn_bus_info_ios") }
     static var tap_choice_transport_ios: UIImage { .load(name: "tap_choice_transport_ios") }
+    static var ic_dropdown_circle: UIImage { .load(name: "ic_dropdown_circle") }
 
     // MARK: - Detail Icon
 
