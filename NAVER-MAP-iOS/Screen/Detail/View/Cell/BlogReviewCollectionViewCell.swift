@@ -100,7 +100,7 @@ private extension BlogReviewCollectionViewCell {
             $0.trailing.equalToSuperview().inset(6)
         }
         
-        reviewImgCntLabel.snp.makeConstraints { // superview
+        reviewImgCntLabel.snp.makeConstraints { 
             $0.center.equalTo(reviewImgCntView)
         }
         
@@ -121,7 +121,7 @@ private extension BlogReviewCollectionViewCell {
         userName.setupLabel(font: .body9, textColor: .naverMapGray6)
         userDescription.setupLabel(font: .body12, textColor: .naverMapGray4)
         createdDate.setupLabel(font: .body12, textColor: .naverMapGray4)
-
+        
         reviewTitleLabel.setupLabel(font: .body2, textColor: .naverMapSubBlue)
         reviewContentLabel.setupLabel(font: .body6, textColor: .naverMapGray6)
         reviewImgCntLabel.setupLabel(font: .button1, textColor: .naverMapWhite)

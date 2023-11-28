@@ -79,7 +79,7 @@ private extension VisitorSectionHeaderView {
         
         reviewImgStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(11)
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
         
