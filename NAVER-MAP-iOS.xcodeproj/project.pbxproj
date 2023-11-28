@@ -34,8 +34,6 @@
 		6BAD1ADE2B0C7EA300837590 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADA2B0C7EA300837590 /* Pretendard-Regular.otf */; };
 		6BAD1ADF2B0C7EA300837590 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADB2B0C7EA300837590 /* Pretendard-Medium.otf */; };
 		6BAD1AE02B0C7EA300837590 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */; };
-		9424888A2B14742D00CEFF84 /* VisitorSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */; };
-		9450BD3A2B11B9B9009FEFD8 /* DetailVisitorReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */; };
 		6BF2E54D2B11C62E003F1835 /* MainSearchLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E54C2B11C62E003F1835 /* MainSearchLocationModel.swift */; };
 		6BF2E5502B11C64B003F1835 /* MainSearchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E54F2B11C64B003F1835 /* MainSearchRootView.swift */; };
 		6BF2E5532B11C8E7003F1835 /* EmptySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5522B11C8E7003F1835 /* EmptySearchView.swift */; };
@@ -44,12 +42,14 @@
 		6BF2E5812B15E711003F1835 /* FindingRouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5802B15E711003F1835 /* FindingRouteModel.swift */; };
 		6BF2E5842B15E728003F1835 /* FindingRouteRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5832B15E728003F1835 /* FindingRouteRootView.swift */; };
 		6BF2E58A2B16000E003F1835 /* FindingRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5892B16000E003F1835 /* FindingRouteCollectionViewCell.swift */; };
+		6BF2E58D2B160DBF003F1835 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6BF2E58C2B160DBF003F1835 /* Kingfisher */; };
+		9424888A2B14742D00CEFF84 /* VisitorSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */; };
+		9450BD3A2B11B9B9009FEFD8 /* DetailVisitorReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */; };
 		949D34F32B1037DB00ECA9CF /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F22B1037DB00ECA9CF /* MenuCollectionViewCell.swift */; };
 		949D34F62B1046EB00ECA9CF /* DetailMenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F52B1046EB00ECA9CF /* DetailMenuData.swift */; };
 		949D34F82B10737B00ECA9CF /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F72B10737B00ECA9CF /* MenuSectionHeaderView.swift */; };
 		949D34FA2B10819500ECA9CF /* SectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F92B10819500ECA9CF /* SectionFooterView.swift */; };
 		949D34FC2B10FCD000ECA9CF /* VisitorReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34FB2B10FCD000ECA9CF /* VisitorReviewCollectionViewCell.swift */; };
-		949D34FA2B10819500ECA9CF /* MenuSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D34F92B10819500ECA9CF /* MenuSectionFooterView.swift */; };
 		94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */; };
 		94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */; };
 		CA9DAA672B10B89C00135337 /* DetailLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9DAA662B10B89C00135337 /* DetailLocationView.swift */; };
@@ -84,8 +84,6 @@
 		6BAD1ADA2B0C7EA300837590 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		6BAD1ADB2B0C7EA300837590 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		6BAD1ADC2B0C7EA300837590 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorSectionHeaderView.swift; sourceTree = "<group>"; };
-		9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVisitorReviewData.swift; sourceTree = "<group>"; };
 		6BF2E54C2B11C62E003F1835 /* MainSearchLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchLocationModel.swift; sourceTree = "<group>"; };
 		6BF2E54F2B11C64B003F1835 /* MainSearchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchRootView.swift; sourceTree = "<group>"; };
 		6BF2E5522B11C8E7003F1835 /* EmptySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchView.swift; sourceTree = "<group>"; };
@@ -94,6 +92,8 @@
 		6BF2E5802B15E711003F1835 /* FindingRouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteModel.swift; sourceTree = "<group>"; };
 		6BF2E5832B15E728003F1835 /* FindingRouteRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteRootView.swift; sourceTree = "<group>"; };
 		6BF2E5892B16000E003F1835 /* FindingRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteCollectionViewCell.swift; sourceTree = "<group>"; };
+		942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorSectionHeaderView.swift; sourceTree = "<group>"; };
+		9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVisitorReviewData.swift; sourceTree = "<group>"; };
 		949D34F22B1037DB00ECA9CF /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		949D34F52B1046EB00ECA9CF /* DetailMenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuData.swift; sourceTree = "<group>"; };
 		949D34F72B10737B00ECA9CF /* MenuSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -117,6 +117,7 @@
 				6BAD1A8F2B0A636F00837590 /* SnapKit in Frameworks */,
 				6BAD1A922B0A637B00837590 /* Then in Frameworks */,
 				6BAD1A972B0A639700837590 /* Moya in Frameworks */,
+				6BF2E58D2B160DBF003F1835 /* Kingfisher in Frameworks */,
 				6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */,
 				CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */,
 				6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */,
@@ -441,6 +442,7 @@
 				6BAD1A982B0A639700837590 /* ReactiveMoya */,
 				6BAD1A9A2B0A639700837590 /* RxMoya */,
 				CA9DAA6B2B11092000135337 /* FloatingPanel */,
+				6BF2E58C2B160DBF003F1835 /* Kingfisher */,
 			);
 			productName = "NAVER-MAP-iOS";
 			productReference = 6B4D96D72B08657600977A82 /* NAVER-MAP-iOS.app */;
@@ -475,6 +477,7 @@
 				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */,
 				6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */,
 				CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				6BF2E58B2B160DBF003F1835 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6B4D96D82B08657600977A82 /* Products */;
 			projectDirPath = "";
@@ -527,7 +530,7 @@
 				6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */,
 				6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */,
 				CA9DAA9B2B11B8FD00135337 /* DetailLocationViewController.swift in Sources */,
-				949D34F62B1046EB00ECA9CF /* DetailAppData.swift in Sources */,
+				949D34F62B1046EB00ECA9CF /* DetailMenuData.swift in Sources */,
 				949D34F62B1046EB00ECA9CF /* DetailMenuData.swift in Sources */,
 				94F380AD2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift in Sources */,
 				6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */,
@@ -782,6 +785,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		6BF2E58B2B160DBF003F1835 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
 		CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
@@ -822,6 +833,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		6BF2E58C2B160DBF003F1835 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BF2E58B2B160DBF003F1835 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		CA9DAA6B2B11092000135337 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
