@@ -31,6 +31,7 @@ enum ImageLiterals {
     static var ic_star_thick: UIImage { .load(name: "icons=ic_star_thick") }
     static var ic_subway: UIImage { .load(name: "icons=ic_subway") }
     static var ic_walk: UIImage { .load(name: "icons=ic_walk") }
+    static var ic_arrow_up: UIImage { .load(name: "ic_arrow_up") }
     
     // MARK: - Finding Route Icon
 

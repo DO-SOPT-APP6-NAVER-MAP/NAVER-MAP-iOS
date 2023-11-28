@@ -9,11 +9,16 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    // MARK: Dummy Datas
+    
+    private var menuDummy = DetailMenuData.detailMenuDummy
+    private var visitorReviewDummy = DetailVisitorReviewData.detailVisitorDummy
+    private var blogReviewDummy = DetailBlogData.detailBlogData
+    
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
-    private var menuDummy = DetailMenuData.detailMenuDummy
-    private var visitorReviewDummy = DetailVisitorReviewData.detailVisitorDummy
+    
     
     // MARK: - LifeCycle
     
@@ -57,6 +62,12 @@ private extension DetailViewController {
         
         self.detailCollectionView.register(VisitorSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VisitorSectionHeaderView.identifier)
         
+        self.detailCollectionView.register(BlogReviewCollectionViewCell.self, forCellWithReuseIdentifier: BlogReviewCollectionViewCell.identifier)
+        
+        self.detailCollectionView.register(BlogSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BlogSectionHeaderView.identifier)
+        
+        self.detailCollectionView.register(LinksSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: LinksSectionHeaderView.identifier)
+        
         self.detailCollectionView.delegate = self
         self.detailCollectionView.dataSource = self
     }
@@ -84,13 +95,19 @@ private extension DetailViewController {
     }
     
     func createVisitorSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(211))
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(221))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return layout
+    }
+    
+    func createLinksSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(281))
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layout
     }
     
     func createFooter(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(80))
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(90))
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
         return layout
     }
@@ -106,8 +123,12 @@ private extension DetailViewController {
                 return self.configMenuSectionLayout()
             case 3:
                 return self.configVisitorReviewSectionLayout()
+            case 4:
+                return self.configBlogReviewSectionLayout()
+            case 5:
+                return self.configLinnksSectionLayout()
             default:
-                return nil // 나중에 config other section layout
+                return nil
             }
         }
     }
@@ -148,7 +169,6 @@ private extension DetailViewController {
         return sectionLayout
     }
     
-    // TODO: - 추후 레이아웃 구현
     func configVisitorReviewSectionLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -163,6 +183,37 @@ private extension DetailViewController {
         sectionLayout.boundarySupplementaryItems = [header, footer]
         return sectionLayout
     }
+    
+    func configBlogReviewSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(154))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        
+        let sectionLayout = NSCollectionLayoutSection(group: group)
+        let header = createHeader(forSection: 4)
+        let footer = createFooter(forSection: 4)
+        sectionLayout.boundarySupplementaryItems = [header, footer]
+        return sectionLayout
+    }
+    
+    func configLinnksSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(0)) // 아이템 없음
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let sectionLayout = NSCollectionLayoutSection(group: group)
+        let header = createLinksSectionHeader()
+        sectionLayout.boundarySupplementaryItems = [header]
+    
+        return sectionLayout
+    }
 }
 
 // MARK: - CollectionView DataSource
@@ -175,12 +226,13 @@ extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0, 1:
-            return 0
+
         case 2:
             return menuDummy.count
         case 3:
             return visitorReviewDummy.count
+        case 4:
+            return blogReviewDummy.count
         default:
             return 0
         }
@@ -197,6 +249,11 @@ extension DetailViewController: UICollectionViewDataSource {
         case 3:
             guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: VisitorReviewCollectionViewCell.identifier, for: indexPath) as? VisitorReviewCollectionViewCell else { return UICollectionViewCell() }
             item.bindData(data: visitorReviewDummy[indexPath.row])
+            return item
+            
+        case 4:
+            guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: BlogReviewCollectionViewCell.identifier, for: indexPath) as? BlogReviewCollectionViewCell else { return UICollectionViewCell() }
+            item.bindData(data: blogReviewDummy[indexPath.row])
             return item
             
         default:
@@ -226,6 +283,15 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VisitorSectionHeaderView.identifier, for: indexPath) as? VisitorSectionHeaderView else { return UICollectionReusableView() }
                 return headerView
                 
+            case 4:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BlogSectionHeaderView.identifier, for: indexPath) as? BlogSectionHeaderView else { return UICollectionReusableView() }
+                return headerView
+                
+            case 5:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LinksSectionHeaderView.identifier, for: indexPath) as? LinksSectionHeaderView else { return UICollectionReusableView() }
+                headerView.delegate = self
+                return headerView
+                
             default:
                 return UICollectionReusableView()
             }
@@ -237,9 +303,15 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionFooterView.identifier, for: indexPath) as? SectionFooterView else { return UICollectionReusableView() }
                 footerView.setLabelText(LabelText: "메뉴 더보기")
                 return footerView
+                
             case 3:
                 guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionFooterView.identifier, for: indexPath) as? SectionFooterView else { return UICollectionReusableView() }
                 footerView.setLabelText(LabelText: "방문자 리뷰 더보기")
+                return footerView
+                
+            case 4:
+                guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionFooterView.identifier, for: indexPath) as? SectionFooterView else { return UICollectionReusableView() }
+                footerView.setLabelText(LabelText: "블로그 리뷰 더보기")
                 return footerView
                 
             default:
@@ -255,3 +327,11 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - CollectionVeiw Delegate
 
 extension DetailViewController: UICollectionViewDelegate { }
+
+// MARK: - LinksSectionHeaderDelegate
+
+extension DetailViewController: LinksSectionHeaderViewDelegate {
+    func scrollToTop() {
+        detailCollectionView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
