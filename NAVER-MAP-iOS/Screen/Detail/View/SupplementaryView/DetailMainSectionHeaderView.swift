@@ -10,11 +10,17 @@ import UIKit
 import Then
 import SnapKit
 
+protocol MainSectionHeaderViewDelegate: AnyObject {
+    func scrollToVisitorSection()
+    func scrollToBlogSection()
+}
+
 class DetailMainSectionHeaderView: UICollectionReusableView {
     
     // MARK: - Properties
     
     static let identifier = "DetailMainSectionHeaderView"
+    weak var delegate: MainSectionHeaderViewDelegate?
     
     // MARK: - UI Properties
     
@@ -97,10 +103,21 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
         setupViews()
         setupConstraints()
         setupProperties()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    func visitorBtnTapped() {
+        delegate?.scrollToVisitorSection()
+    }
+    
+    @objc
+    func blogBtnTapped() {
+        delegate?.scrollToBlogSection()
     }
 }
 
@@ -335,6 +352,7 @@ private extension DetailMainSectionHeaderView {
         btn.layer.borderColor = UIColor.naverMapReview4.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 3
+        btn.isUserInteractionEnabled = true
         return btn
     }
     
@@ -348,6 +366,7 @@ private extension DetailMainSectionHeaderView {
         btn.layer.borderColor = UIColor.naverMapGray2.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 8
+        btn.isUserInteractionEnabled = true
         return btn
     }
     
@@ -360,23 +379,22 @@ private extension DetailMainSectionHeaderView {
         return label
     }
     
-    func fetchImageLayout(image: UIImage) -> UIImageView {
-        let img = UIImageView()
-        img.snp.makeConstraints {
-            $0.width.equalTo( getDeviceWidth() / 4 )
-            $0.height.equalTo( getDeviceWidth() / 4 )
-        }
-        img.image = image
-        return img
+    func setAddTarget() {
+        visitorReviewBtn.addTarget(self, action: #selector(visitorBtnTapped), for: .touchUpInside)
+        blogReviewBtn.addTarget(self, action: #selector(blogBtnTapped), for: .touchUpInside)
     }
+}
+
+extension DetailMainSectionHeaderView {
     
-    func fetchBigImageLayout(image: UIImage) -> UIImageView {
-        let img = UIImageView()
-        img.snp.makeConstraints {
-            $0.width.equalTo( getDeviceWidth() / 2 )
-            $0.height.equalTo( getDeviceWidth() / 2 )
-        }
-        img.image = image
-        return img
-    }
+    // MARK: - Bind Data Method
+    
+//    func bindData(model: LocationModel) {
+//        self.bigMenuImage.image = model.imageURL1
+//        self.smallMenuImage1.image = model.imageURL2
+//        self.smallMenuImage2.image = model.imageURL3
+//        self.smallMenuImage3.image = model.imageURL4
+//        self.smallMenuImage4.image = model.imageURL5
+//        self.locationNameLabel.text = model.name
+//    }
 }
