@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FindingRouteViewController: UIViewController {
+final class FindingRouteViewController: UIViewController {
 
     // MARK: - UI Properties
 
