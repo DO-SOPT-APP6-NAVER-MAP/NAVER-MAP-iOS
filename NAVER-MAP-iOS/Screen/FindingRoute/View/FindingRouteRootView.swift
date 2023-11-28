@@ -61,6 +61,14 @@ final class FindingRouteRootView: UIView {
     }
 }
 
+extension FindingRouteRootView {
+    func setupCollectionView(forDelegate: UICollectionViewDelegate,
+                             forDatasource: UICollectionViewDataSource) {
+        findRouteCollectionView.delegate = forDelegate
+        findRouteCollectionView.dataSource = forDatasource
+    }
+}
+
 private extension FindingRouteRootView {
     func setupStyle() {
         backgroundColor = .naverMapWhite

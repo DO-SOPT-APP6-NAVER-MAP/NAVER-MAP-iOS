@@ -42,6 +42,7 @@ extension FindingRouteCollectionViewCell {
 
 private extension FindingRouteCollectionViewCell {
     func setupStyle() {
+        backgroundColor = .naverMapWhite
         layer.borderWidth = 1
         layer.borderColor = UIColor.naverMapBlueGray3.cgColor
         
@@ -51,7 +52,7 @@ private extension FindingRouteCollectionViewCell {
         }
         
         shareBtn.do {
-            $0.setImage(ImageLiterals.ic_share, for: .normal)
+            $0.setImage(ImageLiterals.ic_share.withTintColor(.naverMapBlueGray4), for: .normal)
         }
         
         pinBtn.do {
