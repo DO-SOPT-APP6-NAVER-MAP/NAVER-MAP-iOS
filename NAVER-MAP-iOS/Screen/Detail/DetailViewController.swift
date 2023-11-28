@@ -327,3 +327,11 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - CollectionVeiw Delegate
 
 extension DetailViewController: UICollectionViewDelegate { }
+
+// MARK: - LinksSectionHeaderDelegate
+
+extension DetailViewController: LinksSectionHeaderViewDelegate {
+    func scrollToTop() {
+        detailCollectionView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
