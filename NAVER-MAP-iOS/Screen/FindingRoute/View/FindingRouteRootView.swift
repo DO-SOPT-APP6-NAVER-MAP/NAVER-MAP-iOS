@@ -199,7 +199,7 @@ private extension FindingRouteRootView {
         findRouteCollectionView.snp.makeConstraints {
             $0.top.equalTo(searchResultTimeView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(23)
+            $0.bottom.equalTo(safeAreaLayoutGuide)
         }
         transportStackView.snp.makeConstraints {
             $0.top.equalTo(searchTopHorizontalStackView.snp.bottom).offset(16)

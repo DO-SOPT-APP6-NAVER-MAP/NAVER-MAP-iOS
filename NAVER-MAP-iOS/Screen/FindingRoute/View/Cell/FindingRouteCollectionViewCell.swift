@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -36,7 +37,7 @@ final class FindingRouteCollectionViewCell: UICollectionViewCell {
 
 extension FindingRouteCollectionViewCell {
     func configCell(forURL: String) {
-        // TODO: - Image 넣기
+        routeImageView.kf.setImage(with: URL(string: forURL))
     }
 }
 
@@ -45,6 +46,10 @@ private extension FindingRouteCollectionViewCell {
         backgroundColor = .naverMapWhite
         layer.borderWidth = 1
         layer.borderColor = UIColor.naverMapBlueGray3.cgColor
+        
+        routeImageView.do {
+            $0.contentMode = .scaleAspectFit
+        }
         
         buttonStackView.do {
             $0.axis = .horizontal
@@ -63,8 +68,8 @@ private extension FindingRouteCollectionViewCell {
     func setupLayout() {
         addSubviews([routeImageView,
                      buttonStackView])
-        buttonStackView.addArrangedSubviews(shareBtn,
-                                            pinBtn)
+//        buttonStackView.addArrangedSubviews(shareBtn,
+//                                            pinBtn)
         
         routeImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()

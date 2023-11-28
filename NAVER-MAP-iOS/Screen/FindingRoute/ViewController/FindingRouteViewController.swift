@@ -8,6 +8,8 @@
 import UIKit
 
 final class FindingRouteViewController: UIViewController {
+    
+    private let routeData: [FindingRouteModel] = FindingRouteModel.dummyData
 
     // MARK: - UI Properties
 
@@ -37,11 +39,12 @@ extension FindingRouteViewController: UICollectionViewDelegate { }
 
 extension FindingRouteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return routeData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FindingRouteCollectionViewCell.identifier, for: indexPath) as? FindingRouteCollectionViewCell else { return UICollectionViewCell() }
+        cell.configCell(forURL: routeData[indexPath.item].imageURL)
         return cell
     }
 }
