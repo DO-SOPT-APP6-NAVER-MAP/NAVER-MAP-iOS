@@ -53,10 +53,8 @@ private extension MenuCollectionViewCell {
     
     func setupConstraints() {
         menuImage.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(166)
-            $0.height.equalTo(166)
+            $0.top.centerX.equalToSuperview()
+            $0.size.equalTo(166)
         }
         
         menuLabelStackView.snp.makeConstraints {
@@ -67,8 +65,7 @@ private extension MenuCollectionViewCell {
     
     func setupProperties() {
         menuImage.do {
-            $0.layer.cornerRadius = 20
-            $0.clipsToBounds = true
+            $0.makeRounded(radius: 20)
         }
         
         menuLabelStackView.do {
