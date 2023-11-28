@@ -122,8 +122,8 @@ private extension BlogReviewCollectionViewCell {
         userDescription.setupLabel(font: .body12, textColor: .naverMapGray4)
         createdDate.setupLabel(font: .body12, textColor: .naverMapGray4)
         
-        reviewTitleLabel.setupLabel(font: .body2, textColor: .naverMapSubBlue)
-        reviewContentLabel.setupLabel(font: .body6, textColor: .naverMapGray6)
+        reviewTitleLabel.setupLabel(font: .body2, textColor: .naverMapSubBlue, alignment: .left)
+        reviewContentLabel.setupLabel(font: .body6, textColor: .naverMapGray6, alignment: .left)
         reviewImgCntLabel.setupLabel(font: .button1, textColor: .naverMapWhite)
         
         reviewTitleLabel.do {
