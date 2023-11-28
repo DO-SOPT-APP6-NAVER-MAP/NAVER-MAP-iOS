@@ -38,7 +38,9 @@ enum ImageLiterals {
     static var ic_pin_bg: UIImage { .load(name: "icons=ic_pin_bg") }
     static var ic_share_bg: UIImage { .load(name: "icons=ic_share_bg") }
     static var ic_star: UIImage { .load(name: "icons=ic_star") }
-    
+    static var ic_bus_white: UIImage { .load(name: "ic_btn_bus_white") }
+    static var bus_info_btn: UIImage { .load(name: "btn_bus_info_ios") }
+
     // MARK: - Detail Icon
 
     static var ic_btn_location_white: UIImage { .load(name: "ic_btn_location_white") }
