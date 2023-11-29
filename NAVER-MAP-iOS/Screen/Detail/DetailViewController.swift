@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
     
-    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -134,7 +133,7 @@ private extension DetailViewController {
     }
     
     func configMainSectionLayout(forSection section: Int) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), 
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -145,27 +144,27 @@ private extension DetailViewController {
         let sectionLayout = NSCollectionLayoutSection(group: group)
         let header = createMainSectionHeader(forSection: section)
         sectionLayout.boundarySupplementaryItems = [header]
-    
+        
         return sectionLayout
     }
     
     func configMenuSectionLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), 
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .absolute(235))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-
+        
         let sectionLayout = NSCollectionLayoutSection(group: group)
         sectionLayout.interGroupSpacing = 16
         
         let header = createHeader(forSection: 2)
         let footer = createFooter(forSection: 2)
         sectionLayout.boundarySupplementaryItems = [header, footer]
-
+        
         return sectionLayout
     }
     
@@ -211,7 +210,7 @@ private extension DetailViewController {
         let sectionLayout = NSCollectionLayoutSection(group: group)
         let header = createLinksSectionHeader()
         sectionLayout.boundarySupplementaryItems = [header]
-    
+        
         return sectionLayout
     }
 }
@@ -226,7 +225,7 @@ extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-
+            
         case 2:
             return menuDummy.count
         case 3:
@@ -269,6 +268,7 @@ extension DetailViewController: UICollectionViewDataSource {
                 
             case 0:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailMainSectionHeaderView.identifier, for: indexPath) as? DetailMainSectionHeaderView else { return UICollectionReusableView() }
+                headerView.delegate = self
                 return headerView
                 
             case 1:
@@ -333,5 +333,21 @@ extension DetailViewController: UICollectionViewDelegate { }
 extension DetailViewController: LinksSectionHeaderViewDelegate {
     func scrollToTop() {
         detailCollectionView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+
+extension DetailViewController: MainSectionHeaderViewDelegate {
+    func scrollToVisitorSection() {
+        guard let layoutAttributes = detailCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 3)) else {
+            return
+        }
+        
+        let headerTop = layoutAttributes.frame.origin.y
+        detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top), animated: true)
+    }
+    
+    func scrollToBlogSection() {
+        let indexPath = IndexPath(item: 0, section: 4)
+        detailCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
     }
 }

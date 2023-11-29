@@ -12,7 +12,6 @@ class BlogSectionHeaderView: UICollectionReusableView {
     // MARK: - Properties
     
     static let identifier = "BlogSectionHeaderView"
-    private var blogReviewDummy = DetailBlogData.detailBlogData
 
     // MARK: - UI Properties
     
@@ -60,6 +59,6 @@ private extension BlogSectionHeaderView {
     
     func setupProperties() {
         titleLabel.setupLabel(font: .title3, text: "블로그 리뷰", textColor: .naverMapBlack)
-        reviewCnt.setupLabel(font: .title3, text: String(blogReviewDummy.count), textColor: .naverMapGray4)
+        reviewCnt.setupLabel(font: .title3, text: String(DetailBlogData.detailBlogData.count), textColor: .naverMapGray4)
     }
 }

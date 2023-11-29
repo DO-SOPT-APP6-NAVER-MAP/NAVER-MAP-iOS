@@ -46,17 +46,13 @@ class LinksSectionHeaderView: UICollectionReusableView {
         setupViews()
         setupConstraints()
         setupProperties()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    // MARK: - Action Method
-//
-//    @IBAction func scrollToTopBtnTapped(_ sender: UIButton) {
-//        delegate?.scrollToTop()
-//    }
     @objc private func scrollToTopBtnTapped() {
         delegate?.scrollToTop()
     }
@@ -140,7 +136,6 @@ private extension LinksSectionHeaderView {
             $0.layer.shadowRadius = 4
             $0.layer.shadowOffset = CGSize(width: 0, height: 3)
             $0.isUserInteractionEnabled = true
-            $0.addTarget(self, action: #selector(scrollToTopBtnTapped), for: .touchUpInside)
         }
         
         footerView.do {
@@ -154,5 +149,9 @@ private extension LinksSectionHeaderView {
         footerLabel4.setupLabel(font: .body10, text: "신고센터" ,textColor: .naverMapGray4)
         
         naverLogo.setupImageView(image: UIImage.load(name: "Naver_Logotype_1"), borderColor: .clear, width: 52)
+    }
+    
+    func setAddTarget() {
+        scrollToTopBtn.addTarget(self, action: #selector(scrollToTopBtnTapped), for: .touchUpInside)
     }
 }
