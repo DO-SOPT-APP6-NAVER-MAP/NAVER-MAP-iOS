@@ -47,7 +47,7 @@ extension UILabel {
     }
     
     /// UILabel 기본 세팅  => 폰트, 텍스트, 텍스트색상, 정렬방법(옵션)
-    func setupLabel(font: UIFont, text: String, textColor: UIColor, alignment: NSTextAlignment = .center) {
+    func setupLabel(font: UIFont, text: String? = nil, textColor: UIColor, alignment: NSTextAlignment = .center) {
         self.font = font
         self.text = text
         self.textColor = textColor

@@ -37,12 +37,13 @@ class VisitorReviewCollectionViewCell: UICollectionViewCell {
     private lazy var visitDate: UILabel = { createLabel(forFont: .body12, 
                                                         forColor: .naverMapGray4)}()
     private lazy var visitCnt: UILabel = { createLabel(forFont: .body9, 
-                                                       forColor: .naverMapGray6)}()
-    private lazy var visitorReviewType: UILabel = { createLabel(forFont: .body9, 
-                                                                forColor: .naverMapGray6)}()
+                                                       forColor: .naverMapGray4)}()
+    private lazy var visitorReviewType: UILabel = { createLabel(forFont: .body9,
+                                                                forColor: .naverMapGray4)}()
 
     private let reviewImg = UIImageView()
-    private lazy var reviewImgCnt: UILabel = { createLabel(forFont: .button1, 
+    private let reviewImgCntView = UIView()
+    private lazy var reviewImgCntLabel: UILabel = { createLabel(forFont: .button1,
                                                            forColor: .naverMapWhite)}() // 해당 폰트 피그마에 없음
     private let horizLine = UIView()
     
@@ -71,13 +72,15 @@ private extension VisitorReviewCollectionViewCell {
     }
     
     func setupViews() {
-        contentView.addSubviews([reviewStackView, reviewImg, reviewImgCnt, horizLine])
+        contentView.addSubviews([reviewStackView, reviewImg, horizLine])
         userImgView.addSubview(userImg)
         
         reviewStackView.addArrangedSubviews(reviewLabel, userStackView)
         userStackView.addArrangedSubviews(userImgView, userLabelStackView)
         userLabelStackView.addArrangedSubviews(userName, visitStackView)
         visitStackView.addArrangedSubviews(visitDate, visitCnt, visitorReviewType)
+        reviewImg.addSubview(reviewImgCntView)
+        reviewImgCntView.addSubview(reviewImgCntLabel)
     }
     
     func setupConstraints() {
@@ -93,11 +96,15 @@ private extension VisitorReviewCollectionViewCell {
             $0.trailing.equalToSuperview()
             $0.height.width.equalTo(88)
         }
-                
-        reviewImgCnt.snp.makeConstraints {
-            $0.top.equalTo(reviewImg.snp.top).offset(58)
-            $0.trailing.equalTo(reviewImg.snp.trailing).inset(7)
-            $0.bottom.equalTo(reviewImg.snp.bottom).inset(8)
+        
+        reviewImgCntView.snp.makeConstraints {
+            $0.size.equalTo(20)
+            $0.top.equalToSuperview().inset(58)
+            $0.trailing.equalToSuperview().inset(6)
+        }
+        
+        reviewImgCntLabel.snp.makeConstraints {
+            $0.center.equalTo(reviewImgCntView)
         }
         
         userImg.snp.makeConstraints {
@@ -137,9 +144,7 @@ private extension VisitorReviewCollectionViewCell {
             $0.makeRounded(radius: 20)
         }
         
-        reviewImgCnt.do {
-            $0.makeRounded(radius: 8)
-            $0.layer.backgroundColor = UIColor.naverMapBlack.cgColor
+        reviewImgCntLabel.do {
             $0.textColor = .naverMapWhite
         }
         
@@ -149,6 +154,11 @@ private extension VisitorReviewCollectionViewCell {
         
         horizLine.do {
             $0.backgroundColor = .naverMapBlueGray1
+        }
+        
+        reviewImgCntView.do {
+            $0.backgroundColor = .naverMapBlack80
+            $0.makeRounded(radius: 10)
         }
     }
     
@@ -178,7 +188,7 @@ extension VisitorReviewCollectionViewCell {
         self.reviewImg.image = data.reviewImg
         self.userImg.image = data.userImg
         self.reviewLabel.text = data.reviewContent
-        self.reviewImgCnt.text = data.reviewImgCnt
+        self.reviewImgCntLabel.text = data.reviewImgCnt
         self.userName.text = data.userName
         self.visitDate.text = data.visitDate
         self.visitCnt.text = data.visitCnt + "번째 방문"
