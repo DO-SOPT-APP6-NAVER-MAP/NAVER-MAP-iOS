@@ -56,7 +56,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private let descriptionStackView = UIStackView()
     
     /// 위치 스택뷰
-    private lazy var locationHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
+    private let locationHorizStackView = UIStackView()
     private let locationIc: UIImageView = UIImageView(image: ImageLiterals.ic_location_ios)
     private lazy var locationVerticStackView: UIStackView = { createVerticStackView(forSpacing: 3) }()
     
@@ -157,11 +157,14 @@ private extension DescriptionSectionHeaderView {
                           alarmHorizStackView,
                           alarmBtn,
                           horizDividingLine2,
+                          locationIc,
+                          locationVerticStackView,
                           descriptionStackView,
+                          detailLocationView,
                           editInfoHorizStackView,
                           bottomDividingBar])
         
-        // headerHorizStackView
+        /// headerHorizStackView
         headerHorizStackView.addArrangedSubviews(homeStackView, menuStackView, reviewStackView)
         
         homeStackView.addArrangedSubviews(homeLabel, homeIndicator)
@@ -170,11 +173,10 @@ private extension DescriptionSectionHeaderView {
         
         reviewStackView.addArrangedSubviews(reviewLabel, reviewIndicator)
         
-        // alarmHorizStackView
+        /// alarmHorizStackView
         alarmHorizStackView.addArrangedSubviews(alarmBoldDescriptLabel, alarmPlainDescriptLabel)
         
-        // descriptionStackView
-        descriptionStackView.addArrangedSubviews(locationHorizStackView, 
+        descriptionStackView.addArrangedSubviews(locationHorizStackView,
                                                  hourHorizStackView,
                                                  callHorizStackView,
                                                  optionHorizStackView,
@@ -192,7 +194,7 @@ private extension DescriptionSectionHeaderView {
         urlHorizStackView.addArrangedSubviews(urlIc, urlLabel)
         infoHorizStackView.addArrangedSubviews(infoIc, infoLabel)
         
-        // editInfoHorizStackView
+        /// editInfoHorizStackView
         editInfoHorizStackView.addArrangedSubviews(editIc, editLabel, editArrowIc)
     }
     
@@ -261,6 +263,13 @@ private extension DescriptionSectionHeaderView {
             $0.spacing = 12
             $0.distribution = .equalSpacing
             $0.alignment = .leading
+        }
+        
+        locationHorizStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 10
+            $0.distribution = .equalSpacing
+            $0.alignment = .top
         }
         
         horizDividingLine1.do {
