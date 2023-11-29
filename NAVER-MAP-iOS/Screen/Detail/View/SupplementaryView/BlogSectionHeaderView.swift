@@ -59,6 +59,14 @@ private extension BlogSectionHeaderView {
     
     func setupProperties() {
         titleLabel.setupLabel(font: .title3, text: "블로그 리뷰", textColor: .naverMapBlack)
-        reviewCnt.setupLabel(font: .title3, text: String(DetailBlogData.detailBlogData.count), textColor: .naverMapGray4)
+        reviewCnt.setupLabel(font: .title3, textColor: .naverMapGray4)
+    }
+}
+
+// MARK: - Extension Method
+
+extension BlogSectionHeaderView {
+    func configHeaderView(forCount: String) {
+             reviewCnt.text = forCount
     }
 }

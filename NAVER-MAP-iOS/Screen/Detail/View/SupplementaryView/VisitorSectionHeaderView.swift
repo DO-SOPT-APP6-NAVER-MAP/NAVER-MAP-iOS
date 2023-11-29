@@ -85,7 +85,7 @@ private extension VisitorSectionHeaderView {
     func setupProperties() {
         titleLabel.setupLabel(font: .title3, text: "방문자 리뷰", textColor: .naverMapBlack)
         
-        reviewCnt.setupLabel(font: .title3, text: String(DetailVisitorReviewData.detailVisitorDummy.count), textColor: .naverMapGray4)
+        reviewCnt.setupLabel(font: .title3, textColor: .naverMapGray4)
         
         writeIc.do {
             $0.image = ImageLiterals.ic_write
@@ -113,3 +113,10 @@ private extension VisitorSectionHeaderView {
     }
 }
 
+// MARK: - Extension Method
+
+extension VisitorSectionHeaderView {
+    func configHeaderView(forCount: String) {
+             reviewCnt.text = forCount
+    }
+}
