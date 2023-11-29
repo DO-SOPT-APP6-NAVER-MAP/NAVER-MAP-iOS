@@ -10,11 +10,17 @@ import UIKit
 import Then
 import SnapKit
 
+protocol MainSectionHeaderViewDelegate: AnyObject {
+    func scrollToVisitorSection()
+    func scrollToBlogSection()
+}
+
 class DetailMainSectionHeaderView: UICollectionReusableView {
     
     // MARK: - Properties
     
     static let identifier = "DetailMainSectionHeaderView"
+    weak var delegate: MainSectionHeaderViewDelegate?
     
     // MARK: - UI Properties
     
@@ -24,17 +30,17 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private lazy var imagesVerticalStackView1: UIStackView = { createVerticalStackView(forSpacing: 2) }()
     private lazy var imagesVerticalStackView2: UIStackView = { createVerticalStackView(forSpacing: 2) }()
     
-    private lazy var bigMenuImage: UIImageView = { fetchBigImageLayout(image: ImageLiterals.ic_naverbooking) }()
-    private lazy var smallMenuImage1: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
-    private lazy var smallMenuImage2: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking) }()
-    private lazy var smallMenuImage3: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking) }()
-    private lazy var smallMenuImage4: UIImageView = { fetchImageLayout(image: ImageLiterals.ic_naverbooking)}()
+    private let bigMenuImage = UIImageView()
+    private let smallMenuImage1 = UIImageView()
+    private let smallMenuImage2 = UIImageView()
+    private let smallMenuImage3 = UIImageView()
+    private let smallMenuImage4 = UIImageView()
     
     private lazy var imageIcVerticalStackView: UIStackView = { createVerticalStackView(forSpacing: 4)}()
     private let imageIc: UIImageView = UIImageView(image: ImageLiterals.ic_picture)
     private lazy var imagesCountLabel = createLabel(forFont: .bodyButton, forColor: .naverMapWhite, text: "+4")
     
-    private lazy var locationNameLabel: UILabel = { createLabel(forFont: .title2, forColor: .naverMapBlack, text: "알고")}()
+    private let locationNameLabel = UILabel()
     private lazy var categoryLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray4, text: "스파게티, 파스타 전문")}()
     private lazy var descriptionLabel: UILabel = { createLabel(forFont: .body7,
                                                                forColor: .naverMapGray6,
@@ -97,10 +103,21 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
         setupViews()
         setupConstraints()
         setupProperties()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    func visitorBtnTapped() {
+        delegate?.scrollToVisitorSection()
+    }
+    
+    @objc
+    func blogBtnTapped() {
+        delegate?.scrollToBlogSection()
     }
 }
 
@@ -161,6 +178,16 @@ private extension DetailMainSectionHeaderView {
             $0.height.equalTo(188)
         }
         
+        bigMenuImage.snp.makeConstraints {
+            $0.size.equalTo(getDeviceWidth() / 2)
+        }
+        
+        [smallMenuImage1, smallMenuImage2, smallMenuImage3, smallMenuImage4].forEach {
+            $0.snp.makeConstraints {
+                $0.size.equalTo(getDeviceWidth() / 4)
+            }
+        }
+        
         paginatorBtn.snp.makeConstraints {
             $0.top.equalTo(imagesHorizontalStackView).inset(8)
             $0.leading.equalTo(imagesHorizontalStackView).inset(16)
@@ -177,7 +204,7 @@ private extension DetailMainSectionHeaderView {
         }
         
         categoryLabel.snp.makeConstraints {
-            $0.top.equalTo(imagesHorizontalStackView.snp.bottom).offset(22)
+            $0.centerY.equalTo(locationNameLabel)
             $0.leading.equalTo(locationNameLabel.snp.trailing).offset(4)
         }
         
@@ -250,8 +277,8 @@ private extension DetailMainSectionHeaderView {
             $0.height.equalTo(1)
         }
         
-        for i in [verticalDividingLine1, verticalDividingLine2, verticalDividingLine3] {
-            i.snp.makeConstraints {
+        [verticalDividingLine1, verticalDividingLine2, verticalDividingLine3].forEach {
+            $0.snp.makeConstraints {
                 $0.width.equalTo(1)
                 $0.height.equalTo(46)
             }
@@ -266,6 +293,8 @@ private extension DetailMainSectionHeaderView {
     }
     
     func setupProperties() {
+        
+        locationNameLabel.setupLabel(font: .title2, text: "알고", textColor: .naverMapBlack)
         paginatorBtn.do {
             $0.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
         }
@@ -290,11 +319,16 @@ private extension DetailMainSectionHeaderView {
             $0.layer.cornerRadius = 20
         }
         
-        for i in [horizontalDividingLine,
-                  verticalDividingLine1,
-                  verticalDividingLine2,
-                  verticalDividingLine3] {
-            i.backgroundColor = .naverMapGray2
+        [horizontalDividingLine, verticalDividingLine1, verticalDividingLine2, verticalDividingLine3].forEach {
+            $0.do {
+                $0.backgroundColor = .naverMapGray2
+            }
+        }
+        
+        [bigMenuImage, smallMenuImage1, smallMenuImage2, smallMenuImage2, smallMenuImage3, smallMenuImage4].forEach {
+            $0.do {
+                $0.image = ImageLiterals.ic_naverbooking
+            }
         }
         
         bottomDividingBar.do {
@@ -335,6 +369,7 @@ private extension DetailMainSectionHeaderView {
         btn.layer.borderColor = UIColor.naverMapReview4.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 3
+        btn.isUserInteractionEnabled = true
         return btn
     }
     
@@ -348,6 +383,7 @@ private extension DetailMainSectionHeaderView {
         btn.layer.borderColor = UIColor.naverMapGray2.cgColor
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 8
+        btn.isUserInteractionEnabled = true
         return btn
     }
     
@@ -360,23 +396,22 @@ private extension DetailMainSectionHeaderView {
         return label
     }
     
-    func fetchImageLayout(image: UIImage) -> UIImageView {
-        let img = UIImageView()
-        img.snp.makeConstraints {
-            $0.width.equalTo( getDeviceWidth() / 4 )
-            $0.height.equalTo( getDeviceWidth() / 4 )
-        }
-        img.image = image
-        return img
+    func setAddTarget() {
+        visitorReviewBtn.addTarget(self, action: #selector(visitorBtnTapped), for: .touchUpInside)
+        blogReviewBtn.addTarget(self, action: #selector(blogBtnTapped), for: .touchUpInside)
     }
+}
+
+extension DetailMainSectionHeaderView {
     
-    func fetchBigImageLayout(image: UIImage) -> UIImageView {
-        let img = UIImageView()
-        img.snp.makeConstraints {
-            $0.width.equalTo( getDeviceWidth() / 2 )
-            $0.height.equalTo( getDeviceWidth() / 2 )
-        }
-        img.image = image
-        return img
-    }
+    // MARK: - Bind Data Method
+    
+//    func bindData(model: LocationModel) {
+//        self.bigMenuImage.image = model.imageURL1
+//        self.smallMenuImage1.image = model.imageURL2
+//        self.smallMenuImage2.image = model.imageURL3
+//        self.smallMenuImage3.image = model.imageURL4
+//        self.smallMenuImage4.image = model.imageURL5
+//        self.locationNameLabel.text = model.name
+//    }
 }

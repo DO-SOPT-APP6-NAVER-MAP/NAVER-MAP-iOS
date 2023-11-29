@@ -14,6 +14,7 @@ class VisitorSectionHeaderView: UICollectionReusableView {
     static let identifier = "VisitorSectionHeaderView"
     
     // MARK: - UI Properties
+    
     private let titleLabel = UILabel()
     private let reviewCnt = UILabel()
     
@@ -56,15 +57,13 @@ private extension VisitorSectionHeaderView {
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(26)
-            $0.leading.equalToSuperview().inset(15)
-            $0.trailing.equalToSuperview().inset(277)
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(18)
         }
         
         reviewCnt.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.trailing).offset(4)
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview().inset(239)
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(4)
         }
         
         writeIc.snp.makeConstraints {
@@ -86,7 +85,7 @@ private extension VisitorSectionHeaderView {
     func setupProperties() {
         titleLabel.setupLabel(font: .title3, text: "방문자 리뷰", textColor: .naverMapBlack)
         
-        reviewCnt.setupLabel(font: .title3, text: "288", textColor: .naverMapGray4)
+        reviewCnt.setupLabel(font: .title3, textColor: .naverMapGray4)
         
         writeIc.do {
             $0.image = ImageLiterals.ic_write
@@ -114,3 +113,10 @@ private extension VisitorSectionHeaderView {
     }
 }
 
+// MARK: - Extension Method
+
+extension VisitorSectionHeaderView {
+    func configHeaderView(forCount: String) {
+             reviewCnt.text = forCount
+    }
+}
