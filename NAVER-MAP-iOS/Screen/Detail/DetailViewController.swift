@@ -18,7 +18,8 @@ class DetailViewController: UIViewController {
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
-    private let detailTopHeaderView = DetailTopHeaderView()
+    private let detailTopHeader = DetailTopHeaderView()
+    private let descriptionHeader = DescriptionTopHeaderView()
     
     // MARK: - LifeCycle
     
@@ -38,7 +39,7 @@ private extension DetailViewController {
     func setupViews() {
         self.view.backgroundColor = .naverMapGray1
         self.navigationController?.isNavigationBarHidden = true
-        view.addSubviews([detailCollectionView, detailTopHeaderView])
+        view.addSubviews([detailCollectionView, detailTopHeader, descriptionHeader])
     }
     
     func setupConstraints() {
@@ -47,8 +48,13 @@ private extension DetailViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        detailTopHeaderView.snp.makeConstraints {
+        detailTopHeader.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        descriptionHeader.snp.makeConstraints {
+            $0.top.equalTo(detailTopHeader.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
     }
@@ -89,7 +95,7 @@ private extension DetailViewController {
     }
     
     func createMainSectionHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(500))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(510))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return header
     }
@@ -336,18 +342,22 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - CollectionVeiw Delegate
 
 extension DetailViewController: UICollectionViewDelegate {
+    
+    /// 스크롤 이벤트에 반응하는 메서드
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
+        let visibleDescriptionHeaderOffsetY: CGFloat = 503 - 48 // safeArea까지의 거리와 topHeader Height의 차이
 
-        if offsetY > 0 { // 스크롤 위치가 100 이상일 때
-            detailTopHeaderView.isHidden = false
-            let alpha = min((offsetY - 100) / 50, 1) // 100 이상, 150 이하에서 점차 증가
-            detailTopHeaderView.alpha = alpha
+        if offsetY > 0 {
+            detailTopHeader.isHidden = false
+            let alpha = min((offsetY - 0) / 60, 1) // y가 0~60일 때, 투명도 조절
+            detailTopHeader.alpha = alpha
         } else {
-            detailTopHeaderView.isHidden = true
+            detailTopHeader.isHidden = true
         }
-    }
 
+        descriptionHeader.isHidden = offsetY <= visibleDescriptionHeaderOffsetY
+    }
 }
 
 // MARK: - LinksSectionHeaderDelegate
