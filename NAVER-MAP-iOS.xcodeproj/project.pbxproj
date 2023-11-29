@@ -44,6 +44,17 @@
 		6BF2E58A2B16000E003F1835 /* FindingRouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5892B16000E003F1835 /* FindingRouteCollectionViewCell.swift */; };
 		6BF2E58D2B160DBF003F1835 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6BF2E58C2B160DBF003F1835 /* Kingfisher */; };
 		6BF2E59F2B170EE4003F1835 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E59E2B170EE4003F1835 /* Config.swift */; };
+		6BF2E5A22B170FE8003F1835 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5A12B170FE8003F1835 /* BaseTargetType.swift */; };
+		6BF2E5A42B170FFB003F1835 /* MoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5A32B170FFB003F1835 /* MoyaPlugin.swift */; };
+		6BF2E5A62B1711D8003F1835 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5A52B1711D8003F1835 /* NetworkResult.swift */; };
+		6BF2E5A82B171238003F1835 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5A72B171238003F1835 /* BaseService.swift */; };
+		6BF2E5AA2B1712E6003F1835 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5A92B1712E6003F1835 /* NetworkService.swift */; };
+		6BF2E5AE2B171341003F1835 /* PlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5AD2B171341003F1835 /* PlaceAPI.swift */; };
+		6BF2E5B02B17134D003F1835 /* PlaceAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5AF2B17134D003F1835 /* PlaceAPIService.swift */; };
+		6BF2E5B22B17161F003F1835 /* GetPlaceSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5B12B17161F003F1835 /* GetPlaceSearchResponseDTO.swift */; };
+		6BF2E5B42B17162E003F1835 /* GetPlaceResultSimpleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5B32B17162E003F1835 /* GetPlaceResultSimpleResponseDTO.swift */; };
+		6BF2E5B62B17163D003F1835 /* GetPlaceResultDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5B52B17163D003F1835 /* GetPlaceResultDetailResponseDTO.swift */; };
+		6BF2E5B82B171651003F1835 /* GetPlaceRouteResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2E5B72B171651003F1835 /* GetPlaceRouteResponseDTO.swift */; };
 		9424888A2B14742D00CEFF84 /* VisitorSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */; };
 		9450BD3A2B11B9B9009FEFD8 /* DetailVisitorReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */; };
 		946EEE412B14A73D007120F9 /* BlogReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946EEE402B14A73D007120F9 /* BlogReviewCollectionViewCell.swift */; };
@@ -99,6 +110,17 @@
 		6BF2E5892B16000E003F1835 /* FindingRouteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingRouteCollectionViewCell.swift; sourceTree = "<group>"; };
 		6BF2E59D2B170EAB003F1835 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		6BF2E59E2B170EE4003F1835 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		6BF2E5A12B170FE8003F1835 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		6BF2E5A32B170FFB003F1835 /* MoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaPlugin.swift; sourceTree = "<group>"; };
+		6BF2E5A52B1711D8003F1835 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		6BF2E5A72B171238003F1835 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		6BF2E5A92B1712E6003F1835 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		6BF2E5AD2B171341003F1835 /* PlaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAPI.swift; sourceTree = "<group>"; };
+		6BF2E5AF2B17134D003F1835 /* PlaceAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAPIService.swift; sourceTree = "<group>"; };
+		6BF2E5B12B17161F003F1835 /* GetPlaceSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceSearchResponseDTO.swift; sourceTree = "<group>"; };
+		6BF2E5B32B17162E003F1835 /* GetPlaceResultSimpleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceResultSimpleResponseDTO.swift; sourceTree = "<group>"; };
+		6BF2E5B52B17163D003F1835 /* GetPlaceResultDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceResultDetailResponseDTO.swift; sourceTree = "<group>"; };
+		6BF2E5B72B171651003F1835 /* GetPlaceRouteResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceRouteResponseDTO.swift; sourceTree = "<group>"; };
 		942488892B14742D00CEFF84 /* VisitorSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorSectionHeaderView.swift; sourceTree = "<group>"; };
 		9450BD392B11B9B9009FEFD8 /* DetailVisitorReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVisitorReviewData.swift; sourceTree = "<group>"; };
 		946EEE402B14A73D007120F9 /* BlogReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -389,8 +411,43 @@
 		6BF2E5972B170CAC003F1835 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6BF2E5A02B170FDB003F1835 /* Base */,
+				6BF2E5AB2B171329003F1835 /* Place */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		6BF2E5A02B170FDB003F1835 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6BF2E5A12B170FE8003F1835 /* BaseTargetType.swift */,
+				6BF2E5A72B171238003F1835 /* BaseService.swift */,
+				6BF2E5A32B170FFB003F1835 /* MoyaPlugin.swift */,
+				6BF2E5A52B1711D8003F1835 /* NetworkResult.swift */,
+				6BF2E5A92B1712E6003F1835 /* NetworkService.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6BF2E5AB2B171329003F1835 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				6BF2E5AC2B171333003F1835 /* DTO */,
+				6BF2E5AD2B171341003F1835 /* PlaceAPI.swift */,
+				6BF2E5AF2B17134D003F1835 /* PlaceAPIService.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		6BF2E5AC2B171333003F1835 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				6BF2E5B12B17161F003F1835 /* GetPlaceSearchResponseDTO.swift */,
+				6BF2E5B32B17162E003F1835 /* GetPlaceResultSimpleResponseDTO.swift */,
+				6BF2E5B52B17163D003F1835 /* GetPlaceResultDetailResponseDTO.swift */,
+				6BF2E5B72B171651003F1835 /* GetPlaceRouteResponseDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		949D34F42B10416D00ECA9CF /* Data */ = {
@@ -542,18 +599,26 @@
 				6BF2E57C2B136AFE003F1835 /* SearchRecommendCollectionViewCell.swift in Sources */,
 				6BF2E5532B11C8E7003F1835 /* EmptySearchView.swift in Sources */,
 				6B4D96DF2B08657600977A82 /* ViewController.swift in Sources */,
+				6BF2E5B42B17162E003F1835 /* GetPlaceResultSimpleResponseDTO.swift in Sources */,
+				6BF2E5AE2B171341003F1835 /* PlaceAPI.swift in Sources */,
 				946EEE412B14A73D007120F9 /* BlogReviewCollectionViewCell.swift in Sources */,
 				6B4D96DB2B08657600977A82 /* AppDelegate.swift in Sources */,
+				6BF2E5AA2B1712E6003F1835 /* NetworkService.swift in Sources */,
+				6BF2E5A82B171238003F1835 /* BaseService.swift in Sources */,
+				6BF2E5B62B17163D003F1835 /* GetPlaceResultDetailResponseDTO.swift in Sources */,
 				6BF2E58A2B16000E003F1835 /* FindingRouteCollectionViewCell.swift in Sources */,
 				94BDA9FA2B0EE80500B284EC /* DescriptionSectionHeaderView.swift in Sources */,
 				6BF2E5502B11C64B003F1835 /* MainSearchRootView.swift in Sources */,
+				6BF2E5B22B17161F003F1835 /* GetPlaceSearchResponseDTO.swift in Sources */,
 				6BAD1AC72B0A680E00837590 /* UIViewController+.swift in Sources */,
 				949D34F82B10737B00ECA9CF /* MenuSectionHeaderView.swift in Sources */,
+				6BF2E5A22B170FE8003F1835 /* BaseTargetType.swift in Sources */,
 				946EEE452B158A89007120F9 /* BlogSectionHeaderView.swift in Sources */,
 				949D34FC2B10FCD000ECA9CF /* VisitorReviewCollectionViewCell.swift in Sources */,
 				949D34FA2B10819500ECA9CF /* SectionFooterView.swift in Sources */,
 				6BAD1ABF2B0A66D800837590 /* ColorLiterals.swift in Sources */,
 				6BF2E54D2B11C62E003F1835 /* MainSearchLocationModel.swift in Sources */,
+				6BF2E5B82B171651003F1835 /* GetPlaceRouteResponseDTO.swift in Sources */,
 				6BAD1AAF2B0A665000837590 /* SearchResultViewController.swift in Sources */,
 				6BAD1AB12B0A665900837590 /* DetailViewController.swift in Sources */,
 				6BAD1ABD2B0A66C200837590 /* UIView+.swift in Sources */,
@@ -564,12 +629,15 @@
 				6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */,
 				946EEE472B159A76007120F9 /* LinksSectionHeaderView.swift in Sources */,
 				946EEE432B14B1B6007120F9 /* DetailBlogData.swift in Sources */,
+				6BF2E5A62B1711D8003F1835 /* NetworkResult.swift in Sources */,
 				6BAD1AC12B0A66E300837590 /* ImageLiterals.swift in Sources */,
+				6BF2E5A42B170FFB003F1835 /* MoyaPlugin.swift in Sources */,
 				949D34F32B1037DB00ECA9CF /* MenuCollectionViewCell.swift in Sources */,
 				6BAD1ACB2B0A683600837590 /* UITextField+.swift in Sources */,
 				6BAD1ACD2B0A684900837590 /* UILabel+.swift in Sources */,
 				6BAD1AAD2B0A664300837590 /* MainSearchViewController.swift in Sources */,
 				6BAD1AC92B0A682200837590 /* UIStackView+.swift in Sources */,
+				6BF2E5B02B17134D003F1835 /* PlaceAPIService.swift in Sources */,
 				CA9DAAA52B11BE0100135337 /* MyFloatingPanelLayout.swift in Sources */,
 				6BAD1AC32B0A66ED00837590 /* FontLiterals.swift in Sources */,
 				9450BD3A2B11B9B9009FEFD8 /* DetailVisitorReviewData.swift in Sources */,
