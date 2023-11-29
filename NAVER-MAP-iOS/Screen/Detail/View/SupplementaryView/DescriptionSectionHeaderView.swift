@@ -49,7 +49,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
                                                                       forColor: .naverMapBlack,
                                                                       text: "알림을 받아보세요!")}()
     private let alarmBtn = UIButton()
-
+    
     private let horizDividingLine2 = UIView()
     
     /// 전체 정보(설명) 스택뷰
@@ -77,21 +77,21 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private lazy var hourHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let hourIc: UIImageView = UIImageView(image: ImageLiterals.ic_clock)
     private lazy var isOpenedLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapNaverGreen,
-                                                         text: "영업 중")}()
+                                                            forColor: .naverMapNaverGreen,
+                                                            text: "영업 중")}()
     private lazy var lastOrderLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapGray7,
-                                                         text: "22:00에 라스트오더")}()
+                                                             forColor: .naverMapGray7,
+                                                             text: "22:00에 라스트오더")}()
     
     /// 전화번호 스택뷰
     private lazy var callHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call)
     private lazy var callNumberLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapGray6,
-                                                         text: "02-3409-2654")}()
+                                                              forColor: .naverMapGray6,
+                                                              text: "02-3409-2654")}()
     private lazy var callCopyLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapSubBlue,
-                                                         text: "복사")}()
+                                                            forColor: .naverMapSubBlue,
+                                                            text: "복사")}()
     
     /// 옵션 스택뷰
     private lazy var optionHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
@@ -117,8 +117,8 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private let editIc: UIImageView = UIImageView(image: ImageLiterals.ic_write)
     private let editArrowIc: UIImageView = UIImageView(image: ImageLiterals.ic_arrow_right_16)
     private lazy var editLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                       forColor: .naverMapSubBlue,
-                                                       text: "정보 수정 제안하기") }()
+                                                        forColor: .naverMapSubBlue,
+                                                        text: "정보 수정 제안하기") }()
     
     private let bottomDividingBar = UIView()
     
@@ -140,7 +140,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     
     @objc
     func showDetailLocation(_gesture: UIGestureRecognizer) {
-        detailLocationView.isHidden = !detailLocationView.isHidden
+        detailLocationView.isHidden.toggle()
     }
 }
 
@@ -152,7 +152,7 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupViews() {
-        self.addSubviews([headerHorizStackView, 
+        self.addSubviews([headerHorizStackView,
                           horizDividingLine1,
                           alarmHorizStackView,
                           alarmBtn,
@@ -182,7 +182,7 @@ private extension DescriptionSectionHeaderView {
                                                  optionHorizStackView,
                                                  urlHorizStackView,
                                                  infoHorizStackView)
-                                                 
+        
         locationHorizStackView.addArrangedSubviews(locationIc, locationVerticStackView)
         locationVerticStackView.addArrangedSubviews(addressHorizStackView, routeHorizStackView)
         addressHorizStackView.addArrangedSubviews(addressLabel, moreAddressBtn)
@@ -237,7 +237,7 @@ private extension DescriptionSectionHeaderView {
             $0.top.equalTo(moreAddressBtn.snp.bottom).offset(3)
             $0.centerX.equalToSuperview()
         }
-
+        
         descriptionStackView.snp.makeConstraints {
             $0.top.equalTo(horizDividingLine2.snp.bottom).offset(18)
             $0.leading.equalToSuperview().inset(18)
