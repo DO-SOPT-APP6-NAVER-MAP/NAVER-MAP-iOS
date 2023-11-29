@@ -347,7 +347,7 @@ extension DetailViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let visibleDescriptionHeaderOffsetY: CGFloat = 503 - 48 // safeArea까지의 거리와 topHeader Height의 차이
-
+        
         if offsetY > 0 {
             detailTopHeader.isHidden = false
             let alpha = min((offsetY - 0) / 60, 1) // y가 0~60일 때, 투명도 조절
@@ -355,7 +355,7 @@ extension DetailViewController: UICollectionViewDelegate {
         } else {
             detailTopHeader.isHidden = true
         }
-
+        
         descriptionHeader.isHidden = offsetY <= visibleDescriptionHeaderOffsetY
     }
 }
@@ -369,17 +369,22 @@ extension DetailViewController: LinksSectionHeaderViewDelegate {
 }
 
 extension DetailViewController: MainSectionHeaderViewDelegate {
-    func scrollToVisitorSection() {
-        guard let layoutAttributes = detailCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 3)) else {
+    
+    func scrollToSection(section: Int) {
+        guard let layoutAttributes = detailCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: section)) else {
             return
         }
         
+        let headerHeight = CGFloat(48 + 45) // 두 헤더의 높이 합
         let headerTop = layoutAttributes.frame.origin.y
-        detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top), animated: true)
+        detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top - headerHeight), animated: true)
+    }
+    
+    func scrollToVisitorSection() {
+        scrollToSection(section: 3)
     }
     
     func scrollToBlogSection() {
-        let indexPath = IndexPath(item: 0, section: 4)
-        detailCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        scrollToSection(section: 4)
     }
 }
