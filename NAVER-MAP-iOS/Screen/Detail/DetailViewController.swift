@@ -229,9 +229,9 @@ extension DetailViewController: UICollectionViewDataSource {
         case 2:
             return menuDummy.count
         case 3:
-            return visitorReviewDummy.count
+            return 3
         case 4:
-            return blogReviewDummy.count
+            return 3
         default:
             return 0
         }
@@ -281,10 +281,12 @@ extension DetailViewController: UICollectionViewDataSource {
                 
             case 3:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VisitorSectionHeaderView.identifier, for: indexPath) as? VisitorSectionHeaderView else { return UICollectionReusableView() }
+                headerView.configHeaderView(forCount: String(visitorReviewDummy.count))
                 return headerView
                 
             case 4:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BlogSectionHeaderView.identifier, for: indexPath) as? BlogSectionHeaderView else { return UICollectionReusableView() }
+                headerView.configHeaderView(forCount: String(blogReviewDummy.count))
                 return headerView
                 
             case 5:

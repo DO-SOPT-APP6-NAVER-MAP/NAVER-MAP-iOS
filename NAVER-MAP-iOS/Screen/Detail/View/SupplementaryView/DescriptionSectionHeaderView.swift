@@ -49,14 +49,14 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
                                                                       forColor: .naverMapBlack,
                                                                       text: "알림을 받아보세요!")}()
     private let alarmBtn = UIButton()
-
+    
     private let horizDividingLine2 = UIView()
     
     /// 전체 정보(설명) 스택뷰
     private let descriptionStackView = UIStackView()
     
     /// 위치 스택뷰
-    private lazy var locationHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
+    private let locationHorizStackView = UIStackView()
     private let locationIc: UIImageView = UIImageView(image: ImageLiterals.ic_location_ios)
     private lazy var locationVerticStackView: UIStackView = { createVerticStackView(forSpacing: 3) }()
     
@@ -64,7 +64,8 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private lazy var addressLabel: UILabel = { createLabel(forFont: .bodyButton,
                                                            forColor: .naverMapGray4,
                                                            text: "서울 광진구 광나루로17길 10 2층")}()
-    private let moreAddressIc = UIButton()
+    private let moreAddressBtn = UIButton()
+    private let detailLocationView = DetailLocationView()
     
     private lazy var routeHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
     private let metroIc: UIImageView = UIImageView(image: ImageLiterals.ic_number_circle)
@@ -76,21 +77,21 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private lazy var hourHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let hourIc: UIImageView = UIImageView(image: ImageLiterals.ic_clock)
     private lazy var isOpenedLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapNaverGreen,
-                                                         text: "영업 중")}()
+                                                            forColor: .naverMapNaverGreen,
+                                                            text: "영업 중")}()
     private lazy var lastOrderLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapGray7,
-                                                         text: "22:00에 라스트오더")}()
+                                                             forColor: .naverMapGray7,
+                                                             text: "22:00에 라스트오더")}()
     
     /// 전화번호 스택뷰
     private lazy var callHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call)
     private lazy var callNumberLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapGray6,
-                                                         text: "02-3409-2654")}()
+                                                              forColor: .naverMapGray6,
+                                                              text: "02-3409-2654")}()
     private lazy var callCopyLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapSubBlue,
-                                                         text: "복사")}()
+                                                            forColor: .naverMapSubBlue,
+                                                            text: "복사")}()
     
     /// 옵션 스택뷰
     private lazy var optionHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
@@ -116,8 +117,8 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private let editIc: UIImageView = UIImageView(image: ImageLiterals.ic_write)
     private let editArrowIc: UIImageView = UIImageView(image: ImageLiterals.ic_arrow_right_16)
     private lazy var editLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                       forColor: .naverMapSubBlue,
-                                                       text: "정보 수정 제안하기") }()
+                                                        forColor: .naverMapSubBlue,
+                                                        text: "정보 수정 제안하기") }()
     
     private let bottomDividingBar = UIView()
     
@@ -130,10 +131,16 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
         setupViews()
         setupConstraints()
         setupProperties()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    func showDetailLocation(_gesture: UIGestureRecognizer) {
+        detailLocationView.isHidden.toggle()
     }
 }
 
@@ -145,16 +152,19 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupViews() {
-        self.addSubviews([headerHorizStackView, 
+        self.addSubviews([headerHorizStackView,
                           horizDividingLine1,
                           alarmHorizStackView,
                           alarmBtn,
                           horizDividingLine2,
+                          locationIc,
+                          locationVerticStackView,
                           descriptionStackView,
+                          detailLocationView,
                           editInfoHorizStackView,
                           bottomDividingBar])
         
-        // headerHorizStackView
+        /// headerHorizStackView
         headerHorizStackView.addArrangedSubviews(homeStackView, menuStackView, reviewStackView)
         
         homeStackView.addArrangedSubviews(homeLabel, homeIndicator)
@@ -163,11 +173,10 @@ private extension DescriptionSectionHeaderView {
         
         reviewStackView.addArrangedSubviews(reviewLabel, reviewIndicator)
         
-        // alarmHorizStackView
+        /// alarmHorizStackView
         alarmHorizStackView.addArrangedSubviews(alarmBoldDescriptLabel, alarmPlainDescriptLabel)
         
-        // descriptionStackView
-        descriptionStackView.addArrangedSubviews(locationHorizStackView, 
+        descriptionStackView.addArrangedSubviews(locationHorizStackView,
                                                  hourHorizStackView,
                                                  callHorizStackView,
                                                  optionHorizStackView,
@@ -176,7 +185,7 @@ private extension DescriptionSectionHeaderView {
         
         locationHorizStackView.addArrangedSubviews(locationIc, locationVerticStackView)
         locationVerticStackView.addArrangedSubviews(addressHorizStackView, routeHorizStackView)
-        addressHorizStackView.addArrangedSubviews(addressLabel, moreAddressIc)
+        addressHorizStackView.addArrangedSubviews(addressLabel, moreAddressBtn)
         routeHorizStackView.addArrangedSubviews(metroIc, routeLabel)
         
         hourHorizStackView.addArrangedSubviews(hourIc, isOpenedLabel, lastOrderLabel)
@@ -185,7 +194,7 @@ private extension DescriptionSectionHeaderView {
         urlHorizStackView.addArrangedSubviews(urlIc, urlLabel)
         infoHorizStackView.addArrangedSubviews(infoIc, infoLabel)
         
-        // editInfoHorizStackView
+        /// editInfoHorizStackView
         editInfoHorizStackView.addArrangedSubviews(editIc, editLabel, editArrowIc)
     }
     
@@ -223,6 +232,12 @@ private extension DescriptionSectionHeaderView {
             $0.centerX.equalToSuperview()
         }
         
+        detailLocationView.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(moreAddressBtn.snp.bottom).offset(3)
+            $0.centerX.equalToSuperview()
+        }
+        
         descriptionStackView.snp.makeConstraints {
             $0.top.equalTo(horizDividingLine2.snp.bottom).offset(18)
             $0.leading.equalToSuperview().inset(18)
@@ -248,6 +263,13 @@ private extension DescriptionSectionHeaderView {
             $0.spacing = 12
             $0.distribution = .equalSpacing
             $0.alignment = .leading
+        }
+        
+        locationHorizStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 10
+            $0.distribution = .equalSpacing
+            $0.alignment = .top
         }
         
         horizDividingLine1.do {
@@ -276,7 +298,11 @@ private extension DescriptionSectionHeaderView {
             $0.backgroundColor = .naverMapBlueGray2
         }
         
-        moreAddressIc.do {
+        detailLocationView.do {
+            $0.isHidden = true
+        }
+        
+        moreAddressBtn.do {
             $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
         }
         
@@ -290,7 +316,12 @@ private extension DescriptionSectionHeaderView {
         }
     }
     
+    func setAddTarget() {
+        moreAddressBtn.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
+    }
+    
     // MARK: - create UI components method
+    
     func createVerticStackView(forSpacing: CGFloat) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
