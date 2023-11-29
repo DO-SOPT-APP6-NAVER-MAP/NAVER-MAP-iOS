@@ -64,7 +64,8 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private lazy var addressLabel: UILabel = { createLabel(forFont: .bodyButton,
                                                            forColor: .naverMapGray4,
                                                            text: "서울 광진구 광나루로17길 10 2층")}()
-    private let moreAddressIc = UIButton()
+    private let moreAddressBtn = UIButton()
+    private let detailLocationView = DetailLocationView()
     
     private lazy var routeHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
     private let metroIc: UIImageView = UIImageView(image: ImageLiterals.ic_number_circle)
@@ -130,10 +131,16 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
         setupViews()
         setupConstraints()
         setupProperties()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    func showDetailLocation(_gesture: UIGestureRecognizer) {
+        detailLocationView.isHidden = !detailLocationView.isHidden
     }
 }
 
@@ -173,10 +180,10 @@ private extension DescriptionSectionHeaderView {
                                                  optionHorizStackView,
                                                  urlHorizStackView,
                                                  infoHorizStackView)
-        
+                                                 
         locationHorizStackView.addArrangedSubviews(locationIc, locationVerticStackView)
         locationVerticStackView.addArrangedSubviews(addressHorizStackView, routeHorizStackView)
-        addressHorizStackView.addArrangedSubviews(addressLabel, moreAddressIc)
+        addressHorizStackView.addArrangedSubviews(addressLabel, moreAddressBtn)
         routeHorizStackView.addArrangedSubviews(metroIc, routeLabel)
         
         hourHorizStackView.addArrangedSubviews(hourIc, isOpenedLabel, lastOrderLabel)
@@ -223,6 +230,12 @@ private extension DescriptionSectionHeaderView {
             $0.centerX.equalToSuperview()
         }
         
+        detailLocationView.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(moreAddressBtn.snp.bottom).offset(3)
+            $0.centerX.equalToSuperview()
+        }
+
         descriptionStackView.snp.makeConstraints {
             $0.top.equalTo(horizDividingLine2.snp.bottom).offset(18)
             $0.leading.equalToSuperview().inset(18)
@@ -276,7 +289,11 @@ private extension DescriptionSectionHeaderView {
             $0.backgroundColor = .naverMapBlueGray2
         }
         
-        moreAddressIc.do {
+        detailLocationView.do {
+            $0.isHidden = true
+        }
+        
+        moreAddressBtn.do {
             $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
         }
         
@@ -290,7 +307,12 @@ private extension DescriptionSectionHeaderView {
         }
     }
     
+    func setAddTarget() {
+        moreAddressBtn.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
+    }
+    
     // MARK: - create UI components method
+    
     func createVerticStackView(forSpacing: CGFloat) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
