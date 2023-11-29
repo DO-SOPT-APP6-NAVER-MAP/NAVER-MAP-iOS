@@ -16,6 +16,7 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     // MARK: - UI Properties
     
     /// 상단 헤더 뷰
+    private let headerView = UIView()
     private lazy var headerHorizStackView: UIStackView = { createHorizStackView(forSpacing: 15) }()
     private let horizDividingLine1 = UIView()
     
@@ -152,7 +153,7 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupViews() {
-        self.addSubviews([headerHorizStackView,
+        self.addSubviews([headerView,
                           horizDividingLine1,
                           alarmHorizStackView,
                           alarmBtn,
@@ -163,6 +164,8 @@ private extension DescriptionSectionHeaderView {
                           detailLocationView,
                           editInfoHorizStackView,
                           bottomDividingBar])
+        
+        headerView.addSubview(headerHorizStackView)
         
         /// headerHorizStackView
         headerHorizStackView.addArrangedSubviews(homeStackView, menuStackView, reviewStackView)
@@ -199,10 +202,17 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupConstraints() {
+        
+        headerView.snp.makeConstraints {
+            $0.width.equalTo(getDeviceWidth())
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(45)
+            $0.top.equalToSuperview()
+        }
+        
         headerHorizStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.height.equalTo(55)
-            $0.width.equalTo(312)
+            $0.top.equalTo(headerView).offset(10)
+            $0.bottom.equalTo(homeStackView.snp.bottom)
             $0.centerX.equalToSuperview()
         }
         
@@ -258,6 +268,11 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupProperties() {
+        
+        headerView.do {
+            $0.backgroundColor = .naverMapWhite
+        }
+        
         descriptionStackView.do {
             $0.axis = .vertical
             $0.spacing = 12
