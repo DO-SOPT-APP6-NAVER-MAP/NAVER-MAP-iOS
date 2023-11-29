@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
+    private let detailTopHeaderView = DetailTopHeaderView()
     
     // MARK: - LifeCycle
     
@@ -37,12 +38,18 @@ private extension DetailViewController {
     func setupViews() {
         self.view.backgroundColor = .naverMapGray1
         self.navigationController?.isNavigationBarHidden = true
-        view.addSubviews([detailCollectionView])
+        view.addSubviews([detailCollectionView, detailTopHeaderView])
     }
     
     func setupConstraints() {
         detailCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        detailTopHeaderView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     
@@ -328,7 +335,20 @@ extension DetailViewController: UICollectionViewDataSource {
 
 // MARK: - CollectionVeiw Delegate
 
-extension DetailViewController: UICollectionViewDelegate { }
+extension DetailViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+
+        if offsetY > 0 { // 스크롤 위치가 100 이상일 때
+            detailTopHeaderView.isHidden = false
+            let alpha = min((offsetY - 100) / 50, 1) // 100 이상, 150 이하에서 점차 증가
+            detailTopHeaderView.alpha = alpha
+        } else {
+            detailTopHeaderView.isHidden = true
+        }
+    }
+
+}
 
 // MARK: - LinksSectionHeaderDelegate
 
