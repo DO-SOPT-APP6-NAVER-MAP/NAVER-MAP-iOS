@@ -346,7 +346,7 @@ extension DetailViewController: UICollectionViewDelegate {
     /// 스크롤 이벤트에 반응하는 메서드
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let visibleDescriptionHeaderOffsetY: CGFloat = 503 - 48 // safeArea까지의 거리와 topHeader Height의 차이
+        let visibleDescriptionHeaderOffsetY: CGFloat = 503 - 40 // safeArea까지의 거리와 topHeader Height의 차이
         
         if offsetY > 0 {
             detailTopHeader.isHidden = false
