@@ -18,6 +18,8 @@ class DetailViewController: UIViewController {
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
+    private let detailTopHeader = DetailTopHeaderView()
+    private let descriptionHeader = DescriptionTopHeaderView()
     
     // MARK: - LifeCycle
     
@@ -37,12 +39,23 @@ private extension DetailViewController {
     func setupViews() {
         self.view.backgroundColor = .naverMapGray1
         self.navigationController?.isNavigationBarHidden = true
-        view.addSubviews([detailCollectionView])
+        view.addSubviews([detailCollectionView, detailTopHeader, descriptionHeader])
     }
     
     func setupConstraints() {
         detailCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        detailTopHeader.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        descriptionHeader.snp.makeConstraints {
+            $0.top.equalTo(detailTopHeader.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     
@@ -82,7 +95,7 @@ private extension DetailViewController {
     }
     
     func createMainSectionHeader(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(500))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(510))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return header
     }
@@ -328,7 +341,24 @@ extension DetailViewController: UICollectionViewDataSource {
 
 // MARK: - CollectionVeiw Delegate
 
-extension DetailViewController: UICollectionViewDelegate { }
+extension DetailViewController: UICollectionViewDelegate {
+    
+    /// 스크롤 이벤트에 반응하는 메서드
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let visibleDescriptionHeaderOffsetY: CGFloat = 503 - 40 // safeArea까지의 거리와 topHeader Height의 차이
+        
+        if offsetY > 0 {
+            detailTopHeader.isHidden = false
+            let alpha = min((offsetY - 0) / 60, 1) // y가 0~60일 때, 투명도 조절
+            detailTopHeader.alpha = alpha
+        } else {
+            detailTopHeader.isHidden = true
+        }
+        
+        descriptionHeader.isHidden = offsetY <= visibleDescriptionHeaderOffsetY
+    }
+}
 
 // MARK: - LinksSectionHeaderDelegate
 
@@ -339,17 +369,22 @@ extension DetailViewController: LinksSectionHeaderViewDelegate {
 }
 
 extension DetailViewController: MainSectionHeaderViewDelegate {
-    func scrollToVisitorSection() {
-        guard let layoutAttributes = detailCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 3)) else {
+    
+    func scrollToSection(section: Int) {
+        guard let layoutAttributes = detailCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: section)) else {
             return
         }
         
+        let headerHeight = CGFloat(48 + 45) // 두 헤더의 높이 합
         let headerTop = layoutAttributes.frame.origin.y
-        detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top), animated: true)
+        detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top - headerHeight), animated: true)
+    }
+    
+    func scrollToVisitorSection() {
+        scrollToSection(section: 3)
     }
     
     func scrollToBlogSection() {
-        let indexPath = IndexPath(item: 0, section: 4)
-        detailCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        scrollToSection(section: 4)
     }
 }
