@@ -9,6 +9,8 @@ import UIKit
 
 final class FindingRouteViewController: UIViewController {
     
+    // MARK: - Properties
+
     private var placdId: Int
     private var placeName: String 
     private var routeData: [FindingRouteModel] = [FindingRouteModel]() {
@@ -42,9 +44,16 @@ final class FindingRouteViewController: UIViewController {
         
         hideNavigationBar()
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         fetchNetworkResult()
     }
 }
+
+// MARK: - private extension
 
 private extension FindingRouteViewController {
     func setupView() {
@@ -69,7 +78,11 @@ private extension FindingRouteViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension FindingRouteViewController: UICollectionViewDelegate { }
+
+// MARK: - UICollectionViewDataSource
 
 extension FindingRouteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
