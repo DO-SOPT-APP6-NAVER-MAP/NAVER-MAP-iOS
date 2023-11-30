@@ -131,7 +131,13 @@ extension MainSearchViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UITableViewDelegate
 
-extension MainSearchViewController: UITableViewDelegate { }
+extension MainSearchViewController: UITableViewDelegate { 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: - 화면 전환 (id값 전달)
+        let searchResultVC = SearchResultViewController()
+        print(searchResultData[indexPath.row].locationId)
+    }
+}
 
 // MARK: - UITableViewDataSource
 
