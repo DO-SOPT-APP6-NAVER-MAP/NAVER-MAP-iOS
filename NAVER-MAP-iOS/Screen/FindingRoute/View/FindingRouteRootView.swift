@@ -67,6 +67,16 @@ extension FindingRouteRootView {
         findRouteCollectionView.delegate = forDelegate
         findRouteCollectionView.dataSource = forDatasource
     }
+    
+    func setupArriveText(forText: String) {
+        searchTopArriveTextField.do {
+            $0.text = forText
+        }
+    }
+    
+    func reloadCollectionView() {
+        findRouteCollectionView.reloadData()
+    }
 }
 
 private extension FindingRouteRootView {
