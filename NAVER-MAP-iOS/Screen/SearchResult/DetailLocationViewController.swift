@@ -1,5 +1,6 @@
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -50,11 +51,13 @@ class DetailLocationViewController: UIViewController {
     // MARK: Properties
 
     private var hidden = true
-
+    var placeId: Int = 1
+    private var searchResultSimpleData: GetPlaceResultSimpleResponseData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchNetworkResult()
         setupView()
         setupLayout()
         setupStyle()
@@ -235,19 +238,19 @@ class DetailLocationViewController: UIViewController {
         order.setImage(ImageLiterals.caption_naverorder, for: .normal)
         
         ///검색결과 이름 & 카테고리
-        name.setupLabel(font: .title2, text: "알고", textColor: .naverMapSubBlue)
-        category.setupLabel(font: .body10, text: "스파게티, 파스타전문", textColor: .naverMapGray4)
+        name.setupLabel(font: .title2, text: "", textColor: .naverMapSubBlue)
+        category.setupLabel(font: .body10, text: "", textColor: .naverMapGray4)
         
         ///검색 결과 이름 & 카테고리
-        detail.setupLabel(font: .body7, text: "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집", textColor: .naverMapGray6, alignment: .left)
+        detail.setupLabel(font: .body7, text: "", textColor: .naverMapGray6, alignment: .left)
         
         ///검색 결과 위치정보
-        distance.setupLabel(font: .body3, text: "936m", textColor: .naverMapGray6)
+        distance.setupLabel(font: .body3, text: "", textColor: .naverMapGray6)
         dot.do{
             $0.layer.cornerRadius = 1
             $0.backgroundColor = .naverMapGray3
         }
-        location.setupLabel(font: .bodyButton, text: "서울 광진구", textColor: .naverMapGray6)
+        location.setupLabel(font: .bodyButton, text: "", textColor: .naverMapGray6)
         dropBtn.do{
             $0.setImage(ImageLiterals.ic_arrow_down, for: .normal)
             $0.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
@@ -256,13 +259,13 @@ class DetailLocationViewController: UIViewController {
 
         ///검색 결과 영업 정보
         status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
-        lastOrder.setupLabel(font: .body7, text: "22:00에 라스트오더", textColor: .naverMapGray7)
+        lastOrder.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
 
         ///리뷰 정보
         reviewIcon.setImage(ImageLiterals.ic_star_red, for: .normal)
-        score.setupLabel(font: .body7, text: "4.82", textColor: .naverMapGray7)
-        visitorReview.setupRoundedLabel(text: "방문자리뷰 288", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
-        blogReview.setupRoundedLabel(text: "블로그리뷰 316", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
+        score.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
+        visitorReview.setupRoundedLabel(text: "", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
+        blogReview.setupRoundedLabel(text: "", font: .body7, textColor: .naverMapGray7, alignment: .center, bgColor: UIColor.naverMapReview5, borderColor: UIColor.naverMapReview4, borderWidth: 1, radius: 3)
         
         /// 리뷰 이미지
         imgGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 4)
@@ -306,3 +309,36 @@ class DetailLocationViewController: UIViewController {
     }
 }
 
+private extension DetailLocationViewController {
+    func fetchNetworkResult() {
+        NetworkService.shared.placeService.getPlaceResultSimple(forPlaceId: self.placeId) {
+            result in
+            switch result {
+            case .success(let response):
+                if let responseData = response?.data {
+                    self.searchResultSimpleData = responseData
+                    self.bindData()
+                    print("data\(String(describing: self.searchResultSimpleData))")
+                }
+            default: break
+            }
+        }
+    }
+    
+    func bindData() {
+        self.name.text = searchResultSimpleData?.name
+        self.category.text = searchResultSimpleData?.category
+        self.detail.text = searchResultSimpleData?.description
+        self.distance.text = searchResultSimpleData?.distance
+        self.location.text = searchResultSimpleData?.address
+        self.lastOrder.text = (searchResultSimpleData?.closeTime ?? "") + "에 라스트오더"
+        self.score.text = searchResultSimpleData?.stars
+        guard let visitorReview = searchResultSimpleData?.visitorReview else {return}
+        self.visitorReview.text = "방문자리뷰 \(visitorReview)"
+        guard let blogReview = searchResultSimpleData?.blogReview else {return}
+        self.blogReview.text = "블로그리뷰 \(blogReview)"
+        self.img1.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[0].previewImgUrl ?? ""))
+        self.img2.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[1].previewImgUrl ?? ""))
+        self.img3.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[2].previewImgUrl ?? ""))
+    }
+}
