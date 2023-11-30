@@ -309,7 +309,12 @@ class DetailLocationViewController: UIViewController {
     }
 }
 
+// MARK: private extenstion
+
 private extension DetailLocationViewController {
+    
+    // MARK: -서버 통신 함수
+
     func fetchNetworkResult() {
         NetworkService.shared.placeService.getPlaceResultSimple(forPlaceId: self.placeId) {
             result in
@@ -324,6 +329,8 @@ private extension DetailLocationViewController {
             }
         }
     }
+    
+    // MARK: -api에서 데이터를 받아온 후 라벨들과 이미지에 세팅해주는 함수
     
     func bindData() {
         self.name.text = searchResultSimpleData?.name
