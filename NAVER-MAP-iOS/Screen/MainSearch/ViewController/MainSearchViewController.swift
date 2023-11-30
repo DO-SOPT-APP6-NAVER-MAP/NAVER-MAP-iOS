@@ -12,6 +12,11 @@ final class MainSearchViewController: UIViewController {
     // MARK: - Properties
 
     private var searchResultString: String = ""
+    private var searchNetworkData = [GetPlaceSearchResponseData]() {
+        didSet {
+            rootView.reloadView()
+        }
+    }
     private var searchResultData = [MainSearchLocationModel]() {
         didSet {
             rootView.reloadView()
@@ -37,6 +42,7 @@ final class MainSearchViewController: UIViewController {
         hideNavigationBar()
         hideKeyboard()
         setupView()
+        fetchNetworkResult()
     }
 }
 
@@ -49,14 +55,29 @@ private extension MainSearchViewController {
         rootView.setupTextField(forDelegate: self)
     }
     
-    // TODO: - API 부착 후 삭제 예정
+    func fetchNetworkResult() {
+        NetworkService.shared.placeService.getPlaceSearch(forPlaceName: "알고") { result in
+            switch result {
+            case .success(let response):
+                if let responseData = response?.data {
+                    self.searchNetworkData = responseData
+                }
+            default: break
+            }
+        }
+    }
+    
     func fetchSearchResult(forText: String) {
         var data = [MainSearchLocationModel]()
-        let dummyData = MainSearchLocationModel.fetchDummyData()
         
-        dummyData.forEach {
-            if $0.locationName.contains(forText) {
-                data.append($0)
+        searchNetworkData.forEach {
+            if $0.name.contains(forText) {
+                data.append(MainSearchLocationModel(locationId: $0.placeId,
+                                                    locationName: $0.name,
+                                                    location: $0.detailAddress,
+                                                    reviewCount: $0.visitorReview,
+                                                    category: $0.category,
+                                                    distance: $0.distance))
             }
         }
         searchResultData = data
