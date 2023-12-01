@@ -14,7 +14,7 @@ extension GetLocationService: TargetType {
     var baseURL: URL {
         guard let urlString = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.naverURL) as? String,
               let url = URL(string: urlString) else {
-            fatalError("🚨NAVER-MAP URL을 찾을 수 없습니다🚨")
+            fatalError("🚨NAVER URL을 찾을 수 없습니다🚨")
         }
         return url
     }
@@ -44,7 +44,9 @@ extension GetLocationService: TargetType {
     
     var headers: [String : String]? {
         let clientId = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.clientId) as? String ?? ""
+        print("key \(clientId)")
         let apiKey = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.apiKey) as? String ?? ""
+        print("key \(apiKey)")
         return ["Content-type": "application/json", "X-NCP-APIGW-API-KEY-ID": clientId, "X-NCP-APIGW-API-KEY": apiKey]
     }
 }

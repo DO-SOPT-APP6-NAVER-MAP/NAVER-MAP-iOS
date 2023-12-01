@@ -10,7 +10,7 @@ class DetailLocationView: UIView {
     private var entireStackView = UIStackView()
     private var containerView1 = UIView()
     private var roadNameTitleLabel = UILabel()
-    private var roadNameLabel = UILabel()
+    lazy var roadNameLabel = UILabel()
     private var copyBtn1 = UIButton()
     private var containerView2 = UIView()
     private var localNumTitleLabel = UILabel()
