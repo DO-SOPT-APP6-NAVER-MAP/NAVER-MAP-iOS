@@ -12,11 +12,10 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     // MARK: - Properties
     
     static let identifier = "DescriptionSectionHeaderView"
-    
+
     // MARK: - UI Properties
     
     /// 상단 헤더 뷰
-    private let headerView = UIView()
     private lazy var headerHorizStackView: UIStackView = { createHorizStackView(forSpacing: 15) }()
     private let horizDividingLine1 = UIView()
     
@@ -165,8 +164,6 @@ private extension DescriptionSectionHeaderView {
                           editInfoHorizStackView,
                           bottomDividingBar])
         
-        headerView.addSubview(headerHorizStackView)
-        
         /// headerHorizStackView
         headerHorizStackView.addArrangedSubviews(homeStackView, menuStackView, reviewStackView)
         
@@ -202,16 +199,8 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupConstraints() {
-        
-        headerView.snp.makeConstraints {
-            $0.width.equalTo(getDeviceWidth())
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(45)
-            $0.top.equalToSuperview()
-        }
-        
         headerHorizStackView.snp.makeConstraints {
-            $0.top.equalTo(headerView).offset(10)
+            $0.top.equalToSuperview().inset(10)
             $0.bottom.equalTo(homeStackView.snp.bottom)
             $0.centerX.equalToSuperview()
         }
@@ -268,11 +257,13 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupProperties() {
-        
-        headerView.do {
-            $0.backgroundColor = .naverMapWhite
-        }
-        
+        addressLabel.setupLabel(font: .bodyButton, textColor: .naverMapGray4)
+        routeLabel.setupLabel(font: .bodyButton, textColor: .naverMapGray4)
+        callNumberLabel.setupLabel(font: .bodyButton, textColor: .naverMapGray6)
+        lastOrderLabel.setupLabel(font: .bodyButton, textColor: .naverMapGray7)
+        optionLabel.setupLabel(font: .bodyButton, textColor: .naverMapGray6)
+        urlLabel.setupLabel(font: .bodyButton, textColor: .naverMapSubBlue)
+
         descriptionStackView.do {
             $0.axis = .vertical
             $0.spacing = 12

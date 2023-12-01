@@ -127,11 +127,11 @@ private extension BlogReviewCollectionViewCell {
         reviewImgCntLabel.setupLabel(font: .button1, textColor: .naverMapWhite)
         
         reviewTitleLabel.do {
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         reviewContentLabel.do {
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         reviewImg.do {

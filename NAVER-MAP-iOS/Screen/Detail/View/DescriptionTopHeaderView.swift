@@ -92,8 +92,8 @@ private extension DescriptionTopHeaderView {
         }
         
         homeLabel.setupLabel(font: .body1, text: "홈", textColor: .naverMapBlack)
-        menuLabel.setupLabel(font: .body1, text: "메뉴", textColor: .naverMapBlack)
-        reviewLabel.setupLabel(font: .body1, text: "리뷰", textColor: .naverMapBlack)
+        menuLabel.setupLabel(font: .body1, text: "메뉴", textColor: .naverMapGray4)
+        reviewLabel.setupLabel(font: .body1, text: "리뷰", textColor: .naverMapGray4)
         
         horizDividingLine.snp.makeConstraints {
             $0.top.equalTo(homeIndicator.snp.bottom)
