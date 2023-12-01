@@ -1,11 +1,10 @@
 # NAVER-MAP-iOS
 @Naver_Map_Official
-# SOPKATHON-iOS
 
 
 ### 📱 시연영상
 
-| <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/95fece49-cdc0-43e9-8873-d2cdfb668e15" width = "250" height = "250">|  <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/75ad26ba-95c6-4bf3-a205-687c8ac6f04e" width = "250"  height = "250"> | <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/667cf5c3-cccd-402e-b467-1180b17cee65" width = "250"  height = "250"> | <img src =  "" width = "250"  height = "250"> |
+| <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/95fece49-cdc0-43e9-8873-d2cdfb668e15" width = "250">|  <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/75ad26ba-95c6-4bf3-a205-687c8ac6f04e" width = "250"> | <img src = "https://github.com/DO-SOPT-APP6-NAVER-MAP/NAVER-MAP-iOS/assets/105407130/667cf5c3-cccd-402e-b467-1180b17cee65" width = "250"> |
 
 
 ### 👩‍💻 About Developers
