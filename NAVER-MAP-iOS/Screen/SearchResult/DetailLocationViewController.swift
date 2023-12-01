@@ -365,6 +365,8 @@ private extension DetailLocationViewController {
         self.detail.text = data.description
         self.distance.text = data.distance
         self.location.text = data.address
+        self.detailLocationView.roadNameLabel.text = data.rodeNameAddress
+        self.detailLocationView.localNumNameLabel.text = data.localAddress
         self.lastOrder.text = data.closeTime + "에 라스트오더"
         self.score.text = data.stars
         self.visitorReview.text = "방문자리뷰 \(data.visitorReview)"

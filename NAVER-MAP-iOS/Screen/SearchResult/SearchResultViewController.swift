@@ -50,7 +50,9 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setupView()
         setupLayout()
         setupStyle()
@@ -237,8 +239,18 @@ class SearchResultViewController: UIViewController {
             $0.changePanelStyle()
             $0.isModalInPresentation = true
         }
-        getLocationData(location: detailLocationVC.detailLocationView.roadNameLabel.text!, name: self.placeName)
-        print("getLocationData \(detailLocationVC.detailLocationView.roadNameLabel.text!) | \(detailLocationVC.name.text!)")
+        
+        var location = self.placeName
+        switch location {
+        case "알고": location = "광나루로17길 10"
+        case "알고리즘": location = "강남구 도산대로49길 8"
+        case "알고랩": location = "서울특별시 강남구 봉은사로 331 9층"
+        case "알고리고": location = "서울특별시 강남구 봉은사로 319 내외빌딩"
+        default: location = "강남구 도산대로49길 8"
+        }
+
+        getLocationData(location: location, name: self.placeName)
+        print("getLocationData \(location) | \(self.placeName)")
     }
     
     ///뒤로가기 버튼 이벤트
