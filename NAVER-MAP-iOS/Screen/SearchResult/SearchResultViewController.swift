@@ -32,8 +32,19 @@ class SearchResultViewController: UIViewController {
    
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-    var placeId: Int = 1
+    private var placeId: Int
     private var locationManager = CLLocationManager()
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int) {
+        self.placeId = forPlaceId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,8 +220,8 @@ class SearchResultViewController: UIViewController {
     // TODO: 바텀시트컨트롤러 추후 수정
     
     func setBottomSheetPanel() {
-        let detailLocationVC = DetailLocationViewController()
-        detailLocationVC.placeId = self.placeId
+        let detailLocationVC = DetailLocationViewController(forPlaceId: self.placeId)
+//        detailLocationVC.placeId = self.placeId
         bottomSheetPanel.do{
             $0.delegate = self
             $0.set(contentViewController: detailLocationVC)
@@ -229,7 +240,7 @@ class SearchResultViewController: UIViewController {
 extension SearchResultViewController: FloatingPanelControllerDelegate {
     func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
         if fpc.state == .full {
-            let detailVC = DetailViewController()
+            let detailVC = DetailViewController(forPlaceId: self.placeId)
             self.navigationController?.pushViewController(detailVC, animated: false)
         }
     }

@@ -51,8 +51,19 @@ class DetailLocationViewController: UIViewController {
     // MARK: Properties
 
     private var hidden = true
-    var placeId: Int = 1
+    private var placeId: Int
     private var searchResultSimpleData: GetPlaceResultSimpleResponseData?
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int) {
+        self.placeId = forPlaceId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -269,9 +280,9 @@ class DetailLocationViewController: UIViewController {
         
         /// 리뷰 이미지
         imgGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 4)
-        img1.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
-        img2.setupImageView(image: ImageLiterals.img_beating_heart, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
-        img3.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
+        img1.setupImageView(image: ImageLiterals.ic_remove, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
+        img2.setupImageView(image: ImageLiterals.ic_remove, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
+        img3.setupImageView(image: ImageLiterals.ic_remove, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
         
         ///구분선
         divider.do{
@@ -302,7 +313,7 @@ class DetailLocationViewController: UIViewController {
     ///바텀시트 탭 시 상세 뷰로 전환하는 이벤트
     @objc
     func showDetailView(sender: UITapGestureRecognizer) {
-        let detailVC = DetailViewController()
+        let detailVC = DetailViewController(forPlaceId: self.placeId)
         detailVC.modalPresentationStyle = .fullScreen
         self.present(detailVC, animated: true)
         print("move to detail")
@@ -333,19 +344,23 @@ private extension DetailLocationViewController {
     // MARK: -api에서 데이터를 받아온 후 라벨들과 이미지에 세팅해주는 함수
     
     func bindData() {
-        self.name.text = searchResultSimpleData?.name
-        self.category.text = searchResultSimpleData?.category
-        self.detail.text = searchResultSimpleData?.description
-        self.distance.text = searchResultSimpleData?.distance
-        self.location.text = searchResultSimpleData?.address
-        self.lastOrder.text = (searchResultSimpleData?.closeTime ?? "") + "에 라스트오더"
-        self.score.text = searchResultSimpleData?.stars
-        guard let visitorReview = searchResultSimpleData?.visitorReview else {return}
-        self.visitorReview.text = "방문자리뷰 \(visitorReview)"
-        guard let blogReview = searchResultSimpleData?.blogReview else {return}
-        self.blogReview.text = "블로그리뷰 \(blogReview)"
-        self.img1.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[0].previewImgUrl ?? ""))
-        self.img2.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[1].previewImgUrl ?? ""))
-        self.img3.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[2].previewImgUrl ?? ""))
+        guard let data = searchResultSimpleData else {return}
+        self.name.text = data.name
+        self.category.text = data.category
+        self.detail.text = data.description
+        self.distance.text = data.distance
+        self.location.text = data.address
+        self.lastOrder.text = data.closeTime + "에 라스트오더"
+        self.score.text = data.stars
+        self.visitorReview.text = "방문자리뷰 \(data.visitorReview)"
+        self.blogReview.text = "블로그리뷰 \(data.blogReview)"
+        
+        // MARK: -이미지가 없는 경우 x 이미지로 대체
+        
+        if !data.previewImgs.isEmpty {
+            self.img1.kf.setImage(with: URL(string: data.previewImgs[0].previewImgUrl))
+            self.img2.kf.setImage(with: URL(string: data.previewImgs[1].previewImgUrl))
+            self.img3.kf.setImage(with: URL(string: data.previewImgs[2].previewImgUrl))
+        }
     }
 }

@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     // MARK: - Initializer
     
     init(forPlaceId: Int) {
-        self.placeId = 1
+        self.placeId = forPlaceId
         super.init(nibName: nil, bundle: nil)
     }
     
