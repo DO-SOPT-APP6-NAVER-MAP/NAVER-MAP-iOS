@@ -32,12 +32,27 @@ class SearchResultViewController: UIViewController {
    
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-    var placeId: Int = 1
+    private var placeId: Int
     private var locationManager = CLLocationManager()
+    private var placeName: String
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int, forPlaceName: String) {
+        self.placeId = forPlaceId
+        self.placeName = forPlaceName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setupView()
         setupLayout()
         setupStyle()
@@ -123,7 +138,10 @@ class SearchResultViewController: UIViewController {
             $0.layer.borderWidth = 1
         }
         topStackView.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .equalSpacing)
-        backBtn.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
+        backBtn.do{
+            $0.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
+            $0.addTarget(self, action: #selector(goToMainSearchVC), for: .touchUpInside)
+        }
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
             $0.font = .title4
@@ -209,8 +227,7 @@ class SearchResultViewController: UIViewController {
     // TODO: 바텀시트컨트롤러 추후 수정
     
     func setBottomSheetPanel() {
-        let detailLocationVC = DetailLocationViewController()
-        detailLocationVC.placeId = self.placeId
+        let detailLocationVC = DetailLocationViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
         bottomSheetPanel.do{
             $0.delegate = self
             $0.set(contentViewController: detailLocationVC)
@@ -222,14 +239,41 @@ class SearchResultViewController: UIViewController {
             $0.changePanelStyle()
             $0.isModalInPresentation = true
         }
-        getLocationData(location: detailLocationVC.detailLocationView.roadNameLabel.text!, name: detailLocationVC.name.text!)
+        
+        var location = self.placeName
+        switch location {
+        case "알고": location = "광나루로17길 10"
+        case "알고리즘": location = "강남구 도산대로49길 8"
+        case "알고랩": location = "서울특별시 강남구 봉은사로 331 9층"
+        case "알고리고": location = "서울특별시 강남구 봉은사로 319 내외빌딩"
+        default: location = "강남구 도산대로49길 8"
+        }
+
+        getLocationData(location: location, name: self.placeName)
+        print("getLocationData \(location) | \(self.placeName)")
+    }
+    
+    ///뒤로가기 버튼 이벤트
+    ///버튼 클릭 시 MainSearchView로 이동
+    @objc
+    func goToMainSearchVC(_gesture: UIGestureRecognizer) {
+        let mainSearchVC = MainSearchViewController()
+        self.navigationController?.pushViewController(mainSearchVC, animated: true)
+    }
+    
+    ///도착 버튼 이벤트
+    ///버튼 클릭 시 FindingRouteView로 이동
+    @objc
+    func goToFindingRouteVC(_gesture: UIGestureRecognizer) {
+        let findingRouteVC = FindingRouteViewController(forPlacdId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(findingRouteVC, animated: true)
     }
 }
 
 extension SearchResultViewController: FloatingPanelControllerDelegate {
     func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
         if fpc.state == .full {
-            let detailVC = DetailViewController()
+            let detailVC = DetailViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
             self.navigationController?.pushViewController(detailVC, animated: false)
         }
     }

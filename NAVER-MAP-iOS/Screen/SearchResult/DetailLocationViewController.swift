@@ -51,8 +51,21 @@ class DetailLocationViewController: UIViewController {
     // MARK: Properties
 
     private var hidden = true
-    var placeId: Int = 1
+    private var placeId: Int
+    private var placeName: String
     private var searchResultSimpleData: GetPlaceResultSimpleResponseData?
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int, forPlaceName: String) {
+        self.placeId = forPlaceId
+        self.placeName = forPlaceName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +110,7 @@ class DetailLocationViewController: UIViewController {
         stackView.snp.makeConstraints{
             $0.top.equalTo(dragIcon.snp.bottom).offset(35)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(stackView.getDeviceHeight() / 3)
+            $0.height.equalTo(stackView.convertByHeightRatio(245))
         }
         
         ///상단 네이버 아이콘 그룹
@@ -256,11 +269,11 @@ class DetailLocationViewController: UIViewController {
             $0.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
         }
         detailLocationView.isHidden = hidden
-
+        
         ///검색 결과 영업 정보
         status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
         lastOrder.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
-
+        
         ///리뷰 정보
         reviewIcon.setImage(ImageLiterals.ic_star_red, for: .normal)
         score.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
@@ -269,9 +282,9 @@ class DetailLocationViewController: UIViewController {
         
         /// 리뷰 이미지
         imgGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 4)
-        img1.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
-        img2.setupImageView(image: ImageLiterals.img_beating_heart, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
-        img3.setupImageView(image: ImageLiterals.img_beating_heart, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
+        img1.setupImageView(image: ImageLiterals.ic_remove, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
+        img2.setupImageView(image: ImageLiterals.ic_remove, radius: 0, borderColor: UIColor.naverMapGray1, width: 1)
+        img3.setupImageView(image: ImageLiterals.ic_remove, maskedCorners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner] , radius: 6, borderColor: UIColor.naverMapGray1, width: 1)
         
         ///구분선
         divider.do{
@@ -287,8 +300,13 @@ class DetailLocationViewController: UIViewController {
         btnGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 6)
         departure.setupRoundedLabel(text: "출발", font: .body7, textColor: .naverMapBlue, alignment: .center, bgColor: .naverMapWhite, borderColor: .naverMapBlue, borderWidth: 1, radius: 16)
         departure.attributedText = NSAttributedString(string: departure.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-        arrival.setupRoundedLabel(text: "도착", font: .body7, textColor: .naverMapWhite, alignment: .center, bgColor: .naverMapBlue, borderColor: .naverMapWhite, borderWidth: 1, radius: 16)
-        arrival.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        arrival.do{
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(goToFindingRouteVC(sender: )))
+            $0.setupRoundedLabel(text: "도착", font: .body7, textColor: .naverMapWhite, alignment: .center, bgColor: .naverMapBlue, borderColor: .naverMapWhite, borderWidth: 1, radius: 16)
+            $0.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+            $0.addGestureRecognizer(gesture)
+            $0.isUserInteractionEnabled = true
+        }
     }
     
     ///상세 위치 정보 버튼 이벤트
@@ -302,10 +320,18 @@ class DetailLocationViewController: UIViewController {
     ///바텀시트 탭 시 상세 뷰로 전환하는 이벤트
     @objc
     func showDetailView(sender: UITapGestureRecognizer) {
-        let detailVC = DetailViewController()
+        let detailVC = DetailViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
         detailVC.modalPresentationStyle = .fullScreen
         self.present(detailVC, animated: true)
         print("move to detail")
+    }
+    
+    ///도착 버튼 이벤트
+    ///버튼 클릭 시 FindingRouteView로 이동
+    @objc
+    func goToFindingRouteVC(sender: UITapGestureRecognizer) {
+        let findingRouteVC = FindingRouteViewController(forPlacdId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(findingRouteVC, animated: true)
     }
 }
 
@@ -333,19 +359,25 @@ private extension DetailLocationViewController {
     // MARK: -api에서 데이터를 받아온 후 라벨들과 이미지에 세팅해주는 함수
     
     func bindData() {
-        self.name.text = searchResultSimpleData?.name
-        self.category.text = searchResultSimpleData?.category
-        self.detail.text = searchResultSimpleData?.description
-        self.distance.text = searchResultSimpleData?.distance
-        self.location.text = searchResultSimpleData?.address
-        self.lastOrder.text = (searchResultSimpleData?.closeTime ?? "") + "에 라스트오더"
-        self.score.text = searchResultSimpleData?.stars
-        guard let visitorReview = searchResultSimpleData?.visitorReview else {return}
-        self.visitorReview.text = "방문자리뷰 \(visitorReview)"
-        guard let blogReview = searchResultSimpleData?.blogReview else {return}
-        self.blogReview.text = "블로그리뷰 \(blogReview)"
-        self.img1.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[0].previewImgUrl ?? ""))
-        self.img2.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[1].previewImgUrl ?? ""))
-        self.img3.kf.setImage(with: URL(string: searchResultSimpleData?.previewImgs[2].previewImgUrl ?? ""))
+        guard let data = searchResultSimpleData else {return}
+        self.name.text = data.name
+        self.category.text = data.category
+        self.detail.text = data.description
+        self.distance.text = data.distance
+        self.location.text = data.address
+        self.detailLocationView.roadNameLabel.text = data.rodeNameAddress
+        self.detailLocationView.localNumNameLabel.text = data.localAddress
+        self.lastOrder.text = data.closeTime + "에 라스트오더"
+        self.score.text = data.stars
+        self.visitorReview.text = "방문자리뷰 \(data.visitorReview)"
+        self.blogReview.text = "블로그리뷰 \(data.blogReview)"
+        
+        // MARK: -이미지가 없는 경우 x 이미지로 대체
+        
+        if !data.previewImgs.isEmpty {
+            self.img1.kf.setImage(with: URL(string: data.previewImgs[0].previewImgUrl))
+            self.img2.kf.setImage(with: URL(string: data.previewImgs[1].previewImgUrl))
+            self.img3.kf.setImage(with: URL(string: data.previewImgs[2].previewImgUrl))
+        }
     }
 }

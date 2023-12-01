@@ -20,6 +20,8 @@ struct GetPlaceResultSimpleResponseData: Codable {
     let description: String
     let distance: String
     let address: String
+    let rodeNameAddress: String
+    let localAddress: String
     let closeTime: String
     let stars: String
     let visitorReview: Int

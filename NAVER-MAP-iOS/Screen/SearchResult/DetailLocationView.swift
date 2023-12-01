@@ -14,7 +14,7 @@ class DetailLocationView: UIView {
     private var copyBtn1 = UIButton()
     private var containerView2 = UIView()
     private var localNumTitleLabel = UILabel()
-    private var localNumNameLabel = UILabel()
+    lazy var localNumNameLabel = UILabel()
     private var copyBtn2 = UIButton()
     
     override init(frame: CGRect) {
@@ -108,10 +108,10 @@ class DetailLocationView: UIView {
         
         ///도로명 주소 정보
         roadNameTitleLabel.setupRoundedLabel(text: "도로명", font: .buttonCaption3, textColor: .naverMapGray4, alignment: .center, bgColor: .naverMapWhite, borderColor: .naverMapGray2, borderWidth: 1, radius: 1)
-        roadNameLabel.setupLabel(font: .body9, text: "광나루로17길 10 2층", textColor: .naverMapGray6)
+        roadNameLabel.setupLabel(font: .body9, text: "", textColor: .naverMapGray6)
         
         /// 지번 주소 정보
         localNumTitleLabel.setupRoundedLabel(text: "지번", font: .buttonCaption3, textColor: .naverMapGray4, alignment: .center, bgColor: .naverMapWhite, borderColor: .naverMapGray2, borderWidth: 1, radius: 1)
-        localNumNameLabel.setupLabel(font: .body9, text: "군자동 373-8 2층", textColor: .naverMapGray6)
+        localNumNameLabel.setupLabel(font: .body9, text: "", textColor: .naverMapGray6)
     }
 }

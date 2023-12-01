@@ -9,7 +9,7 @@ class MyFloatingPanelLayout: FloatingPanelLayout {
     }
 
     var initialState: FloatingPanelState {
-        return .half
+        return .tip
     }
 
     // 가능한 floating panel: 현재 full, half만 가능하게 설정

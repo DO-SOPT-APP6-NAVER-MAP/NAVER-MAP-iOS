@@ -139,7 +139,8 @@ extension MainSearchViewController: UICollectionViewDelegateFlowLayout {
 extension MainSearchViewController: UITableViewDelegate { 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: - 화면 전환 (id값 전달)
-        let searchResultVC = SearchResultViewController()
+        let searchResultVC = SearchResultViewController(forPlaceId: searchResultData[indexPath.row].locationId, forPlaceName: searchResultData[indexPath.row].locationName)
+        self.navigationController?.pushViewController(searchResultVC, animated: true)
         print(searchResultData[indexPath.row].locationId)
     }
 }
