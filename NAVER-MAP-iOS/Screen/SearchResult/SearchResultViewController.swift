@@ -2,6 +2,7 @@ import UIKit
 
 import FloatingPanel
 import MapKit
+import Moya
 import NMapsMap
 import SnapKit
 import Then
@@ -29,6 +30,7 @@ class SearchResultViewController: UIViewController {
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
     var placeId: Int = 1
+    private var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

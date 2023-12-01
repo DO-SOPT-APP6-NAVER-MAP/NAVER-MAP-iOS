@@ -13,6 +13,7 @@ enum Config {
             static let baseURL = "BASE_URL"
             static let clientId = "CLIENT_ID"
             static let apiKey = "API_KEY"
+            static let naverURL = "NAVER_URL"
         }
     }
     
