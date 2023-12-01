@@ -143,7 +143,6 @@ GoogleService-Info.plist
 ### Naver-Map-iOS-SDK
 IDEWorkspaceChecks.plist
 NaverMapDemo.xcworkspace/xcuserdata
-Podfile.lock
 Pods
 UserInterfaceState.xcuserstate
 contents.xcworkspacedata
