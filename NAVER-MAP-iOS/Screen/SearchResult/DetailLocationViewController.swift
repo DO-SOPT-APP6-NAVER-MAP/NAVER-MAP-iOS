@@ -110,7 +110,7 @@ class DetailLocationViewController: UIViewController {
         stackView.snp.makeConstraints{
             $0.top.equalTo(dragIcon.snp.bottom).offset(35)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(stackView.getDeviceHeight() / 3)
+            $0.height.equalTo(stackView.convertByHeightRatio(245))
         }
         
         ///상단 네이버 아이콘 그룹
