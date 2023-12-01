@@ -16,7 +16,7 @@ class DetailLocationViewController: UIViewController {
     private var booking = UIButton()
     private var order = UIButton()
     private var resultTitleGroup = UIView()
-    private var name = UILabel()
+    lazy var name = UILabel()
     private var category = UILabel()
     private var detail = UILabel()
     private var locationInfoGroup = UIView()
@@ -46,7 +46,7 @@ class DetailLocationViewController: UIViewController {
     private var btnGroup = UIStackView()
     private var departure = UILabel()
     private var arrival = UILabel()
-    private var detailLocationView = DetailLocationView()
+    lazy var detailLocationView = DetailLocationView()
     
     // MARK: Properties
 

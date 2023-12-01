@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NAVER_URL</key>
+	<string>$(NAVER_URL)</string>
+	<key>API_KEY</key>
+	<string>$(API_KEY)</string>
+	<key>CLIENT_ID</key>
+	<string>$(CLIENT_ID)</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>위치정보 권한이 필요합니다.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>위치정보 권한이 필요합니다.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>위치정보 권한이 필요합니다.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

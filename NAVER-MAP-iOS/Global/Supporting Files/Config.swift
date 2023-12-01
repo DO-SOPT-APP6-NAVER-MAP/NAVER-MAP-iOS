@@ -11,6 +11,9 @@ enum Config {
     enum Keys {
         enum Plist {
             static let baseURL = "BASE_URL"
+            static let clientId = "CLIENT_ID"
+            static let apiKey = "API_KEY"
+            static let naverURL = "NAVER_URL"
         }
     }
     
