@@ -23,11 +23,13 @@ class DetailViewController: UIViewController {
     // MARK: - ID
     
     private var placeId: Int
-    
+    private var placeName: String
+
     // MARK: - Initializer
     
-    init(forPlaceId: Int) {
+    init(forPlaceId: Int, forPlaceName: String) {
         self.placeId = forPlaceId
+        self.placeName = forPlaceName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -442,6 +444,16 @@ extension DetailViewController: MainSectionHeaderViewDelegate {
         let headerTop = layoutAttributes.frame.origin.y
         detailCollectionView.setContentOffset(CGPoint(x: 0, y: headerTop - detailCollectionView.contentInset.top - headerHeight), animated: true)
     }
+
+    func moveToFindingRouteVC() {
+        let findingRouteVC = FindingRouteViewController(forPlacdId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(findingRouteVC, animated: true)
+    }
+    
+    func moveToSearchResultVC() {
+        let searchResultVC = SearchResultViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(searchResultVC, animated: true)
+    }
     
     func scrollToVisitorSection() {
         scrollToSection(section: 3)
@@ -449,5 +461,13 @@ extension DetailViewController: MainSectionHeaderViewDelegate {
     
     func scrollToBlogSection() {
         scrollToSection(section: 4)
+    }
+    
+    func goToFindingRouteVC() {
+        moveToFindingRouteVC()
+    }
+    
+    func goToSearchResultVC() {
+        moveToSearchResultVC()
     }
 }

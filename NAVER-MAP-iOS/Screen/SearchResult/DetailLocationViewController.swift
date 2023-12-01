@@ -52,12 +52,14 @@ class DetailLocationViewController: UIViewController {
 
     private var hidden = true
     private var placeId: Int
+    private var placeName: String
     private var searchResultSimpleData: GetPlaceResultSimpleResponseData?
     
     // MARK: - Initializer
     
-    init(forPlaceId: Int) {
+    init(forPlaceId: Int, forPlaceName: String) {
         self.placeId = forPlaceId
+        self.placeName = forPlaceName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -267,11 +269,11 @@ class DetailLocationViewController: UIViewController {
             $0.addTarget(self, action: #selector(showDetailLocation), for: .touchUpInside)
         }
         detailLocationView.isHidden = hidden
-
+        
         ///검색 결과 영업 정보
         status.setupLabel(font: .body6, text: "영업 중", textColor: .naverMapNaverGreen)
         lastOrder.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
-
+        
         ///리뷰 정보
         reviewIcon.setImage(ImageLiterals.ic_star_red, for: .normal)
         score.setupLabel(font: .body7, text: "", textColor: .naverMapGray7)
@@ -298,8 +300,13 @@ class DetailLocationViewController: UIViewController {
         btnGroup.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .fillEqually, spacing: 6)
         departure.setupRoundedLabel(text: "출발", font: .body7, textColor: .naverMapBlue, alignment: .center, bgColor: .naverMapWhite, borderColor: .naverMapBlue, borderWidth: 1, radius: 16)
         departure.attributedText = NSAttributedString(string: departure.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-        arrival.setupRoundedLabel(text: "도착", font: .body7, textColor: .naverMapWhite, alignment: .center, bgColor: .naverMapBlue, borderColor: .naverMapWhite, borderWidth: 1, radius: 16)
-        arrival.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+        arrival.do{
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(goToFindingRouteVC(sender: )))
+            $0.setupRoundedLabel(text: "도착", font: .body7, textColor: .naverMapWhite, alignment: .center, bgColor: .naverMapBlue, borderColor: .naverMapWhite, borderWidth: 1, radius: 16)
+            $0.attributedText = NSAttributedString(string: arrival.text!, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+            $0.addGestureRecognizer(gesture)
+            $0.isUserInteractionEnabled = true
+        }
     }
     
     ///상세 위치 정보 버튼 이벤트
@@ -313,10 +320,18 @@ class DetailLocationViewController: UIViewController {
     ///바텀시트 탭 시 상세 뷰로 전환하는 이벤트
     @objc
     func showDetailView(sender: UITapGestureRecognizer) {
-        let detailVC = DetailViewController(forPlaceId: self.placeId)
+        let detailVC = DetailViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
         detailVC.modalPresentationStyle = .fullScreen
         self.present(detailVC, animated: true)
         print("move to detail")
+    }
+    
+    ///도착 버튼 이벤트
+    ///버튼 클릭 시 FindingRouteView로 이동
+    @objc
+    func goToFindingRouteVC(sender: UITapGestureRecognizer) {
+        let findingRouteVC = FindingRouteViewController(forPlacdId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(findingRouteVC, animated: true)
     }
 }
 

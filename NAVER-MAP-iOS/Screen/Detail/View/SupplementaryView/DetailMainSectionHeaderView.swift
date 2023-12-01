@@ -13,6 +13,8 @@ import SnapKit
 protocol MainSectionHeaderViewDelegate: AnyObject {
     func scrollToVisitorSection()
     func scrollToBlogSection()
+    func goToFindingRouteVC()
+    func goToSearchResultVC()
 }
 
 class DetailMainSectionHeaderView: UICollectionReusableView {
@@ -116,6 +118,17 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     @objc
     func blogBtnTapped() {
         delegate?.scrollToBlogSection()
+    }
+    ///도착 버튼 이벤트
+    ///버튼 클릭 시 FindingRouteView로 이동
+    @objc
+    func goToFindingRouteVC() {
+        delegate?.goToFindingRouteVC()
+    }
+    
+    @objc
+    func goToSearchResultVC() {
+        delegate?.goToSearchResultVC()
     }
 }
 
@@ -412,6 +425,8 @@ private extension DetailMainSectionHeaderView {
     func setAddTarget() {
         visitorReviewBtn.addTarget(self, action: #selector(visitorBtnTapped), for: .touchUpInside)
         blogReviewBtn.addTarget(self, action: #selector(blogBtnTapped), for: .touchUpInside)
+        arrivalBtn.addTarget(self, action: #selector(goToFindingRouteVC), for: .touchUpInside)
+        paginatorBtn.addTarget(self, action: #selector(goToSearchResultVC), for: .touchUpInside)
     }
 }
 

@@ -34,11 +34,13 @@ class SearchResultViewController: UIViewController {
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
     private var placeId: Int
     private var locationManager = CLLocationManager()
+    private var placeName: String
     
     // MARK: - Initializer
     
-    init(forPlaceId: Int) {
+    init(forPlaceId: Int, forPlaceName: String) {
         self.placeId = forPlaceId
+        self.placeName = forPlaceName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -134,7 +136,10 @@ class SearchResultViewController: UIViewController {
             $0.layer.borderWidth = 1
         }
         topStackView.setupStackView(bgColor: .naverMapWhite, axis: .horizontal, distribution: .equalSpacing)
-        backBtn.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
+        backBtn.do{
+            $0.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
+            $0.addTarget(self, action: #selector(goToMainSearchVC), for: .touchUpInside)
+        }
         searchTextfield.do{
             $0.addPadding(left: 12, right: 12)
             $0.font = .title4
@@ -220,8 +225,7 @@ class SearchResultViewController: UIViewController {
     // TODO: 바텀시트컨트롤러 추후 수정
     
     func setBottomSheetPanel() {
-        let detailLocationVC = DetailLocationViewController(forPlaceId: self.placeId)
-//        detailLocationVC.placeId = self.placeId
+        let detailLocationVC = DetailLocationViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
         bottomSheetPanel.do{
             $0.delegate = self
             $0.set(contentViewController: detailLocationVC)
@@ -233,14 +237,31 @@ class SearchResultViewController: UIViewController {
             $0.changePanelStyle()
             $0.isModalInPresentation = true
         }
-        getLocationData(location: detailLocationVC.detailLocationView.roadNameLabel.text!, name: detailLocationVC.name.text!)
+        getLocationData(location: detailLocationVC.detailLocationView.roadNameLabel.text!, name: self.placeName)
+        print("getLocationData \(detailLocationVC.detailLocationView.roadNameLabel.text!) | \(detailLocationVC.name.text!)")
+    }
+    
+    ///뒤로가기 버튼 이벤트
+    ///버튼 클릭 시 MainSearchView로 이동
+    @objc
+    func goToMainSearchVC(_gesture: UIGestureRecognizer) {
+        let mainSearchVC = MainSearchViewController()
+        self.navigationController?.pushViewController(mainSearchVC, animated: true)
+    }
+    
+    ///도착 버튼 이벤트
+    ///버튼 클릭 시 FindingRouteView로 이동
+    @objc
+    func goToFindingRouteVC(_gesture: UIGestureRecognizer) {
+        let findingRouteVC = FindingRouteViewController(forPlacdId: self.placeId, forPlaceName: self.placeName)
+        self.navigationController?.pushViewController(findingRouteVC, animated: true)
     }
 }
 
 extension SearchResultViewController: FloatingPanelControllerDelegate {
     func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
         if fpc.state == .full {
-            let detailVC = DetailViewController(forPlaceId: self.placeId)
+            let detailVC = DetailViewController(forPlaceId: self.placeId, forPlaceName: self.placeName)
             self.navigationController?.pushViewController(detailVC, animated: false)
         }
     }
