@@ -139,3 +139,10 @@ xcschememanagement.plist
 
 ### Firebase
 GoogleService-Info.plist
+
+### Naver-Map-iOS-SDK
+IDEWorkspaceChecks.plist
+NaverMapDemo.xcworkspace/xcuserdata
+Pods
+UserInterfaceState.xcuserstate
+contents.xcworkspacedata
