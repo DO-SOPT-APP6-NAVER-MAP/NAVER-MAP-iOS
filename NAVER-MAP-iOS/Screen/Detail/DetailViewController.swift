@@ -7,19 +7,46 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class DetailViewController: UIViewController {
+    
+    private var detailData : GetPlaceResultDetailResponseDTO?
     
     // MARK: Dummy Datas
     
-    private var menuDummy = DetailMenuData.detailMenuDummy
-    private var visitorReviewDummy = DetailVisitorReviewData.detailVisitorDummy
-    private var blogReviewDummy = DetailBlogData.detailBlogData
+    private var menuData : [MenuInfo] = []
+    private var visitorData : [ReviewInfo] = []
+    private var blogData : [ReviewInfo] = []
+    
+    // MARK: - ID
+    
+    private var placeId: Int
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int) {
+        self.placeId = 1
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UI Properties
     
     private lazy var detailCollectionView: UICollectionView = { createCollectionView() }()
     private let detailTopHeader = DetailTopHeaderView()
     private let descriptionHeader = DescriptionTopHeaderView()
+    private let mainSection = DetailMainSectionHeaderView()
+    private let descriptionSection = DescriptionSectionHeaderView()
+    private let menuSection = MenuCollectionViewCell()
+    private let visitorSectionHeader = VisitorSectionHeaderView()
+    private let visitorSection = VisitorReviewCollectionViewCell()
+    private let blogSectionHeader = BlogSectionHeaderView()
+    private let blogSection = BlogReviewCollectionViewCell()
     
     // MARK: - LifeCycle
     
@@ -29,12 +56,41 @@ class DetailViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupCollectionViewConfig()
+        getPlaceResultDetail()
     }
 }
 
 // MARK: - Private Method
 
 private extension DetailViewController {
+    
+    // MARK: - Network
+    
+    func getPlaceResultDetail() {
+        NetworkService.shared.placeService.getPlaceResultDetail(forPlaceId: placeId, completion: {
+            (response) in
+            switch response {
+            case .success(let response):
+                if let data = response {
+                    self.detailData = data
+                    self.detailTopHeader.locationName.text = data.data.name
+                    self.menuData = data.data.menuInfos
+                    self.visitorData = data.data.visitorReviewInfos
+                    self.blogData = data.data.blogReviewInfos
+                }
+                self.detailCollectionView.reloadData()
+    
+            case .requestErr :
+                print("requestErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .decodeErr:
+                print("decodeErr")
+            }
+        })
+    }
     
     func setupViews() {
         self.view.backgroundColor = .naverMapGray1
@@ -240,11 +296,11 @@ extension DetailViewController: UICollectionViewDataSource {
         switch section {
             
         case 2:
-            return menuDummy.count
+            return menuData.count
         case 3:
-            return 3
+            return visitorData.count
         case 4:
-            return 3
+            return blogData.count
         default:
             return 0
         }
@@ -255,17 +311,18 @@ extension DetailViewController: UICollectionViewDataSource {
             
         case 2:
             guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { return UICollectionViewCell() }
-            item.bindData(data: menuDummy[indexPath.row])
+            //            item.bindData(data: menuDummy[indexPath.row])
+            item.bindData(data: menuData[indexPath.row])
             return item
             
         case 3:
             guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: VisitorReviewCollectionViewCell.identifier, for: indexPath) as? VisitorReviewCollectionViewCell else { return UICollectionViewCell() }
-            item.bindData(data: visitorReviewDummy[indexPath.row])
+            item.bindData(data: visitorData[indexPath.row])
             return item
             
         case 4:
             guard let item = detailCollectionView.dequeueReusableCell(withReuseIdentifier: BlogReviewCollectionViewCell.identifier, for: indexPath) as? BlogReviewCollectionViewCell else { return UICollectionViewCell() }
-            item.bindData(data: blogReviewDummy[indexPath.row])
+            item.bindData(data: blogData[indexPath.row])
             return item
             
         default:
@@ -282,10 +339,16 @@ extension DetailViewController: UICollectionViewDataSource {
             case 0:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailMainSectionHeaderView.identifier, for: indexPath) as? DetailMainSectionHeaderView else { return UICollectionReusableView() }
                 headerView.delegate = self
+                if let detailData {
+                    headerView.bindData(data: detailData)
+                }
                 return headerView
                 
             case 1:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DescriptionSectionHeaderView.identifier, for: indexPath) as? DescriptionSectionHeaderView else { return UICollectionReusableView() }
+                if let detailData {
+                    headerView.bindData(data: detailData)
+                }
                 return headerView
                 
             case 2:
@@ -294,12 +357,12 @@ extension DetailViewController: UICollectionViewDataSource {
                 
             case 3:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VisitorSectionHeaderView.identifier, for: indexPath) as? VisitorSectionHeaderView else { return UICollectionReusableView() }
-                headerView.configHeaderView(forCount: String(visitorReviewDummy.count))
+                headerView.configHeaderView(forCount: String(visitorData.count))
                 return headerView
                 
             case 4:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BlogSectionHeaderView.identifier, for: indexPath) as? BlogSectionHeaderView else { return UICollectionReusableView() }
-                headerView.configHeaderView(forCount: String(blogReviewDummy.count))
+                headerView.configHeaderView(forCount: String(blogData.count))
                 return headerView
                 
             case 5:

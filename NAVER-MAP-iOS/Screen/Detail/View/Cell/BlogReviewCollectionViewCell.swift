@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class BlogReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -127,11 +129,11 @@ private extension BlogReviewCollectionViewCell {
         reviewImgCntLabel.setupLabel(font: .button1, textColor: .naverMapWhite)
         
         reviewTitleLabel.do {
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         reviewContentLabel.do {
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         reviewImg.do {
@@ -153,14 +155,18 @@ extension BlogReviewCollectionViewCell {
     
     // MARK: - Bind Data Method
     
-    func bindData(data: DetailBlogData) {
-        self.profileImg.image = data.profileImg
-        self.userName.text = data.userName
-        self.userDescription.text = data.userDescription
-        self.createdDate.text = data.createdAt
-        self.reviewTitleLabel.text = data.reviewTitle
-        self.reviewContentLabel.text = data.reviewContent
-        self.reviewImg.image = data.reviewImg
-        self.reviewImgCntLabel.text = data.imgCnt
+    func bindData(data: ReviewInfo) {
+        if let url = URL(string: data.visitorReviewImgUrl) {
+            self.reviewImg.kf.setImage(with: url)
+        }
+        if let profileUrl = URL(string: data.visitorReviewAuthorThumbnail) {
+            self.profileImg.kf.setImage(with: profileUrl)
+        }
+        self.userName.text = data.visitorReviewAuthor
+        self.userDescription.text = "별을 담은 당신께 드려요"
+        self.createdDate.text = "10.25.수"
+        self.reviewTitleLabel.text = data.visitorReviewTitle
+        self.reviewContentLabel.text = data.visitorReviewContent
+        self.reviewImgCntLabel.text = "2"
     }
 }

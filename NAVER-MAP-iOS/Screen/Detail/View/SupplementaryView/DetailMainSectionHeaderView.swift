@@ -40,15 +40,13 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     private let imageIc: UIImageView = UIImageView(image: ImageLiterals.ic_picture)
     private lazy var imagesCountLabel = createLabel(forFont: .bodyButton, forColor: .naverMapWhite, text: "+4")
     
-    private let locationNameLabel = UILabel()
-    private lazy var categoryLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray4, text: "스파게티, 파스타 전문")}()
-    private lazy var descriptionLabel: UILabel = { createLabel(forFont: .body7,
-                                                               forColor: .naverMapGray6,
-                                                               text: "수제맥주를 즐길 수 있는 어린이대공원 파스타 맛집")}()
+    public var locationNameLabel = UILabel()
+    public var categoryLabel = UILabel()
+    public var descriptionLabel = UILabel()
     
     private lazy var rateStackView: UIStackView = { createHorizontalStackView(forSpacing: 2)}()
     private let rateIc: UIImageView = UIImageView(image: ImageLiterals.ic_star_red)
-    private lazy var rateLabel: UILabel = { createLabel(forFont: .body7, forColor: .naverMapGray7, text: "4.82")}()
+    public var rateLabel = UILabel()
     
     private lazy var visitorReviewBtn = createReviewBtn(title: "방문자리뷰 288")
     private lazy var blogReviewBtn = createReviewBtn(title: "블로그리뷰 316")
@@ -121,9 +119,21 @@ class DetailMainSectionHeaderView: UICollectionReusableView {
     }
 }
 
+// MARK: - Bind Data Method
+
+extension DetailMainSectionHeaderView {
+    func bindData(data: GetPlaceResultDetailResponseDTO) {
+        self.locationNameLabel.text = data.data.name
+        self.categoryLabel.text = data.data.category
+        self.descriptionLabel.text = data.data.description
+        self.rateLabel.text = data.data.stars
+    }
+}
+
 // MARK: - Private method
 
 private extension DetailMainSectionHeaderView {
+    
     func setupStyle() {
         self.backgroundColor = .naverMapWhite
     }
@@ -147,7 +157,7 @@ private extension DetailMainSectionHeaderView {
                                                       imagesVerticalStackView2)
         imagesVerticalStackView1.addArrangedSubviews(smallMenuImage1, smallMenuImage2)
         imagesVerticalStackView2.addArrangedSubviews(smallMenuImage3, smallMenuImage4)
-        imagesHorizontalStackView.addSubviews([paginatorBtn, 
+        imagesHorizontalStackView.addSubviews([paginatorBtn,
                                                imageIcVerticalStackView])
         
         imageIcVerticalStackView.addArrangedSubviews(imageIc, imagesCountLabel)
@@ -293,8 +303,11 @@ private extension DetailMainSectionHeaderView {
     }
     
     func setupProperties() {
+        locationNameLabel.setupLabel(font: .title2, textColor: .naverMapBlack)
+        categoryLabel.setupLabel(font: .body7, textColor: .naverMapGray4)
+        descriptionLabel.setupLabel(font: .body7, textColor: .naverMapGray6)
+        rateLabel.setupLabel(font: .body7, textColor: .naverMapGray7)
         
-        locationNameLabel.setupLabel(font: .title2, text: "알고", textColor: .naverMapBlack)
         paginatorBtn.do {
             $0.setImage(ImageLiterals.ic_arrow_left_g6, for: .normal)
         }

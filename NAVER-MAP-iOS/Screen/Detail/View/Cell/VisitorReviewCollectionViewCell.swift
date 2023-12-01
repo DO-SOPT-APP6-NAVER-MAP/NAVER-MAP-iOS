@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 class VisitorReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -184,14 +186,18 @@ private extension VisitorReviewCollectionViewCell {
 extension VisitorReviewCollectionViewCell {
     
     // MARK: - Bind Data Method
-    func bindData(data: DetailVisitorReviewData) {
-        self.reviewImg.image = data.reviewImg
-        self.userImg.image = data.userImg
-        self.reviewLabel.text = data.reviewContent
-        self.reviewImgCntLabel.text = data.reviewImgCnt
-        self.userName.text = data.userName
-        self.visitDate.text = data.visitDate
-        self.visitCnt.text = data.visitCnt + "번째 방문"
-        self.visitorReviewType.text = data.visitorReviewType
+    func bindData(data: ReviewInfo) {
+        if let url = URL(string: data.visitorReviewImgUrl) {
+            self.reviewImg.kf.setImage(with: url)
+        }
+        if let profileUrl = URL(string: data.visitorReviewAuthorThumbnail) {
+            self.userImg.kf.setImage(with: profileUrl)
+        }
+        self.reviewLabel.text = data.visitorReviewContent
+        self.reviewImgCntLabel.text = "2"
+        self.userName.text = data.visitorReviewAuthor
+        self.visitDate.text = "10.22.월"
+        self.visitCnt.text = "1번째 방문"
+        self.visitorReviewType.text = "영수증"
     }
 }
