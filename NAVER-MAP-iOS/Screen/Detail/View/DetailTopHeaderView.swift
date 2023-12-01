@@ -15,7 +15,7 @@ class DetailTopHeaderView: UIView {
     // MARK: - UIProperties
     
     private let paginatorBtn = UIButton()
-    private let locationName = UILabel()
+    public var locationName = UILabel()
     private let exitBtn = UIButton()
     
     // MARK: - Life Cycle
@@ -84,6 +84,6 @@ private extension DetailTopHeaderView {
             $0.setImage(ImageLiterals.ic_multiply, for: .normal)
         }
         
-        locationName.setupLabel(font: .title2, text: "알고", textColor: .naverMapBlack)
+        locationName.setupLabel(font: .title2, textColor: .naverMapBlack)
     }
 }

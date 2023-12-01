@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 class MenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -89,10 +91,12 @@ private extension MenuCollectionViewCell {
 extension MenuCollectionViewCell {
     
     // MARK: - Bind Data Method
-    func bindData(data: DetailMenuData) {
-        self.menuImage.image = data.menuImage
+    func bindData(data: MenuInfo) {
+        if let url = URL(string: data.menuImgUrl) {         
+            self.menuImage.kf.setImage(with: url)
+        }
         self.menuNameLabel.text = data.menuName
-        self.menuPriceLabel.text = data.menuPrice + "원"
-        self.menuOrderCntLabel.text = "주문수 " + data.menuOrderCnt
+        self.menuPriceLabel.text = "\(data.menuPrice)원"
+        self.menuOrderCntLabel.text = "주문수 1" 
     }
 }

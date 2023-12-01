@@ -61,34 +61,27 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     private lazy var locationVerticStackView: UIStackView = { createVerticStackView(forSpacing: 3) }()
     
     private lazy var addressHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
-    private lazy var addressLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                           forColor: .naverMapGray4,
-                                                           text: "서울 광진구 광나루로17길 10 2층")}()
+    public var addressLabel = UILabel()
+    
     private let moreAddressBtn = UIButton()
     private let detailLocationView = DetailLocationView()
     
     private lazy var routeHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
     private let metroIc: UIImageView = UIImageView(image: ImageLiterals.ic_number_circle)
-    private lazy var routeLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                         forColor: .naverMapGray6,
-                                                         text: "어린이대공원역 5번 출구에서 187m")}()
+    public var routeLabel = UILabel()
     
     /// 영업시간 스택뷰
     private lazy var hourHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let hourIc: UIImageView = UIImageView(image: ImageLiterals.ic_clock)
     private lazy var isOpenedLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                            forColor: .naverMapNaverGreen,
-                                                            text: "영업 중")}()
-    private lazy var lastOrderLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                             forColor: .naverMapGray7,
-                                                             text: "22:00에 라스트오더")}()
+                                                                forColor: .naverMapNaverGreen,
+                                                                text: "영업 중")}()
+    public var lastOrderLabel = UILabel()
     
     /// 전화번호 스택뷰
     private lazy var callHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let callIc: UIImageView = UIImageView(image: ImageLiterals.ic_call)
-    private lazy var callNumberLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                              forColor: .naverMapGray6,
-                                                              text: "02-3409-2654")}()
+    public var callNumberLabel = UILabel()
     private lazy var callCopyLabel: UILabel = { createLabel(forFont: .bodyButton,
                                                             forColor: .naverMapSubBlue,
                                                             text: "복사")}()
@@ -96,21 +89,17 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     /// 옵션 스택뷰
     private lazy var optionHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let optionIc: UIImageView = UIImageView(image: ImageLiterals.ic_home)
-    private lazy var optionLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                          forColor: .naverMapGray6,
-                                                          text: "무선 인터넷, 주차, 포장, 배달, 반려동물 동반, 예약") }()
+    public var optionLabel = UILabel()
     
     /// URL 스택뷰
     private lazy var urlHorizStackView: UIStackView = { createHorizStackView(forSpacing: 10) }()
     private let urlIc: UIImageView = UIImageView(image: ImageLiterals.ic_webpage)
-    private lazy var urlLabel: UILabel = { createLabel(forFont: .bodyButton,
-                                                       forColor: .naverMapSubBlue,
-                                                       text: "https://www.instagram.com/algo_taphouse") }()
+    public var urlLabel = UILabel()
     
     /// 상세 정보 스택뷰
     private let infoHorizStackView = UIStackView()
     private let infoIc: UIImageView = UIImageView(image: ImageLiterals.ic_information)
-    private let infoLabel = UILabel()
+    public var infoLabel = UILabel()
     
     /// 정보 수정 스택뷰
     private lazy var editInfoHorizStackView: UIStackView = { createHorizStackView(forSpacing: 3) }()
@@ -144,6 +133,20 @@ class DescriptionSectionHeaderView: UICollectionReusableView {
     }
 }
 
+// MARK: - Bind Data Method
+
+extension DescriptionSectionHeaderView {
+    func bindData(data: GetPlaceResultDetailResponseDTO) {
+        self.addressLabel.text = data.data.detailAddress
+        self.routeLabel.text = data.data.direction
+        self.lastOrderLabel.text = data.data.closeTime + "에 라스트오더"
+        self.callNumberLabel.text = data.data.number
+        self.optionLabel.text = data.data.characters
+        self.urlLabel.text = data.data.sns
+        self.infoLabel.text = data.data.detail
+    }
+}
+
 // MARK: - Private method
 
 private extension DescriptionSectionHeaderView {
@@ -152,7 +155,7 @@ private extension DescriptionSectionHeaderView {
     }
     
     func setupViews() {
-        self.addSubviews([headerView,
+        self.addSubviews([headerHorizStackView,
                           horizDividingLine1,
                           alarmHorizStackView,
                           alarmBtn,
@@ -296,7 +299,6 @@ private extension DescriptionSectionHeaderView {
         infoLabel.do {
             $0.font = .bodyButton
             $0.textColor = .naverMapGray6
-            $0.text = "안녕하세요. 부담없는 가격과 맛있는 맛으로 여러분께 다가가는 파스타 및 맥주 전문점 알고입니다. 편안한 한 끼 식사, 편안한 한 잔의 맥주로 여러분의 하루를 마무리하세요."
             $0.numberOfLines = 0
         }
         
