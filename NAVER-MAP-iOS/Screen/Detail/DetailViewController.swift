@@ -22,12 +22,12 @@ class DetailViewController: UIViewController {
     
     // MARK: - ID
     
-    private var forPlaceId: Int
+    private var placeId: Int
     
     // MARK: - Initializer
     
     init(forPlaceId: Int) {
-        self.forPlaceId = forPlaceId
+        self.placeId = 1
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,7 +67,7 @@ private extension DetailViewController {
     // MARK: - Network
     
     func getPlaceResultDetail() {
-        NetworkService.shared.placeService.getPlaceResultDetail(forPlaceId: forPlaceId, completion: {
+        NetworkService.shared.placeService.getPlaceResultDetail(forPlaceId: placeId, completion: {
             (response) in
             switch response {
             case .success(let response):
