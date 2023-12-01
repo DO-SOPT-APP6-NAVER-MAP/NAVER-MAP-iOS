@@ -27,6 +27,7 @@ class SearchResultViewController: UIViewController {
    
     private let defaultLocation = CLLocationCoordinate2D(latitude: 37.548241, longitude: 127.072978)
     private let defaultSpanValue = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+    var placeId: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,7 @@ class SearchResultViewController: UIViewController {
     
     func setBottomSheetPanel() {
         let detailLocationVC = DetailLocationViewController()
+        detailLocationVC.placeId = self.placeId
         bottomSheetPanel.do{
             $0.delegate = self
             $0.set(contentViewController: detailLocationVC)
