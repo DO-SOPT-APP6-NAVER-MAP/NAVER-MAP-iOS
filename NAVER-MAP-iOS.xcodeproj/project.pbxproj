@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42A0C426FE07B977A77502D3 /* Pods_NAVER_MAP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642D6F5A24D431498536BB74 /* Pods_NAVER_MAP_iOS.framework */; };
+		44E3FB8B0C0EF3D11A363BAA /* Pods_NAVER_MAP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A45E7A93755ACFCC99AF0F1 /* Pods_NAVER_MAP_iOS.framework */; };
 		6B4D96DB2B08657600977A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4D96DA2B08657600977A82 /* AppDelegate.swift */; };
 		6B4D96DD2B08657600977A82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4D96DC2B08657600977A82 /* SceneDelegate.swift */; };
 		6B4D96DF2B08657600977A82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4D96DE2B08657600977A82 /* ViewController.swift */; };
@@ -81,7 +81,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		642D6F5A24D431498536BB74 /* Pods_NAVER_MAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAVER_MAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		119B8A990FB8877CD1A691DC /* Pods-NAVER-MAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAVER-MAP-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NAVER-MAP-iOS/Pods-NAVER-MAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		3A45E7A93755ACFCC99AF0F1 /* Pods_NAVER_MAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAVER_MAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4D96D72B08657600977A82 /* NAVER-MAP-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NAVER-MAP-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4D96DA2B08657600977A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B4D96DC2B08657600977A82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,13 +143,12 @@
 		94BDA9F92B0EE80500B284EC /* DescriptionSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSectionHeaderView.swift; sourceTree = "<group>"; };
 		94F380AC2B0CAF0E00657538 /* DetailMainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMainSectionHeaderView.swift; sourceTree = "<group>"; };
 		94FE70D52B179F1200EFCA86 /* DescriptionTopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTopHeaderView.swift; sourceTree = "<group>"; };
-		963F7FCAA4EA7F41DD7FE211 /* Pods-NAVER-MAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAVER-MAP-iOS.release.xcconfig"; path = "Target Support Files/Pods-NAVER-MAP-iOS/Pods-NAVER-MAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		C113745DA8BD933EFD44C025 /* Pods-NAVER-MAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAVER-MAP-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NAVER-MAP-iOS/Pods-NAVER-MAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CA9DAA662B10B89C00135337 /* DetailLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationView.swift; sourceTree = "<group>"; };
 		CA9DAA9A2B11B8FD00135337 /* DetailLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationViewController.swift; sourceTree = "<group>"; };
 		CA9DAAA02B11BC2600135337 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		CA9DAAA22B11BD8900135337 /* FloatingPanelController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPanelController+.swift"; sourceTree = "<group>"; };
 		CA9DAAA42B11BE0100135337 /* MyFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFloatingPanelLayout.swift; sourceTree = "<group>"; };
+		CD813E9EAD18932B56F1E3A3 /* Pods-NAVER-MAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAVER-MAP-iOS.release.xcconfig"; path = "Target Support Files/Pods-NAVER-MAP-iOS/Pods-NAVER-MAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,21 +164,13 @@
 				6BAD1A992B0A639700837590 /* ReactiveMoya in Frameworks */,
 				CA9DAA6C2B11092000135337 /* FloatingPanel in Frameworks */,
 				6BAD1A952B0A639700837590 /* CombineMoya in Frameworks */,
-				42A0C426FE07B977A77502D3 /* Pods_NAVER_MAP_iOS.framework in Frameworks */,
+				44E3FB8B0C0EF3D11A363BAA /* Pods_NAVER_MAP_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B6E7DA1169A1AE5F7F9E78B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				642D6F5A24D431498536BB74 /* Pods_NAVER_MAP_iOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6B4D96CE2B08657600977A82 = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +178,7 @@
 				6B4D96D92B08657600977A82 /* NAVER-MAP-iOS */,
 				6B4D96D82B08657600977A82 /* Products */,
 				6CE4CA474EBC29D5BF9AF65A /* Pods */,
-				3B6E7DA1169A1AE5F7F9E78B /* Frameworks */,
+				F43CD78132B5180A07DCCA60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -474,10 +466,9 @@
 		6CE4CA474EBC29D5BF9AF65A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C113745DA8BD933EFD44C025 /* Pods-NAVER-MAP-iOS.debug.xcconfig */,
-				963F7FCAA4EA7F41DD7FE211 /* Pods-NAVER-MAP-iOS.release.xcconfig */,
+				119B8A990FB8877CD1A691DC /* Pods-NAVER-MAP-iOS.debug.xcconfig */,
+				CD813E9EAD18932B56F1E3A3 /* Pods-NAVER-MAP-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -534,6 +525,14 @@
 			path = SupplementaryView;
 			sourceTree = "<group>";
 		};
+		F43CD78132B5180A07DCCA60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A45E7A93755ACFCC99AF0F1 /* Pods_NAVER_MAP_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -541,11 +540,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B4D96EB2B08657700977A82 /* Build configuration list for PBXNativeTarget "NAVER-MAP-iOS" */;
 			buildPhases = (
-				0174C289C0D3F64376D4B2B4 /* [CP] Check Pods Manifest.lock */,
+				6C87B92619328859F591EF95 /* [CP] Check Pods Manifest.lock */,
 				6B4D96D32B08657600977A82 /* Sources */,
 				6B4D96D42B08657600977A82 /* Frameworks */,
 				6B4D96D52B08657600977A82 /* Resources */,
-				FB2638DC1613421A9286728B /* [CP] Embed Pods Frameworks */,
+				8159FD4C0EB0D4D824E1DEDF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -591,10 +590,10 @@
 			);
 			mainGroup = 6B4D96CE2B08657600977A82;
 			packageReferences = (
-				6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
-				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then.git" */,
+				6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */,
 				6BAD1A932B0A639700837590 /* XCRemoteSwiftPackageReference "Moya" */,
-				CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel.git" */,
+				CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				6BF2E58B2B160DBF003F1835 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6B4D96D82B08657600977A82 /* Products */;
@@ -623,7 +622,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0174C289C0D3F64376D4B2B4 /* [CP] Check Pods Manifest.lock */ = {
+		6C87B92619328859F591EF95 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -645,7 +644,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB2638DC1613421A9286728B /* [CP] Embed Pods Frameworks */ = {
+		8159FD4C0EB0D4D824E1DEDF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -780,7 +779,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -843,7 +842,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -864,7 +863,7 @@
 		};
 		6B4D96EC2B08657700977A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BF2E59D2B170EAB003F1835 /* Config.xcconfig */;
+			baseConfigurationReference = 119B8A990FB8877CD1A691DC /* Pods-NAVER-MAP-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -892,7 +891,7 @@
 		};
 		6B4D96ED2B08657700977A82 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BF2E59D2B170EAB003F1835 /* Config.xcconfig */;
+			baseConfigurationReference = CD813E9EAD18932B56F1E3A3 /* Pods-NAVER-MAP-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -942,7 +941,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -950,7 +949,7 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then.git" */ = {
+		6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
 			requirement = {
@@ -974,7 +973,7 @@
 				minimumVersion = 7.10.0;
 			};
 		};
-		CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel.git" */ = {
+		CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
 			requirement = {
@@ -987,12 +986,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		6BAD1A8E2B0A636F00837590 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 6BAD1A8D2B0A636F00837590 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		6BAD1A912B0A637B00837590 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then.git" */;
+			package = 6BAD1A902B0A637B00837590 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
 		6BAD1A942B0A639700837590 /* CombineMoya */ = {
@@ -1022,7 +1021,7 @@
 		};
 		CA9DAA6B2B11092000135337 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel.git" */;
+			package = CA9DAA6A2B11092000135337 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */

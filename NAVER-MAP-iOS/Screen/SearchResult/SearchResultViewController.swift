@@ -2,6 +2,7 @@ import UIKit
 
 import FloatingPanel
 import MapKit
+import NMapsMap
 import SnapKit
 import Then
 
@@ -15,7 +16,7 @@ class SearchResultViewController: UIViewController {
     private var searchTextfield = UITextField()
     private var micBtn = UIButton()
     private var exitBtn = UIButton()
-    private var mapView = MKMapView()
+    private var mapView = NMFNaverMapView()
     private var mapBtnStackView = UIStackView()
     private var menuBtn = UIButton()
     private var favoritesBtn = UIButton()
@@ -132,9 +133,6 @@ class SearchResultViewController: UIViewController {
         exitBtn.setImage(ImageLiterals.ic_remove, for: .normal)
         
         ///맵뷰
-        mapView.do{
-            $0.setRegion(MKCoordinateRegion(center: defaultLocation, span: defaultSpanValue), animated: true)
-        }
         mapBtnStackView.setupStackView(bgColor: .clear, axis: .vertical, distribution: .fillEqually, spacing: 7)
         menuBtn.setImage(ImageLiterals.ic_copy, for: .normal)
         favoritesBtn.setImage(ImageLiterals.ic_star_fill, for: .normal)
@@ -150,6 +148,15 @@ class SearchResultViewController: UIViewController {
             i.layer.shadowOffset = CGSize(width: 0, height: 4)
             i.layer.borderColor = UIColor.naverMapGray3.cgColor
             i.layer.borderWidth = 0.5
+        }
+    }
+    
+    // MARK: - 맵뷰 세팅
+    func setMap(x: Double, y: Double, name: String) {
+        mapView.do{
+            $0.showLocationButton = false
+            $0.showZoomControls = false
+            $0.mapView.zoomLevel = 16
         }
     }
     
