@@ -22,7 +22,18 @@ class DetailViewController: UIViewController {
     
     // MARK: - ID
     
-    public var forPlaceId: Int = 1
+    private var forPlaceId: Int
+    
+    // MARK: - Initializer
+    
+    init(forPlaceId: Int) {
+        self.forPlaceId = forPlaceId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UI Properties
     
