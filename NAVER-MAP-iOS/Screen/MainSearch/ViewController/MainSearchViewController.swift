@@ -10,18 +10,8 @@ import UIKit
 final class MainSearchViewController: UIViewController {
     
     // MARK: - Properties
-
-    private var searchResultString: String = ""
-    private var searchNetworkData = [GetPlaceSearchResponseData]() {
-        didSet {
-            rootView.reloadView()
-        }
-    }
-    private var searchResultData = [MainSearchLocationModel]() {
-        didSet {
-            rootView.reloadView()
-        }
-    }
+    
+    private let viewModel: MainSearchViewModel = MainSearchViewModel()
     
     private let collectionViewItemSpacing: CGFloat = 8
     private let collectionViewHorizontalInset: CGFloat = 16
@@ -42,12 +32,13 @@ final class MainSearchViewController: UIViewController {
         hideNavigationBar()
         hideKeyboard()
         setupView()
+        setupViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchNetworkResult()
+        viewModel.refreshNetworkResult()
     }
 }
 
@@ -60,32 +51,10 @@ private extension MainSearchViewController {
         rootView.setupTextField(forDelegate: self)
     }
     
-    func fetchNetworkResult() {
-        NetworkService.shared.placeService.getPlaceSearch(forPlaceName: "알고") { result in
-            switch result {
-            case .success(let response):
-                if let responseData = response?.data {
-                    self.searchNetworkData = responseData
-                }
-            default: break
-            }
+    func setupViewModel() {
+        viewModel.setupChangeTextFieldAction {
+            self.rootView.reloadView()
         }
-    }
-    
-    func fetchSearchResult(forText: String) {
-        var data = [MainSearchLocationModel]()
-        
-        searchNetworkData.forEach {
-            if $0.name.contains(forText) {
-                data.append(MainSearchLocationModel(locationId: $0.placeId,
-                                                    locationName: $0.name,
-                                                    location: $0.detailAddress,
-                                                    reviewCount: $0.visitorReview,
-                                                    category: $0.category,
-                                                    distance: $0.distance))
-            }
-        }
-        searchResultData = data
     }
 }
 
@@ -94,8 +63,7 @@ private extension MainSearchViewController {
 extension MainSearchViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let originText = textField.text else { return }
-        searchResultString = originText
-        fetchSearchResult(forText: originText)
+        viewModel.setupTextField(forString: originText)
     }
 }
 
@@ -107,16 +75,19 @@ extension MainSearchViewController: UICollectionViewDelegate {}
 
 extension MainSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if searchResultData.count > 4 {
+        let dataCount = viewModel.fetchSearchResultData().count
+        if dataCount > 4 {
             return 4
         } else {
-            return searchResultData.count
+            return dataCount
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchRecommendCollectionViewCell.identifier, for: indexPath) as? SearchRecommendCollectionViewCell else { return UICollectionViewCell() }
-        cell.configCell(forName: searchResultData[indexPath.item].locationName, forSearch: searchResultString)
+        if let data = viewModel.fetchIndexOfSearchResultData(forIndex: indexPath.item) {
+            cell.configCell(forName: data.locationName, forSearch: viewModel.fetchTextField())
+        }
         return cell
     }
 }
@@ -138,10 +109,10 @@ extension MainSearchViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainSearchViewController: UITableViewDelegate { 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - 화면 전환 (id값 전달)
-        let searchResultVC = SearchResultViewController(forPlaceId: searchResultData[indexPath.row].locationId, forPlaceName: searchResultData[indexPath.row].locationName)
-        self.navigationController?.pushViewController(searchResultVC, animated: true)
-        print(searchResultData[indexPath.row].locationId)
+        if let data = viewModel.fetchIndexOfSearchResultData(forIndex: indexPath.item) {
+            let searchResultVC = SearchResultViewController(forPlaceId: data.locationId, forPlaceName: data.locationName)
+            self.navigationController?.pushViewController(searchResultVC, animated: true)
+        }
     }
 }
 
@@ -149,8 +120,10 @@ extension MainSearchViewController: UITableViewDelegate {
 
 extension MainSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchResultData.count == 0 {
-            if searchResultString == "" {
+        let dataCount = viewModel.fetchSearchResultData().count
+
+        if dataCount == 0 {
+            if viewModel.fetchTextField() == "" {
                 rootView.setupEmptyView(isHide: false)
             } else {
                 rootView.setupEmptyView(isHide: false, isEmpty: false)
@@ -158,12 +131,15 @@ extension MainSearchViewController: UITableViewDataSource {
         } else {
             rootView.setupEmptyView(isHide: true)
         }
-        return searchResultData.count
+        return dataCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
-        cell.configCell(forModel: searchResultData[indexPath.row], forSearch: searchResultString)
+        // TODO: - View에서 Model을 모르도록 수정
+        if let data = viewModel.fetchIndexOfSearchResultData(forIndex: indexPath.item) {
+            cell.configCell(forModel: data, forSearch: viewModel.fetchTextField())
+        }
         return cell
     }
 }
