@@ -238,6 +238,7 @@
 		6BAD1A9F2B0A653300837590 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6BFDD1332B1F507200D8617D /* View */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				6BF2E57A2B136A8C003F1835 /* Cell */,
-				6BF2E5522B11C8E7003F1835 /* EmptySearchView.swift */,
 				6BAD1AAC2B0A664300837590 /* MainSearchViewController.swift */,
 			);
 			path = View;
@@ -466,6 +466,14 @@
 				6BFDD1312B1F4B3000D8617D /* MainSearchViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6BFDD1332B1F507200D8617D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BF2E5522B11C8E7003F1835 /* EmptySearchView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		6CE4CA474EBC29D5BF9AF65A /* Pods */ = {
