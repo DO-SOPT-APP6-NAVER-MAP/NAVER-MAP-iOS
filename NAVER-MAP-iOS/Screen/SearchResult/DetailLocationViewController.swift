@@ -54,7 +54,8 @@ class DetailLocationViewController: UIViewController {
     private var placeId: Int
     private var placeName: String
     private var searchResultSimpleData: GetPlaceResultSimpleResponseData?
-    
+    private let viewModel: DetailLocationViewModel = DetailLocationViewModel()
+
     // MARK: - Initializer
     
     init(forPlaceId: Int, forPlaceName: String) {
@@ -70,10 +71,14 @@ class DetailLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchNetworkResult()
+        setupViewModel()
         setupView()
         setupLayout()
         setupStyle()
+    }
+    func setupViewModel() {
+        ///viewmodel 데이터를 받아옴
+        bindData(data: viewModel.fetchResultData())
     }
     
     func setupView() {
@@ -339,27 +344,9 @@ class DetailLocationViewController: UIViewController {
 
 private extension DetailLocationViewController {
     
-    // MARK: -서버 통신 함수
-
-    func fetchNetworkResult() {
-        NetworkService.shared.placeService.getPlaceResultSimple(forPlaceId: self.placeId) {
-            result in
-            switch result {
-            case .success(let response):
-                if let responseData = response?.data {
-                    self.searchResultSimpleData = responseData
-                    self.bindData()
-                    print("data\(String(describing: self.searchResultSimpleData))")
-                }
-            default: break
-            }
-        }
-    }
-    
     // MARK: -api에서 데이터를 받아온 후 라벨들과 이미지에 세팅해주는 함수
     
-    func bindData() {
-        guard let data = searchResultSimpleData else {return}
+    func bindData(data: GetPlaceResultSimpleResponseData) {
         self.name.text = data.name
         self.category.text = data.category
         self.detail.text = data.description
