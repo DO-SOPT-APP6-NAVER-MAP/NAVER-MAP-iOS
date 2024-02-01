@@ -1,6 +1,7 @@
 # NAVER-MAP-iOS
-@Naver_Map_Official
+@Naver_Map_Official
 
+## 33rd DO SOPT 합동세미나 iOS - 네이버 지도 리디자인
 
 ### 📱 시연영상
 
